@@ -47,7 +47,7 @@ public class move : MonoBehaviour
 
             
         if (Input.GetKeyDown (KeyCode.Space) &&BOTTOMFINDER.PasibleBottomJump==true &&PasibleJump == true ){
-                GetComponent<Rigidbody2D>().AddForce(Vector3.up*400f);
+                GetComponent<Rigidbody2D>().AddForce(Vector3.up*500f);
         }
         
 
