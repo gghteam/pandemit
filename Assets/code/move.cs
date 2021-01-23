@@ -15,11 +15,11 @@ public class move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Application.targetFrameRate = 120;
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame
-    void Update()   {
+    void FixedUpdate()   {
         if (Input.GetKey (KeyCode.A)){
             if (BOTTOMFINDER.PasibleBottomJump==false){
                 if (Input.GetKeyDown (KeyCode.Space)&&PasibleJump == true){
@@ -31,7 +31,7 @@ public class move : MonoBehaviour
             }
             //Debug.Log (jun);
             //Debug.Log (this.gameObject.transform.position.x);
-            GetComponent<Rigidbody2D>().AddForce(Vector3.left*8f);
+            GetComponent<Rigidbody2D>().AddForce(Vector3.left*16f);
         }
         if (Input.GetKey (KeyCode.D)){ 
             if (BOTTOMFINDER.PasibleBottomJump==false){
@@ -42,12 +42,16 @@ public class move : MonoBehaviour
                     }
                 }
             }
-            GetComponent<Rigidbody2D>().AddForce(Vector3.right*8f);
+            GetComponent<Rigidbody2D>().AddForce(Vector3.right*16f);
         }
 
             
         if (Input.GetKeyDown (KeyCode.Space) &&BOTTOMFINDER.PasibleBottomJump==true &&PasibleJump == true ){
                 GetComponent<Rigidbody2D>().AddForce(Vector3.up*500f);
+        }
+
+        if (Input.GetKeyDown (KeyCode.LeftControl)) {
+            Debug.Log("앉기");
         }
         
 
