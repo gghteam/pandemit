@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 	bool iswall;
 	bool iswall2;
 	public float wallJumppower;
+	public float maxspeed;
 
 	Rigidbody2D rigid;
 
@@ -45,13 +46,14 @@ public class Player : MonoBehaviour
 			//rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * slidingSpeed);
 			if (Input.GetAxis("Jump") != 0)
 			{
-				rigid.velocity = new Vector2(isRight * wallJumppower, 0.9f * wallJumppower);
+				rigid.velocity = new Vector2(rigid.velocity.x, 0.9f * wallJumppower);
 			}
 		}
 	}
 
 	void Move()
 	{
+		/*
 		Vector3 moveVelocity = Vector3.zero;
 
 		if (Input.GetAxisRaw("Horizontal") < 0)
@@ -67,6 +69,13 @@ public class Player : MonoBehaviour
 		}
 
 		transform.position += moveVelocity * movePower * Time.deltaTime;
+		*/
+		float horizontal = Input.GetAxisRaw("Horizontal");
+		rigid.AddForce(Vector2.right * horizontal, ForceMode2D.Impulse);
+
+		if (rigid.velocity.x > maxspeed) rigid.velocity = new Vector2(maxspeed,rigid.velocity.y);
+		else if (rigid.velocity.x < maxspeed*(-1)) rigid.velocity = new Vector2(maxspeed*(-1),rigid.velocity.y);
+
 	}
 
 	void Jump()
