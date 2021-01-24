@@ -88,10 +88,9 @@ public class Player : MonoBehaviour
 				m_distance, m_layerMask);
 			if(t_hit)
 			{
-				if(t_hit.transform.CompareTag("ground"))
-				{
-					m_jumpCount = 0;
-				}
+				
+				m_jumpCount = 0;
+				
 			}
 		}
 	}

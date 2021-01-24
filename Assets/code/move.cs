@@ -22,10 +22,10 @@ public class move : MonoBehaviour
     void FixedUpdate()   {
         if (Input.GetKey (KeyCode.A)){
             if (BOTTOMFINDER.PasibleBottomJump==false){
-                if (Input.GetKeyDown (KeyCode.Space)&&PasibleJump == true){
+                if (Input.GetKey (KeyCode.Space)&&PasibleJump == true){
                     if(WALLFINDER.PasibleWallJump==true){
                         GetComponent<Rigidbody2D>().AddForce(Vector3.right*200f);
-                        GetComponent<Rigidbody2D>().AddForce(Vector3.up*500f);
+                        GetComponent<Rigidbody2D>().AddForce(Vector3.up*400f);
                     }
                 }
             }
@@ -35,10 +35,10 @@ public class move : MonoBehaviour
         }
         if (Input.GetKey (KeyCode.D)){ 
             if (BOTTOMFINDER.PasibleBottomJump==false){
-                if (Input.GetKeyDown (KeyCode.Space)&&PasibleJump == true){
+                if (Input.GetKey (KeyCode.Space)&&PasibleJump == true){
                     if(WALLFINDER.PasibleWallJump==true){
                         GetComponent<Rigidbody2D>().AddForce(Vector3.left*200f);
-                        GetComponent<Rigidbody2D>().AddForce(Vector3.up*500f);
+                        GetComponent<Rigidbody2D>().AddForce(Vector3.up*400f);
                     }
                 }
             }
@@ -46,7 +46,7 @@ public class move : MonoBehaviour
         }
 
             
-        if (Input.GetKeyDown (KeyCode.Space) &&BOTTOMFINDER.PasibleBottomJump==true &&PasibleJump == true ){
+        if (Input.GetKey (KeyCode.Space) &&BOTTOMFINDER.PasibleBottomJump==true &&PasibleJump == true ){
                 GetComponent<Rigidbody2D>().AddForce(Vector3.up*500f);
         }
 
