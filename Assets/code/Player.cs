@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 	public float wallJumppower;
 	public float maxspeed;
 
+	SpriteRenderer SpriteRenderer2d;
 	Rigidbody2D rigid;
 
 	Vector3 movement;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
 	{
 		rigid = gameObject.GetComponent<Rigidbody2D>();
 		m_distance = GetComponent <CapsuleCollider2D>().bounds.extents.y + 0.05f;
+		SpriteRenderer2d = GetComponent<SpriteRenderer>();
 	}
 
 	//Graphic & Input Updates	
@@ -49,6 +51,20 @@ public class Player : MonoBehaviour
 				rigid.velocity = new Vector2(rigid.velocity.x, 0.9f * wallJumppower);
 			}
 		}
+	}
+
+	void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.tag == "Enemy")
+		{
+			Debug.Log("Ãæµ¹");
+			SpriteRenderer2d.color = new Color(1, 1, 1, 0.4f);
+			Invoke("offdamage", 1);
+		}
+	}
+	void offdamage()
+	{
+		SpriteRenderer2d.color = new Color(1, 1, 1, 1);
 	}
 
 	void Move()
