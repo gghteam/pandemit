@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-
+	private Animator animator;
 	public float movePower = 1f;
 	public float m_jumpforce = 0f;
 	public int m_maxjumpcount = 0;
@@ -20,11 +20,19 @@ public class Player : MonoBehaviour
 	bool iswall2;
 	public float wallJumppower;
 	public float maxspeed;
+	public KeyCode sit;
 
 	SpriteRenderer SpriteRenderer2d;
 	Rigidbody2D rigid;
 
 	Vector3 movement;
+
+	private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        animator.SetBool("sit?", false);
+    }
+
 	void Start()
 	{
 		rigid = gameObject.GetComponent<Rigidbody2D>();
@@ -39,13 +47,19 @@ public class Player : MonoBehaviour
 		CheckGround();
 		iswall = Physics2D.Raycast(wallCHk.position, Vector2.right * isRight, wallchkDistance, W_layer);
 		iswall2 = Physics2D.Raycast(wallCHk2.position, Vector2.right * isRight, wallchkDistance, W_layer);
+		if (Input.GetButton("sit")) {animator.SetBool("sit?", true);slidingSpeed=1f;}
+		else {animator.SetBool("sit?", false);slidingSpeed=0.8f;}
 	}
 	private void FixedUpdate()
 	{
 		Move();
 		if (iswall || iswall2)
 		{
-			//rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * slidingSpeed);
+			if (iswall) rigid.AddForce(Vector3.right*5);
+			else rigid.AddForce(Vector3.left*5);
+
+
+			rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * slidingSpeed);
 			if (Input.GetAxis("Jump") != 0)
 			{
 				rigid.velocity = new Vector2(rigid.velocity.x, 0.9f * wallJumppower);
@@ -57,7 +71,7 @@ public class Player : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Enemy")
 		{
-			Debug.Log("Ãæµ¹");
+			Debug.Log("dd");
 			SpriteRenderer2d.color = new Color(1, 1, 1, 0.4f);
 			Invoke("offdamage", 1);
 		}
