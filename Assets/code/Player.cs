@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
+	public int ply_HP = 100;
 	private Animator animator;
 	public float movePower = 1f;
 	public float m_jumpforce = 0f;
@@ -73,6 +74,7 @@ public class Player : MonoBehaviour
 		{
 			Debug.Log("dd");
 			SpriteRenderer2d.color = new Color(1, 1, 1, 0.4f);
+			ply_HP -= 10;
 			Invoke("offdamage", 1);
 		}
 	}
