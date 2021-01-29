@@ -76,6 +76,14 @@ public class Player : MonoBehaviour
 			Debug.Log("dd");
 			SpriteRenderer2d.color = new Color(1, 1, 1, 0.4f);
 			ply_HP -= 10;
+			if (collision.gameObject.transform.position.x < gameObject.transform.position.x){
+				rigid.AddForce(Vector3.right*300);
+				rigid.AddForce(Vector3.up*15);
+			}
+			else {
+				rigid.AddForce(Vector3.left*300);
+				rigid.AddForce(Vector3.up*15);
+			}
 			Invoke("offdamage", 1);
 		}
 	}

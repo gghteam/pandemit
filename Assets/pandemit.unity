@@ -2009,6 +2009,14 @@ PrefabInstance:
       value: Zombie (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3309474399363757097, guid: 5859fef95b34e024e8e97e8119f1fc19, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309474399363757097, guid: 5859fef95b34e024e8e97e8119f1fc19, type: 3}
+      propertyPath: rangthf
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309474399363757097, guid: 5859fef95b34e024e8e97e8119f1fc19, type: 3}
       propertyPath: PlayerObj
       value: 
       objectReference: {fileID: 1099276542}
