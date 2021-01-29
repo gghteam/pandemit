@@ -27,9 +27,9 @@ public class Player : MonoBehaviour
 	SpriteRenderer SpriteRenderer2d;
 	Rigidbody2D rigid;
 
-	Vector3 movement;
+	Vector3 movement; 
 
-	private void Awake()
+	private void Awake() //sssss
     {
         animator = GetComponent<Animator>();
         animator.SetBool("sit?", false);
