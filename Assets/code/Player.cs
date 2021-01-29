@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 	bool iswall2;
 	public float wallJumppower;
 	public float maxspeed;
+	public float JumpPower;
 	public KeyCode sit;
 
 	SpriteRenderer SpriteRenderer2d;
@@ -104,6 +105,7 @@ public class Player : MonoBehaviour
 		*/
 		float horizontal = Input.GetAxisRaw("Horizontal");
 		rigid.AddForce(Vector2.right * horizontal, ForceMode2D.Impulse);
+		//rigid.AddForce(Vector3.up*800f);
 
 		if (rigid.velocity.x > maxspeed) rigid.velocity = new Vector2(maxspeed,rigid.velocity.y);
 		else if (rigid.velocity.x < maxspeed*(-1)) rigid.velocity = new Vector2(maxspeed*(-1),rigid.velocity.y);
@@ -117,7 +119,7 @@ public class Player : MonoBehaviour
 			if(m_jumpCount < m_maxjumpcount)
 			{
 				m_jumpCount++;
-				rigid.velocity = Vector2.up * m_jumpforce;
+				rigid.AddForce(Vector3.up*JumpPower);
 			}
 		}
 	}

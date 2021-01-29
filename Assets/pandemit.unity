@@ -1663,6 +1663,7 @@ MonoBehaviour:
   slidingSpeed: 0.4
   wallJumppower: 6
   maxspeed: 5
+  JumpPower: 500
   sit: 0
 --- !u!95 &1099276543
 Animator:
