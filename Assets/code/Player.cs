@@ -87,18 +87,19 @@ public class Player : MonoBehaviour
 	void OnDamaged(Vector2 targetPos)
 	{
 		ply_HP -= 10;
-		gameObject.layer = 8;
+		//gameObject.layer = 8;
 		SpriteRenderer2d.color = new Color(1, 1, 1, 0.4f);
 
-		//³Î¹é
+		//ï¿½Î¹ï¿½
 		int dirc = transform.position.x - targetPos.x > 0 ? 1 : -1;
-		rigid.AddForce(new Vector2(dirc, 1) * 7, ForceMode2D.Impulse);
+		rigid.AddForce(Vector3.right*300*dirc);
+		rigid.AddForce(Vector3.up*15);
 
 		Invoke("offdamage", 3);
 	}
 	void offdamage()
 	{
-		gameObject.layer = 6;
+		//gameObject.layer = 6;
 		SpriteRenderer2d.color = new Color(1, 1, 1, 1);
 	}
 
@@ -137,7 +138,7 @@ public class Player : MonoBehaviour
 			if(m_jumpCount < m_maxjumpcount)
 			{
 				m_jumpCount++;
-				rigid.AddForce(Vector3.up*JumpPower);
+                rigid.velocity = Vector2.up * m_jumpforce;
 			}
 		}
 	}

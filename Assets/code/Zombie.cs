@@ -10,7 +10,7 @@ public class Zombie : MonoBehaviour
     public double rangthf; //일정거리
     Rigidbody2D Rigid;
     // Start is called before the first frame update
-    void Start() //sss
+    void Start()
     {
         Rigid = gameObject.GetComponent<Rigidbody2D>();
     }
