@@ -73,22 +73,32 @@ public class Player : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Enemy")
 		{
-			Debug.Log("dd");
-			SpriteRenderer2d.color = new Color(1, 1, 1, 0.4f);
-			ply_HP -= 10;
-			if (collision.gameObject.transform.position.x < gameObject.transform.position.x){
+			OnDamaged(collision.transform.position);
+			/*if (collision.gameObject.transform.position.x < gameObject.transform.position.x){
 				rigid.AddForce(Vector3.right*300);
 				rigid.AddForce(Vector3.up*15);
 			}
 			else {
 				rigid.AddForce(Vector3.left*300);
 				rigid.AddForce(Vector3.up*15);
-			}
-			Invoke("offdamage", 1);
+			}*/
 		}
+	}
+	void OnDamaged(Vector2 targetPos)
+	{
+		ply_HP -= 10;
+		gameObject.layer = 8;
+		SpriteRenderer2d.color = new Color(1, 1, 1, 0.4f);
+
+		//ณฮน้
+		int dirc = transform.position.x - targetPos.x > 0 ? 1 : -1;
+		rigid.AddForce(new Vector2(dirc, 1) * 7, ForceMode2D.Impulse);
+
+		Invoke("offdamage", 3);
 	}
 	void offdamage()
 	{
+		gameObject.layer = 6;
 		SpriteRenderer2d.color = new Color(1, 1, 1, 1);
 	}
 
