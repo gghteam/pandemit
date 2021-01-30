@@ -10,18 +10,21 @@ public class Player : MonoBehaviour
 	public int m_maxjumpcount = 0;
 	float m_distance = 0f;
 	public LayerMask m_layerMask = 0;
-	int m_jumpCount = 0;
+	//int m_jumpCount = 0;
 	public Transform wallCHk;
 	public Transform wallCHk2;
+	public Transform bottomCHK;
+
 	public float wallchkDistance;
 	public LayerMask W_layer;
 	int isRight = 1;
 	public float slidingSpeed;
-	bool iswall;
-	bool iswall2;
+	bool nodamaged=true;
+	public bool iswall;
+	public bool iswall2;
+	public bool isbottom;
 	public float wallJumppower;
 	public float maxspeed;
-	public float JumpPower;
 	public KeyCode sit;
 
 	SpriteRenderer SpriteRenderer2d;
@@ -45,10 +48,12 @@ public class Player : MonoBehaviour
 	//Graphic & Input Updates	
 	void Update()
 	{
+		
 		Jump();
-		CheckGround();
-		iswall = Physics2D.Raycast(wallCHk.position, Vector2.right * isRight, wallchkDistance, W_layer);
-		iswall2 = Physics2D.Raycast(wallCHk2.position, Vector2.right * isRight, wallchkDistance, W_layer);
+		isbottom = Physics2D.Raycast(bottomCHK.position, Vector2.down, wallchkDistance, W_layer);
+		iswall = Physics2D.Raycast(wallCHk.position, Vector2.right, wallchkDistance, W_layer);
+		
+		iswall2 = Physics2D.Raycast(wallCHk2.position, Vector2.right, wallchkDistance, W_layer);
 		if (Input.GetButton("sit")) {animator.SetBool("sit?", true);slidingSpeed=1f;}
 		else {animator.SetBool("sit?", false);slidingSpeed=0.8f;}
 	}
@@ -69,11 +74,13 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D collision)
-	{
+
+    void OnTriggerStay2D(Collider2D collision)	{
 		if (collision.gameObject.tag == "Enemy")
 		{
-			OnDamaged(collision.transform.position);
+			if (nodamaged){
+				OnDamaged(collision.transform.position);
+			}
 			/*if (collision.gameObject.transform.position.x < gameObject.transform.position.x){
 				rigid.AddForce(Vector3.right*300);
 				rigid.AddForce(Vector3.up*15);
@@ -92,14 +99,15 @@ public class Player : MonoBehaviour
 
 		//�ι�
 		int dirc = transform.position.x - targetPos.x > 0 ? 1 : -1;
-		rigid.AddForce(Vector3.right*300*dirc);
+		rigid.AddForce(Vector3.right*300*dirc );
 		rigid.AddForce(Vector3.up*15);
-
+		nodamaged = false;
 		Invoke("offdamage", 3);
 	}
 	void offdamage()
 	{
 		//gameObject.layer = 6;
+		nodamaged = true;
 		SpriteRenderer2d.color = new Color(1, 1, 1, 1);
 	}
 
@@ -135,27 +143,13 @@ public class Player : MonoBehaviour
 	{
 		if(Input.GetAxis("Jump") != 0)
 		{
-			if(m_jumpCount < m_maxjumpcount)
+			if(isbottom)
 			{
-				m_jumpCount++;
-                rigid.velocity = Vector2.up * m_jumpforce;
+                rigid.velocity = new Vector2(rigid.velocity.x,1) * m_jumpforce;
 			}
 		}
 	}
-	void CheckGround()
-	{
-		if(rigid.velocity.y < 0)
-		{
-			RaycastHit2D t_hit = Physics2D.Raycast(transform.position, Vector2.down, 
-				m_distance, m_layerMask);
-			if(t_hit)
-			{
-				
-				m_jumpCount = 0;
-				
-			}
-		}
-	}
+	
 	private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.blue;
@@ -163,5 +157,8 @@ public class Player : MonoBehaviour
 
 		Gizmos.color = Color.red;
 		Gizmos.DrawRay(wallCHk2.position, Vector2.right * isRight * wallchkDistance);
+
+		Gizmos.color = Color.red;
+		Gizmos.DrawRay(bottomCHK.position, Vector2.down * wallchkDistance);
 	}
 }

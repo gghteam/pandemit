@@ -4,32 +4,65 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
+    private Animator animator;
     public Player PlayerObj;
-    public double rangth; //Á»ºñ¿Í ÇÃ·¹ÀÌ¾îÀÇ °Å¸® Ã¼Å© º¯¼ö
-    public int speed; //Á»ºñÀÇ ¼Óµµ
-    public double rangthf; //ÀÏÁ¤°Å¸®
+    public GameObject attackcol;
+    public double attacklt;
+    public double rangth; //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ Ã¼Å© ï¿½ï¿½ï¿½ï¿½
+    public int speed; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
+    public double rangthf; //ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½
+    bool coltime=true;
+    int attacking;
     Rigidbody2D Rigid;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         Rigid = gameObject.GetComponent<Rigidbody2D>();
     }
-
+    
     // Update is called once per frame
     void FixedUpdate()
     {
-        rangth = Mathf.Abs(PlayerObj.transform.position.x) - Mathf.Abs(Rigid.transform.position.x); //Á»ºñ¿Í ÇÃ·¹ÀÌ¾îÀÇ °Å¸®
+        
+        rangth = Mathf.Abs(PlayerObj.transform.position.x) - Mathf.Abs(Rigid.transform.position.x); //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½
         if (rangth < rangthf && rangth > -rangthf)
         {
+            
             if (PlayerObj.transform.position.x > Rigid.transform.position.x)
             {
-                Rigid.velocity = new Vector2(speed, 0);
+                transform.localScale = new Vector3(-Mathf.Abs(transform.lossyScale.x),transform.lossyScale.y,transform.lossyScale.y);
+                attacking = 1;
             }
             else if (PlayerObj.transform.position.x < Rigid.transform.position.x)
             {
-                Rigid.velocity = new Vector2(-speed, 0);
+                transform.localScale = new Vector3(Mathf.Abs(transform.lossyScale.x),transform.lossyScale.y,transform.lossyScale.y);
+                attacking = -1;
             }
+            if (rangth < attacklt && rangth > -attacklt){
+                if (coltime)
+                animator.SetBool("attack", true);
+                //Debug.Log("dd");
+            }
+
+            else Rigid.velocity = new Vector2(speed*attacking, Rigid.velocity.y);
+            
         }
     
+    }
+    void attack()
+    {
+        attackcol.SetActive(true);
+        animator.SetBool("attack", false);
+        coltime = false;
+        Invoke("andattack", 0.1f);
+        Invoke("colcol", 1);
+    }
+    void andattack(){
+        attackcol.SetActive(false);
+    }
+    
+    void colcol(){
+        coltime = true;
     }
 }
