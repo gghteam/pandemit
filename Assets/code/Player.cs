@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D collision)
+	void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.tag == "Enemy")
 		{
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
 	void OnDamaged(Vector2 targetPos)
 	{
 		ply_HP -= 10;
-		//gameObject.layer = 8;
+		gameObject.layer = 8;
 		SpriteRenderer2d.color = new Color(1, 1, 1, 0.4f);
 
 		//�ι�
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
 	}
 	void offdamage()
 	{
-		//gameObject.layer = 6;
+		gameObject.layer = 6;
 		SpriteRenderer2d.color = new Color(1, 1, 1, 1);
 	}
 
