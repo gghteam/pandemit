@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 	public Transform bottomCHK;
 
 	public float wallchkDistance;
+	public float movespeed;
 	public LayerMask W_layer;
 	int isRight = 1;
 	public float slidingSpeed;
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
 	public float wallJumppower;
 	public float maxspeed;
 	public KeyCode sit;
+	public bool direction;
 
 	SpriteRenderer SpriteRenderer2d;
 	Rigidbody2D rigid;
@@ -35,7 +37,6 @@ public class Player : MonoBehaviour
 	private void Awake() //sssss
     {
         animator = GetComponent<Animator>();
-        animator.SetBool("sit?", false);
     }
 
 	void Start()
@@ -48,14 +49,48 @@ public class Player : MonoBehaviour
 	//Graphic & Input Updates	
 	void Update()
 	{
-		
-		Jump();
+		float horizontal = Input.GetAxisRaw("Horizontal");
 		isbottom = Physics2D.Raycast(bottomCHK.position, Vector2.down, wallchkDistance, W_layer);
+		if (Input.GetButtonDown("Horizontal")){
+			animator.SetBool("run?", true);
+		}
+		if (Input.GetButtonUp("Horizontal")){
+			animator.SetBool("run?", false);
+		}
+		Jump();
+		if (Input.GetButtonDown("Jump")){
+			//animator.SetBool("run?", false);
+			if(isbottom)
+				animator.SetBool("jump?", true);
+		}
+		
+		if (horizontal == -1){
+			animator.SetBool("run?", true);
+			direction=true;
+		}
+		else if (horizontal == 1){
+			animator.SetBool("run?", true);
+			direction=false;
+		}
+		
+		
+		SpriteRenderer2d.flipX = direction;
+		
 		iswall = Physics2D.Raycast(wallCHk.position, Vector2.right, wallchkDistance, W_layer);
 		
 		iswall2 = Physics2D.Raycast(wallCHk2.position, Vector2.right, wallchkDistance, W_layer);
-		if (Input.GetButton("sit")) {animator.SetBool("sit?", true);slidingSpeed=1f;}
-		else {animator.SetBool("sit?", false);slidingSpeed=0.8f;}
+		if (Input.GetButton("sit")){
+			animator.SetBool("sit?", true);
+			movespeed=1;
+			maxspeed=2;
+			slidingSpeed=1f;
+		}
+		else{
+			animator.SetBool("sit?", false);
+			slidingSpeed=0.8f;
+			movespeed=2;
+			maxspeed=5;
+		}
 	}
 	private void FixedUpdate()
 	{
@@ -102,7 +137,7 @@ public class Player : MonoBehaviour
 		rigid.AddForce(Vector3.right*300*dirc );
 		rigid.AddForce(Vector3.up*15);
 		nodamaged = false;
-		Invoke("offdamage", 3);
+		Invoke("offdamage", 2);
 	}
 	void offdamage()
 	{
@@ -131,7 +166,8 @@ public class Player : MonoBehaviour
 		transform.position += moveVelocity * movePower * Time.deltaTime;
 		*/
 		float horizontal = Input.GetAxisRaw("Horizontal");
-		rigid.AddForce(Vector2.right * horizontal, ForceMode2D.Impulse);
+		rigid.AddForce(new Vector2(0.5f,0) * movespeed * horizontal, ForceMode2D.Impulse);
+		
 		//rigid.AddForce(Vector3.up*800f);
 
 		if (rigid.velocity.x > maxspeed) rigid.velocity = new Vector2(maxspeed,rigid.velocity.y);
@@ -141,11 +177,14 @@ public class Player : MonoBehaviour
 
 	void Jump()
 	{
+		animator.SetBool("jump?", false);
 		if(Input.GetAxis("Jump") != 0)
 		{
 			if(isbottom)
 			{
-                rigid.velocity = new Vector2(rigid.velocity.x,1) * m_jumpforce;
+				animator.SetBool("jump?", true);
+                rigid.velocity = new Vector2(0,1) * m_jumpforce;
+				//Debug.Log("aa");
 			}
 		}
 	}
