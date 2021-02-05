@@ -51,35 +51,15 @@ public class Player : MonoBehaviour
 	{
 		float horizontal = Input.GetAxisRaw("Horizontal");
 		isbottom = Physics2D.Raycast(bottomCHK.position, Vector2.down, wallchkDistance, W_layer);
-		if (Input.GetButtonDown("Horizontal")){
-			animator.SetBool("run?", true);
-		}
-		if (Input.GetButtonUp("Horizontal")){
-			animator.SetBool("run?", false);
-		}
-		Jump();
-		if (Input.GetButtonDown("Jump")){
-			//animator.SetBool("run?", false);
-			if(isbottom)
-				animator.SetBool("jump?", true);
-		}
-		
-		if (horizontal == -1){
-			animator.SetBool("run?", true);
-			direction=true;
-		}
-		else if (horizontal == 1){
-			animator.SetBool("run?", true);
-			direction=false;
-		}
-		
-		
+		Animation();
+		JumpAnimation();
 		SpriteRenderer2d.flipX = direction;
 		
 		iswall = Physics2D.Raycast(wallCHk.position, Vector2.right, wallchkDistance, W_layer);
 		
 		iswall2 = Physics2D.Raycast(wallCHk2.position, Vector2.right, wallchkDistance, W_layer);
 		if (Input.GetButton("sit")){
+			animator.SetBool("jump?", false);
 			animator.SetBool("sit?", true);
 			movespeed=1;
 			maxspeed=2;
@@ -91,6 +71,21 @@ public class Player : MonoBehaviour
 			movespeed=2;
 			maxspeed=5;
 		}
+	}
+
+	void Animation()
+    {
+		if (Input.GetButtonDown("Horizontal"))
+		{
+			animator.SetBool("run?", true);
+		}
+		if (Input.GetButtonUp("Horizontal"))
+		{
+			animator.SetBool("run?", false);
+		}
+        
+		
+
 	}
 	private void FixedUpdate()
 	{
@@ -107,6 +102,7 @@ public class Player : MonoBehaviour
 				rigid.velocity = new Vector2(rigid.velocity.x, 0.9f * wallJumppower);
 			}
 		}
+
 	}
 
 
@@ -173,20 +169,57 @@ public class Player : MonoBehaviour
 		if (rigid.velocity.x > maxspeed) rigid.velocity = new Vector2(maxspeed,rigid.velocity.y);
 		else if (rigid.velocity.x < maxspeed*(-1)) rigid.velocity = new Vector2(maxspeed*(-1),rigid.velocity.y);
 
+		if (horizontal == -1)
+		{
+			animator.SetBool("run?", true);
+			direction = true;
+		}
+		else if (horizontal == 1)
+		{
+			animator.SetBool("run?", true);
+			direction = false;
+		}
+		if (Input.GetButtonDown("Jump"))
+		{
+			if (isbottom)
+			{
+				animator.SetBool("jump?", true);
+			}
+		}
+
 	}
 
-	void Jump()
+	void JumpAnimation()
 	{
-		animator.SetBool("jump?", false);
-		if(Input.GetAxis("Jump") != 0)
+		animator.SetBool("jump?",false);
+		if (Input.GetAxisRaw("Jump") != 0)
 		{
 			if(isbottom)
 			{
+				Debug.Log("점프");
 				animator.SetBool("jump?", true);
-                rigid.velocity = new Vector2(0,1) * m_jumpforce;
+				animator.SetBool("jump>down?", false);
+				rigid.velocity = new Vector2(0,1) * m_jumpforce;
 				//Debug.Log("aa");
 			}
 		}
+
+		if (isbottom)
+		{
+			animator.SetBool("down?", false);
+			animator.SetBool("ground?", true);
+			
+		}
+		else
+		{
+			animator.SetBool("down?", true);
+			animator.SetBool("ground?", false);
+		}
+	}
+
+	void jump_down_ani()
+    {
+		animator.SetBool("jump>down?", true);
 	}
 	
 	private void OnDrawGizmos()

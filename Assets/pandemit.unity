@@ -1734,7 +1734,7 @@ MonoBehaviour:
   isbottom: 0
   wallJumppower: 6
   maxspeed: 5
-  sit: 0
+  sit: 306
   direction: 0
 --- !u!95 &1099276543
 Animator:
@@ -2082,6 +2082,10 @@ PrefabInstance:
     - target: {fileID: 3309474399363757076, guid: 5859fef95b34e024e8e97e8119f1fc19, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309474399363757076, guid: 5859fef95b34e024e8e97e8119f1fc19, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3309474399363757076, guid: 5859fef95b34e024e8e97e8119f1fc19, type: 3}
       propertyPath: m_TagString
