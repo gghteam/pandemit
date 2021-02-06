@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 	public float maxspeed;
 	public KeyCode sit;
 	public bool direction;
+	public float clmb_speed = 0.0f;
 
 	SpriteRenderer SpriteRenderer2d;
 	Rigidbody2D rigid;
@@ -53,6 +54,7 @@ public class Player : MonoBehaviour
 		isbottom = Physics2D.Raycast(bottomCHK.position, Vector2.down, wallchkDistance, W_layer);
 		Animation();
 		JumpAnimation();
+		ClmbAnimation();
 		SpriteRenderer2d.flipX = direction;
 		
 		iswall = Physics2D.Raycast(wallCHk.position, Vector2.right, wallchkDistance, W_layer);
@@ -99,6 +101,7 @@ public class Player : MonoBehaviour
 			rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * slidingSpeed);
 			if (Input.GetAxis("Jump") != 0)
 			{
+				clmb_speed = 1f;
 				rigid.velocity = new Vector2(rigid.velocity.x, 0.9f * wallJumppower);
 			}
 		}
@@ -208,7 +211,7 @@ public class Player : MonoBehaviour
 		{
 			animator.SetBool("down?", false);
 			animator.SetBool("ground?", true);
-			
+
 		}
 		else
 		{
@@ -216,7 +219,21 @@ public class Player : MonoBehaviour
 			animator.SetBool("ground?", false);
 		}
 	}
-
+	void ClmbAnimation()
+	{
+		if (clmb_speed > 0) clmb_speed -= 0.025f;
+		animator.SetFloat("clmb_speed?", clmb_speed);
+		if (iswall || iswall2)
+		{
+			animator.SetBool("clmb?", true);
+			animator.SetBool("jump>down?", true);
+		}
+		else
+		{
+			animator.SetBool("clmb?", false);
+			clmb_speed = 1;
+		}
+	}
 	void jump_down_ani()
     {
 		animator.SetBool("jump>down?", true);
