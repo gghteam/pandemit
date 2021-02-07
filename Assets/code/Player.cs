@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 	public float maxspeed;
 	public KeyCode sit;
 	public bool direction;
+	public bool die; //die
 	public float clmb_speed = 0.0f;
 
 	SpriteRenderer SpriteRenderer2d;
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
 	//Graphic & Input Updates	
 	void Update()
 	{
+		if (die == true) return;
 		float horizontal = Input.GetAxisRaw("Horizontal");
 		isbottom = Physics2D.Raycast(bottomCHK.position, Vector2.down, wallchkDistance, W_layer);
 		Animation();
@@ -91,7 +93,9 @@ public class Player : MonoBehaviour
 	}
 	private void FixedUpdate()
 	{
+		if (die == true) return;
 		Move();
+		Die();
 		if (iswall || iswall2)
 		{
 			if (iswall) rigid.AddForce(Vector3.right*5);
@@ -136,6 +140,7 @@ public class Player : MonoBehaviour
 		rigid.AddForce(Vector3.right*300*dirc );
 		rigid.AddForce(Vector3.up*15);
 		nodamaged = false;
+		animator.SetBool("hurt?", true);
 		Invoke("offdamage", 2);
 	}
 	void offdamage()
@@ -192,6 +197,16 @@ public class Player : MonoBehaviour
 
 	}
 
+	void Die()
+	{
+		if (ply_HP == 0)
+		{
+			die = true;
+			animator.SetBool("die?", true);
+		}
+
+	}
+
 	void JumpAnimation()
 	{
 		animator.SetBool("jump?",false);
@@ -238,7 +253,15 @@ public class Player : MonoBehaviour
     {
 		animator.SetBool("jump>down?", true);
 	}
-	
+	void hurt_ani()
+	{
+		animator.SetBool("hurt?", false);
+	}
+	void die_ani()
+	{
+		animator.SetBool("die?", false);
+	}
+
 	private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.blue;
