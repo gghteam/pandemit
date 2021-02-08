@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ground
   - Enemy
+  - grass
+  - snow
   layers:
   - Default
   - TransparentFX

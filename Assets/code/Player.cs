@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
 		Animation();
 		JumpAnimation();
 		ClmbAnimation();
+		Isground();
 		SpriteRenderer2d.flipX = direction;
 		
 		iswall = Physics2D.Raycast(wallCHk.position, Vector2.right, wallchkDistance, W_layer);
@@ -272,5 +273,16 @@ public class Player : MonoBehaviour
 
 		Gizmos.color = Color.red;
 		Gizmos.DrawRay(bottomCHK.position, Vector2.down * wallchkDistance);
+	}
+	void Isground()
+	{
+		Debug.DrawRay(bottomCHK.position, Vector3.down * wallchkDistance, new Color(0, 1, 0));
+		RaycastHit2D rayhit = Physics2D.Raycast(bottomCHK.position,Vector3.down * wallchkDistance, 1);
+
+		if(rayhit.collider != null)
+		{
+			Debug.Log(rayhit.collider.name);
+		}
+
 	}
 }
