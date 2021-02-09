@@ -64,13 +64,15 @@ public class Player : MonoBehaviour
 		
 		iswall2 = Physics2D.Raycast(wallCHk2.position, Vector2.right, wallchkDistance, W_layer);
 		if (Input.GetButton("sit")){
+			if (isbottom||iswall||iswall2){
 			animator.SetBool("jump?", false);
 			animator.SetBool("sit?", true);
 			movespeed=1;
 			maxspeed=2;
 			slidingSpeed=1f;
+			}
 		}
-		else{
+		if (Input.GetButtonUp("sit")){
 			animator.SetBool("sit?", false);
 			slidingSpeed=0.8f;
 			movespeed=2;
@@ -254,6 +256,7 @@ public class Player : MonoBehaviour
     {
 		animator.SetBool("jump>down?", true);
 	}
+	
 	void hurt_ani()
 	{
 		animator.SetBool("hurt?", false);
@@ -278,11 +281,11 @@ public class Player : MonoBehaviour
 	{
 		Debug.DrawRay(bottomCHK.position, Vector3.down * wallchkDistance, new Color(0, 1, 0));
 		RaycastHit2D rayhit = Physics2D.Raycast(bottomCHK.position,Vector3.down * wallchkDistance, 1);
-
+		/*
 		if(rayhit.collider != null)
 		{
 			Debug.Log(rayhit.collider.name);
 		}
-
+		*/
 	}
 }
