@@ -217,10 +217,10 @@ public class Player : MonoBehaviour
 		{
 			if(isbottom)
 			{
-				Debug.Log("점프");
-				animator.SetBool("jump?", true);
+				//Debug.Log("점프");
 				animator.SetBool("jump>down?", false);
 				rigid.velocity = new Vector2(0,1) * m_jumpforce;
+				animator.SetBool("jump?", true);
 				//Debug.Log("aa");
 			}
 		}
@@ -256,6 +256,12 @@ public class Player : MonoBehaviour
     {
 		animator.SetBool("jump>down?", true);
 	}
+
+	void downdown_ani()
+    {
+		animator.SetBool("down?", false);
+	}
+
 	
 	void hurt_ani()
 	{
