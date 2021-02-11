@@ -21,11 +21,14 @@ public class Player : MonoBehaviour
 	int isRight = 1;
 	public float slidingSpeed;
 	bool nodamaged=true;
+	bool downtownbaby=true;
 	public bool iswall;
 	public bool iswall2;
 	public bool isbottom;
+	
 	public float wallJumppower;
 	public float maxspeed;
+	public float downstart;
 	public KeyCode sit;
 	public bool direction;
 	public bool die; //die
@@ -56,7 +59,6 @@ public class Player : MonoBehaviour
 		isbottom = Physics2D.Raycast(bottomCHK.position, Vector2.down, wallchkDistance, W_layer);
 		Animation();
 		JumpAnimation();
-		ClmbAnimation();
 		Isground();
 		SpriteRenderer2d.flipX = direction;
 		
@@ -116,7 +118,7 @@ public class Player : MonoBehaviour
 	}
 
 
-    void OnTriggerStay2D(Collider2D collision)	{
+    void OnTriggerEnter2D(Collider2D collision)	{
 		if (collision.gameObject.tag == "Enemy")
 		{
 			if (nodamaged){
@@ -143,8 +145,9 @@ public class Player : MonoBehaviour
 		rigid.AddForce(Vector3.right*300*dirc );
 		rigid.AddForce(Vector3.up*15);
 		nodamaged = false;
-		animator.SetBool("hurt?", true);
-		Invoke("offdamage", 2);
+		animator.SetTrigger("hurt");
+		Debug.Log("hurt");
+		Invoke("offdamage", 1.2f);
 	}
 	void offdamage()
 	{
@@ -174,11 +177,20 @@ public class Player : MonoBehaviour
 		*/
 		float horizontal = Input.GetAxisRaw("Horizontal");
 		rigid.AddForce(new Vector2(0.5f,0) * movespeed * horizontal, ForceMode2D.Impulse);
-		
+
 		//rigid.AddForce(Vector3.up*800f);
 
 		if (rigid.velocity.x > maxspeed) rigid.velocity = new Vector2(maxspeed,rigid.velocity.y);
 		else if (rigid.velocity.x < maxspeed*(-1)) rigid.velocity = new Vector2(maxspeed*(-1),rigid.velocity.y);
+		//Debug.Log(rigid.velocity.y);
+		if (rigid.velocity.y<downstart) {
+			if (downtownbaby){
+				animator.SetTrigger("down");
+				downtownbaby=false;
+				}
+		}
+		else downtownbaby=true;
+		
 
 		if (horizontal == -1)
 		{
@@ -202,10 +214,10 @@ public class Player : MonoBehaviour
 
 	void Die()
 	{
-		if (ply_HP == 0)
+		if (ply_HP <= 0)
 		{
 			die = true;
-			animator.SetBool("die?", true);
+			animator.SetTrigger("die");
 		}
 
 	}
@@ -218,7 +230,6 @@ public class Player : MonoBehaviour
 			if(isbottom)
 			{
 				//Debug.Log("점프");
-				animator.SetBool("jump>down?", false);
 				rigid.velocity = new Vector2(0,1) * m_jumpforce;
 				animator.SetBool("jump?", true);
 				//Debug.Log("aa");
@@ -227,50 +238,19 @@ public class Player : MonoBehaviour
 
 		if (isbottom)
 		{
-			animator.SetBool("down?", false);
 			animator.SetBool("ground?", true);
 
 		}
 		else
 		{
-			animator.SetBool("down?", true);
 			animator.SetBool("ground?", false);
 		}
 	}
-	void ClmbAnimation()
-	{
-		if (clmb_speed > 0) clmb_speed -= 0.025f;
-		animator.SetFloat("clmb_speed?", clmb_speed);
-		if ((iswall && direction == false)|| (iswall2 && direction == true))
-		{
-			animator.SetBool("clmb?", true);
-			animator.SetBool("jump>down?", true);
-		}
-		else
-		{
-			animator.SetBool("clmb?", false);
-			clmb_speed = 1;
-		}
-	}
-	void jump_down_ani()
-    {
-		animator.SetBool("jump>down?", true);
-	}
-
-	void downdown_ani()
-    {
-		animator.SetBool("down?", false);
-	}
+	
+	
 
 	
-	void hurt_ani()
-	{
-		animator.SetBool("hurt?", false);
-	}
-	void die_ani()
-	{
-		animator.SetBool("die?", false);
-	}
+	
 
 	private void OnDrawGizmos()
 	{
@@ -287,6 +267,7 @@ public class Player : MonoBehaviour
 	{
 		Debug.DrawRay(bottomCHK.position, Vector3.down * wallchkDistance, new Color(0, 1, 0));
 		RaycastHit2D rayhit = Physics2D.Raycast(bottomCHK.position,Vector3.down * wallchkDistance, 1);
+		
 		/*
 		if(rayhit.collider != null)
 		{

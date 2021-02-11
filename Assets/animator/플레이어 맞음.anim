@@ -25,6 +25,8 @@ AnimationClip:
       value: {fileID: 21300000, guid: 4382130bdf4fafa43af6d15bf28d5a32, type: 3}
     - time: 0.16666667
       value: {fileID: 21300000, guid: 29365b16975ec1f438173ed7c69aa980, type: 3}
+    - time: 0.41666666
+      value: {fileID: 21300000, guid: 29365b16975ec1f438173ed7c69aa980, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -47,12 +49,13 @@ AnimationClip:
     - {fileID: 21300000, guid: 13902cff9c71af84585a12d3c247fdef, type: 3}
     - {fileID: 21300000, guid: 4382130bdf4fafa43af6d15bf28d5a32, type: 3}
     - {fileID: 21300000, guid: 29365b16975ec1f438173ed7c69aa980, type: 3}
+    - {fileID: 21300000, guid: 29365b16975ec1f438173ed7c69aa980, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -71,11 +74,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.16666667
-    functionName: hurt_ani
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
