@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
 		if (die == true) return;
 		Move();
 		Die();
-		if (iswall || iswall2)
+		if ((iswall && direction == false)|| (iswall2 && direction == true))
 		{
 			if (iswall) rigid.AddForce(Vector3.right*5);
 			else rigid.AddForce(Vector3.left*5);
@@ -241,7 +241,7 @@ public class Player : MonoBehaviour
 	{
 		if (clmb_speed > 0) clmb_speed -= 0.025f;
 		animator.SetFloat("clmb_speed?", clmb_speed);
-		if (iswall || iswall2)
+		if ((iswall && direction == false)|| (iswall2 && direction == true))
 		{
 			animator.SetBool("clmb?", true);
 			animator.SetBool("jump>down?", true);
