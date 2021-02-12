@@ -105,15 +105,22 @@ public class Player : MonoBehaviour
 		{
 			if (iswall) rigid.AddForce(Vector3.right*5);
 			else rigid.AddForce(Vector3.left*5);
-
+			animator.SetBool("clmb?", true);
 
 			rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * slidingSpeed);
 			if (Input.GetAxis("Jump") != 0)
 			{
+				animator.SetBool("clmbing", true);
 				clmb_speed = 1f;
 				rigid.velocity = new Vector2(rigid.velocity.x, 0.9f * wallJumppower);
 			}
+			else animator.SetBool("clmbing", false);
+			
+			
 		}
+		else {animator.SetBool("clmb?", false);animator.SetBool("clmbing", false);}
+		
+		
 
 	}
 
@@ -224,17 +231,19 @@ public class Player : MonoBehaviour
 
 	void JumpAnimation()
 	{
-		animator.SetBool("jump?",false);
 		if (Input.GetAxisRaw("Jump") != 0)
 		{
+			
 			if(isbottom)
 			{
 				//Debug.Log("점프");
 				rigid.velocity = new Vector2(0,1) * m_jumpforce;
-				animator.SetBool("jump?", true);
+				animator.SetTrigger("jump?");
 				//Debug.Log("aa");
 			}
+			
 		}
+		
 
 		if (isbottom)
 		{

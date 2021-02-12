@@ -1735,7 +1735,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099276537}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.66, y: -0.38, z: 0}
+  m_LocalPosition: {x: 4.26, y: -0.18, z: 0}
   m_LocalScale: {x: 3.5, y: 3.5, z: 1}
   m_Children:
   - {fileID: 851275262}
@@ -1815,7 +1815,7 @@ MonoBehaviour:
   isbottom: 0
   wallJumppower: 6
   maxspeed: 5
-  downstart: -8
+  downstart: -7
   sit: 306
   direction: 0
   die: 0
