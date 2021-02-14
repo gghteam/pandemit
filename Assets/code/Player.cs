@@ -1,5 +1,7 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
 	public bool direction;
 	public bool die; //die
 	public float clmb_speed = 0.0f;
+	public Text ScriptTxt;
 
 	SpriteRenderer SpriteRenderer2d;
 	Rigidbody2D rigid;
@@ -41,11 +44,13 @@ public class Player : MonoBehaviour
 
 	private void Awake() //sssss
     {
+		
         animator = GetComponent<Animator>();
     }
 
 	void Start()
 	{
+		ScriptTxt.text = "";
 		rigid = gameObject.GetComponent<Rigidbody2D>();
 		m_distance = GetComponent <CapsuleCollider2D>().bounds.extents.y + 0.05f;
 		SpriteRenderer2d = GetComponent<SpriteRenderer>();
@@ -154,10 +159,12 @@ public class Player : MonoBehaviour
 		nodamaged = false;
 		animator.SetTrigger("hurt");
 		Debug.Log("hurt");
+		ScriptTxt.text = "아야 존나아프네";
 		Invoke("offdamage", 1.2f);
 	}
 	void offdamage()
 	{
+		ScriptTxt.text = "";
 		//gameObject.layer = 6;
 		nodamaged = true;
 		SpriteRenderer2d.color = new Color(1, 1, 1, 1);
