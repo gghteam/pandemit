@@ -290,7 +290,7 @@ public class Player : MonoBehaviour
 
 	void effect()
     {
-		if (isbottom && animator.GetBool("run?"))
+		if (isbottom && (rigid.velocity.x > 0||rigid.velocity.x < 0))
 		{
 			Instantiate(Effect_smoke, new Vector2(transform.position.x, transform.position.y - 0.7f), transform.rotation);
 		}
