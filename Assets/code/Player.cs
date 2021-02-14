@@ -40,7 +40,9 @@ public class Player : MonoBehaviour
 	SpriteRenderer SpriteRenderer2d;
 	Rigidbody2D rigid;
 
-	Vector3 movement; 
+	Vector3 movement;
+
+	public GameObject Effect_smoke;
 
 	private void Awake() //sssss
     {
@@ -65,6 +67,7 @@ public class Player : MonoBehaviour
 		Animation();
 		JumpAnimation();
 		Isground();
+		effect();
 		SpriteRenderer2d.flipX = direction;
 		
 		iswall = Physics2D.Raycast(wallCHk.position, Vector2.right, wallchkDistance, W_layer);
@@ -92,6 +95,7 @@ public class Player : MonoBehaviour
 		if (Input.GetButtonDown("Horizontal"))
 		{
 			animator.SetBool("run?", true);
+
 		}
 		if (Input.GetButtonUp("Horizontal"))
 		{
@@ -191,7 +195,6 @@ public class Player : MonoBehaviour
 		*/
 		float horizontal = Input.GetAxisRaw("Horizontal");
 		rigid.AddForce(new Vector2(0.5f,0) * movespeed * horizontal, ForceMode2D.Impulse);
-
 		//rigid.AddForce(Vector3.up*800f);
 
 		if (rigid.velocity.x > maxspeed) rigid.velocity = new Vector2(maxspeed,rigid.velocity.y);
@@ -290,5 +293,22 @@ public class Player : MonoBehaviour
 			Debug.Log(rayhit.collider.name);
 		}
 		*/
+	}
+
+	void effect()
+    {
+		if (isbottom && (rigid.velocity.x > 0||rigid.velocity.x < 0))
+		{
+			Instantiate(Effect_smoke, new Vector2(transform.position.x, transform.position.y - 0.7f), transform.rotation);
+		}
+		if (iswall && direction == false && rigid.velocity.y < 0)
+		{
+			Instantiate(Effect_smoke, new Vector2(transform.position.x + 0.3f, transform.position.y), transform.rotation);
+		}
+		else if(iswall2 && direction == true && rigid.velocity.y < 0)
+        {
+			Instantiate(Effect_smoke, new Vector2(transform.position.x - 0.3f, transform.position.y), transform.rotation);
+
+		}
 	}
 }
