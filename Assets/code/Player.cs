@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
+
 
 public class Player : MonoBehaviour
 {
@@ -35,7 +35,6 @@ public class Player : MonoBehaviour
 	public bool direction;
 	public bool die; //die
 	public float clmb_speed = 0.0f;
-	public Text ScriptTxt;
 
 	SpriteRenderer SpriteRenderer2d;
 	Rigidbody2D rigid;
@@ -43,10 +42,10 @@ public class Player : MonoBehaviour
 	Vector3 movement;
 
 	public GameObject Effect_smoke;
+	public Text ScriptTxt;
 
 	private void Awake() //sssss
     {
-		
         animator = GetComponent<Animator>();
     }
 
@@ -152,6 +151,7 @@ public class Player : MonoBehaviour
 	}
 	void OnDamaged(Vector2 targetPos)
 	{
+		ScriptTxt.text = "아야 존나아프네 씨ㅣㅂ라";
 		ply_HP -= 10;
 		//gameObject.layer = 8;
 		SpriteRenderer2d.color = new Color(1, 1, 1, 0.4f);
@@ -163,7 +163,6 @@ public class Player : MonoBehaviour
 		nodamaged = false;
 		animator.SetTrigger("hurt");
 		Debug.Log("hurt");
-		ScriptTxt.text = "아야 존나아프네";
 		Invoke("offdamage", 1.2f);
 	}
 	void offdamage()
