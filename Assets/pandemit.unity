@@ -1820,6 +1820,7 @@ MonoBehaviour:
   direction: 0
   die: 0
   clmb_speed: 0
+  Effect_smoke: {fileID: 7512426087326128163, guid: e4b3bc992ea6f8947ac60ad8234ddba2, type: 3}
 --- !u!95 &1099276543
 Animator:
   serializedVersion: 3
