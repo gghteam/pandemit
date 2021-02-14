@@ -294,5 +294,14 @@ public class Player : MonoBehaviour
 		{
 			Instantiate(Effect_smoke, new Vector2(transform.position.x, transform.position.y - 0.7f), transform.rotation);
 		}
+		if (iswall && direction == false && rigid.velocity.y < 0)
+		{
+			Instantiate(Effect_smoke, new Vector2(transform.position.x + 0.3f, transform.position.y), transform.rotation);
+		}
+		else if(iswall2 && direction == true && rigid.velocity.y < 0)
+        {
+			Instantiate(Effect_smoke, new Vector2(transform.position.x - 0.3f, transform.position.y), transform.rotation);
+
+		}
 	}
 }
