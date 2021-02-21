@@ -8,7 +8,7 @@ public class Effect_Smoke : MonoBehaviour
     void Start()
     {
         new Vector3(transform.position.x, transform.position.y, 3);
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 0.2f);
     }
     // Update is called once per frame
     void Update()

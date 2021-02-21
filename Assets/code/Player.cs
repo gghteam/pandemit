@@ -47,10 +47,13 @@ public class Player : MonoBehaviour
 	private void Awake() //sssss
     {
         animator = GetComponent<Animator>();
+		
     }
 
 	void Start()
 	{
+		Application.targetFrameRate=60;
+		//effect(); #on//of
 		ScriptTxt.text = "";
 		rigid = gameObject.GetComponent<Rigidbody2D>();
 		m_distance = GetComponent <CapsuleCollider2D>().bounds.extents.y + 0.05f;
@@ -66,7 +69,6 @@ public class Player : MonoBehaviour
 		Animation();
 		JumpAnimation();
 		Isground();
-		effect();
 		SpriteRenderer2d.flipX = direction;
 		
 		iswall = Physics2D.Raycast(wallCHk.position, Vector2.right, wallchkDistance, W_layer);
@@ -240,17 +242,19 @@ public class Player : MonoBehaviour
 
 	void JumpAnimation()
 	{
-		if (Input.GetAxisRaw("Jump") != 0)
-		{
-			
-			if(isbottom)
+		if (Input.GetButton("sit")!=true){
+			if (Input.GetAxisRaw("Jump") != 0)
 			{
-				//Debug.Log("점프");
-				rigid.velocity = new Vector2(0,1) * m_jumpforce;
-				animator.SetTrigger("jump?");
-				//Debug.Log("aa");
+				
+				if(isbottom)
+				{
+					//Debug.Log("점프");
+					rigid.velocity = new Vector2(0,1) * m_jumpforce;
+					animator.SetTrigger("jump?");
+					//Debug.Log("aa");
+				}
+				
 			}
-			
 		}
 		
 
@@ -309,5 +313,6 @@ public class Player : MonoBehaviour
 			Instantiate(Effect_smoke, new Vector2(transform.position.x - 0.3f, transform.position.y), transform.rotation);
 
 		}
+		Invoke("effect", 0.05f);
 	}
 }
