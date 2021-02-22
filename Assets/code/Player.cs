@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
 	Vector3 movement;
 
 	public GameObject Effect_smoke;
+	public GameObject attack;
 	public Text ScriptTxt;
 
 	private void Awake() //sssss
@@ -196,6 +197,7 @@ public class Player : MonoBehaviour
 		*/
 		float horizontal = Input.GetAxisRaw("Horizontal");
 		rigid.AddForce(new Vector2(0.5f,0) * movespeed * horizontal, ForceMode2D.Impulse);
+		
 		//rigid.AddForce(Vector3.up*800f);
 
 		if (rigid.velocity.x > maxspeed) rigid.velocity = new Vector2(maxspeed,rigid.velocity.y);
