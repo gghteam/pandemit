@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class ui : MonoBehaviour
 {
+    public GameObject macha;
+    public GameObject fadein;
+    public GameObject starttext;
     public GameObject player;
     public GameObject startmap;
     public GameObject startui;
@@ -28,6 +31,9 @@ public class ui : MonoBehaviour
     }
     public void Startgame()
     {
+        fadein.SetActive(true);
+        macha.SetActive(true);
+        //starttext.SetActive(true);
         background.SetActive(true);
         startmap.SetActive(true);
         player.SetActive(true);

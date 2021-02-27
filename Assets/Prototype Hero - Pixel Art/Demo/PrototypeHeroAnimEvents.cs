@@ -67,7 +67,7 @@ public class PrototypeHeroAnimEvents : MonoBehaviour
 
     void AE_Landing()
     {
-        m_audioManager.PlaySound("Landing");
+        m_audioManager.PlaySound("Landing1");
         float dustYOffset = 0.078125f;
         m_player.SpawnDustEffect(m_LandingDust, 0.0f, dustYOffset);
     }
