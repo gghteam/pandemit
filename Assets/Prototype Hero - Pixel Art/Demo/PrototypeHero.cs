@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PrototypeHero : MonoBehaviour {
@@ -71,7 +71,6 @@ public class PrototypeHero : MonoBehaviour {
         //Check if character just landed on the ground
         if (!m_grounded && m_groundSensor.State())
         {
-            Debug.Log(m_grounded);
             m_grounded = true;
             m_animator.SetBool("Grounded", m_grounded);
         }
