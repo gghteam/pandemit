@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Sensor_Prototype : MonoBehaviour {
 
+    public int numchk;
+    public GameObject player;
     private int m_ColCount = 0;
 
     private float m_DisableTimer;
@@ -21,14 +23,13 @@ public class Sensor_Prototype : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag != "barrier")
+        if (other.tag != "barrier"||numchk == 10)
             m_ColCount++;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag != "barrier")
-            m_ColCount--;
+        m_ColCount--;
     }
 
     void Update()

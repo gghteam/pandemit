@@ -19,22 +19,22 @@ public class PrototypeHero : MonoBehaviour {
     private Sensor_Prototype    m_wallSensorL1;
     private Sensor_Prototype    m_wallSensorL2;
     private bool                m_grounded = false;
-    private bool                m_moving = false;
+    public bool                m_moving = false;
     private bool                m_dead = false;
     private bool                m_dodging = false;
-    private bool                m_wallSlide = false;
+    public bool                m_wallSlide = false;
     private bool                m_ledgeGrab = false;
     private bool                m_ledgeClimb = false;
     private bool                m_crouching = false;
     private Vector3             m_climbPosition;
-    private int                 m_facingDirection = 1;
+    public int                 m_facingDirection = 1;
     private float               m_disableMovementTimer = 0.0f;
     private float               m_respawnTimer = 0.0f;
     private Vector3             m_respawnPosition = Vector3.zero;
     private int                 m_currentAttack = 0;
     private float               m_timeSinceAttack = 0.0f;
 
-    // Use this for initialization
+    // AE_SheathSwordUse this for initialization
     void Start ()
     {
         m_animator = GetComponentInChildren<Animator>();
@@ -130,7 +130,7 @@ public class PrototypeHero : MonoBehaviour {
             }
         }
 
-        // Set AirSpeed in animator
+        // AE_WallSlideSet AirSpeed in animator
         m_animator.SetFloat("AirSpeedY", m_body2d.velocity.y);
 
         // Set Animation layer for hiding sword
@@ -243,7 +243,7 @@ public class PrototypeHero : MonoBehaviour {
         }
 
         // Ledge Climb
-        else if(Input.GetKeyDown("w") && m_ledgeGrab)
+        else if(Input.GetButtonDown("Jump") && m_ledgeGrab)
         {
             DisableWallSensors();
             m_ledgeClimb = true;
@@ -253,7 +253,7 @@ public class PrototypeHero : MonoBehaviour {
         }
 
         // Ledge Drop
-        else if (Input.GetKeyDown("s") && m_ledgeGrab)
+        else if (Input.GetKeyDown(KeyCode.LeftControl) && m_ledgeGrab)
         {
             DisableWallSensors();
         }
@@ -278,13 +278,13 @@ public class PrototypeHero : MonoBehaviour {
         }
 
         //Crouch / Stand up
-        else if (Input.GetKeyDown("s") && m_grounded && !m_dodging && !m_ledgeGrab && !m_ledgeClimb)
+        else if (Input.GetKeyDown(KeyCode.LeftControl) && m_grounded && !m_dodging && !m_ledgeGrab && !m_ledgeClimb)
         {
             m_crouching = true;
             m_animator.SetBool("Crouching", true);
             m_body2d.velocity = new Vector2(m_body2d.velocity.x / 2.0f, m_body2d.velocity.y);
         }
-        else if (Input.GetKeyUp("s") && m_crouching)
+        else if (Input.GetKeyUp(KeyCode.LeftControl) && m_crouching)
         {
             m_crouching = false;
             m_animator.SetBool("Crouching", false);
@@ -310,7 +310,7 @@ public class PrototypeHero : MonoBehaviour {
             // Set dust spawn position
             Vector3 dustSpawnPosition = transform.position + new Vector3(dustXOffset * m_facingDirection, dustYOffset, 0.0f);
             GameObject newDust = Instantiate(dust, dustSpawnPosition, Quaternion.identity) as GameObject;
-            // Turn dust in correct X direction
+            // PlaySoundTurn dust in correct X direction
             newDust.transform.localScale = newDust.transform.localScale.x * new Vector3(m_facingDirection, 1, 1);
         }
     }

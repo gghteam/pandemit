@@ -54,7 +54,7 @@ public class Sound
 
 public class AudioManager_PrototypeHero : MonoBehaviour
 {
-    // Make it a singleton class that can be accessible everywhere
+    // AE_WallSlideAE_SheathSwordMake it a singleton class that can be accessible everywhere
     public static AudioManager_PrototypeHero instance;
 
     [SerializeField]

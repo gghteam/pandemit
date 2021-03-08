@@ -5,7 +5,7 @@ using UnityEngine;
 public class Zombie : MonoBehaviour
 {
     private Animator animator;
-    public Player PlayerObj;
+    public GameObject PlayerObj;
     public GameObject attackcol;
     public double attacklt;
     public double rangth; //����� �÷��̾��� �Ÿ� üũ ����
