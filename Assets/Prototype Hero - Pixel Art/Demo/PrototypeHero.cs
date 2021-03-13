@@ -1,41 +1,52 @@
 using UnityEngine;
 using System.Collections;
 
-public class PrototypeHero : MonoBehaviour {
+public class PrototypeHero : MonoBehaviour
+{
 
     [Header("Variables")]
-    [SerializeField] float      m_maxSpeed = 4.5f;
-    [SerializeField] float      m_jumpForce = 7.5f;
-    [SerializeField] float      m_dodgeForce = 8.0f;
-    [SerializeField] bool       m_noBlood = false;
-    [SerializeField] bool       m_hideSword = false;
+    [SerializeField] float m_maxSpeed = 4.5f;
+    [SerializeField] float m_jumpForce = 7.5f;
+    [SerializeField] float m_dodgeForce = 8.0f;
+    [SerializeField] bool m_noBlood = false;
+    [SerializeField] bool m_hideSword = false;
 
-    private Animator            m_animator;
-    private Rigidbody2D         m_body2d;
-    private SpriteRenderer      m_SR;
-    private Sensor_Prototype    m_groundSensor;
-    private Sensor_Prototype    m_wallSensorR1;
-    private Sensor_Prototype    m_wallSensorR2;
-    private Sensor_Prototype    m_wallSensorL1;
-    private Sensor_Prototype    m_wallSensorL2;
-    private bool                m_grounded = false;
-    public bool                m_moving = false;
-    private bool                m_dead = false;
-    private bool                m_dodging = false;
-    public bool                m_wallSlide = false;
-    private bool                m_ledgeGrab = false;
-    private bool                m_ledgeClimb = false;
-    private bool                m_crouching = false;
-    private Vector3             m_climbPosition;
-    public int                 m_facingDirection = 1;
-    private float               m_disableMovementTimer = 0.0f;
-    private float               m_respawnTimer = 0.0f;
-    private Vector3             m_respawnPosition = Vector3.zero;
-    private int                 m_currentAttack = 0;
-    private float               m_timeSinceAttack = 0.0f;
+    private Animator m_animator;
+    private Rigidbody2D m_body2d;
+    private SpriteRenderer m_SR;
+    private Sensor_Prototype m_groundSensor;
+    private Sensor_Prototype m_wallSensorR1;
+    private Sensor_Prototype m_wallSensorR2;
+    private Sensor_Prototype m_wallSensorL1;
+    private Sensor_Prototype m_wallSensorL2;
+    public bool m_grounded = false;
+    public bool m_moving = false;
+    private bool m_dead = false;
+    private bool m_dodging = false;
+    public bool m_wallSlide = false;
+    private bool m_ledgeGrab = false;
+    private bool m_ledgeClimb = false;
+    private bool m_crouching = false;
+    private Vector3 m_climbPosition;
+    public int m_facingDirection = 1;
+    private float m_disableMovementTimer = 0.0f;
+    private float m_respawnTimer = 0.0f;
+    private Vector3 m_respawnPosition = Vector3.zero;
+    private int m_currentAttack = 0;
+    private float m_timeSinceAttack = 0.0f;
+    public float curtime;
+    public float cooltime;
+    public Transform pos;
+    public Vector2 boxsize;
+    public GameObject attackshaft;
+    public GameObject dil;
+    public GameObject playercamera;
+    public int damage;
+
+
 
     // AE_SheathSwordUse this for initialization
-    void Start ()
+    void Start()
     {
         m_animator = GetComponentInChildren<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
@@ -50,7 +61,7 @@ public class PrototypeHero : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         // Decrease death respawn timer 
         m_respawnTimer -= Time.deltaTime;
@@ -97,23 +108,25 @@ public class PrototypeHero : MonoBehaviour {
         else
             m_moving = false;
 
-        // Swap direction of sprite depending on move direction
+        // Swap direction of sprite depending on move direction q
         if (inputRaw > 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb)
         {
             m_SR.flipX = false;
             m_facingDirection = 1;
+            attackshaft.transform.localScale=new Vector3(1,1,1);
         }
-            
+
         else if (inputRaw < 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb)
         {
             m_SR.flipX = true;
             m_facingDirection = -1;
+            attackshaft.transform.localScale=new Vector3(-1,1,1);
         }
-     
+
         // SlowDownSpeed helps decelerate the characters when stopping
         float SlowDownSpeed = m_moving ? 1.0f : 0.5f;
         // Set movement
-        if(!m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching)
+        if (!m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching)
         {
             if (m_grounded)
             {
@@ -137,23 +150,27 @@ public class PrototypeHero : MonoBehaviour {
         int boolInt = m_hideSword ? 1 : 0;
         m_animator.SetLayerWeight(1, boolInt);
 
-        
+
         if (m_wallSensorR1 && m_wallSensorR2 && m_wallSensorL1 && m_wallSensorL2)
         {
             //Wall Slide
             bool prevWallSlide = m_wallSlide;
             m_wallSlide = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
+            if ((m_wallSensorR1.State() && m_wallSensorR2.State()) && m_facingDirection == -1 || (m_wallSensorL1.State() && m_wallSensorL2.State()) && m_facingDirection == 1)
+            {
+                m_wallSlide = false;
+            }
             if (m_grounded)
                 m_wallSlide = false;
             m_animator.SetBool("WallSlide", m_wallSlide);
             //Play wall slide sound
-            if(prevWallSlide && !m_wallSlide)
+            if (!m_wallSlide)
                 AudioManager_PrototypeHero.instance.StopSound("WallSlide");
 
 
             //Grab Ledge
             bool shouldGrab = !m_ledgeClimb && !m_ledgeGrab && ((m_wallSensorR1.State() && !m_wallSensorR2.State()) || (m_wallSensorL1.State() && !m_wallSensorL2.State()));
-            if(shouldGrab)
+            if (shouldGrab)
             {
                 Vector3 rayStart;
                 if (m_facingDirection == 1)
@@ -164,7 +181,7 @@ public class PrototypeHero : MonoBehaviour {
                 var hit = Physics2D.Raycast(rayStart, Vector2.down, 1.0f);
 
                 GrabableLedge ledge = null;
-                if(hit)
+                if (hit)
                     ledge = hit.transform.GetComponent<GrabableLedge>();
 
                 if (ledge)
@@ -172,7 +189,7 @@ public class PrototypeHero : MonoBehaviour {
                     m_ledgeGrab = true;
                     m_body2d.velocity = Vector2.zero;
                     m_body2d.gravityScale = 0;
-                    
+
                     m_climbPosition = ledge.transform.position + new Vector3(ledge.topClimbPosition.x, ledge.topClimbPosition.y, 0);
                     if (m_facingDirection == 1)
                         transform.position = ledge.transform.position + new Vector3(ledge.leftGrabPosition.x, ledge.leftGrabPosition.y, 0);
@@ -181,7 +198,7 @@ public class PrototypeHero : MonoBehaviour {
                 }
                 m_animator.SetBool("LedgeGrab", m_ledgeGrab);
             }
-            
+
         }
 
 
@@ -195,7 +212,7 @@ public class PrototypeHero : MonoBehaviour {
             DisableWallSensors();
             m_dead = true;
         }
-        
+
         //Hurt
         else if (Input.GetKeyDown("q") && !m_dodging)
         {
@@ -206,31 +223,11 @@ public class PrototypeHero : MonoBehaviour {
         }
 
         //Attack
-        else if (Input.GetMouseButtonDown(0) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching && m_timeSinceAttack > 0.03f)
-        {
-            //Input.ResetInputAxes();
-            m_currentAttack++;
 
-            // Loop back to one after second attack
-            if (m_currentAttack > 2)
-                m_currentAttack = 1;
 
-            // Reset Attack combo if time since last attack is too large
-            if (m_timeSinceAttack > 1.0f)
-                m_currentAttack = 1;
 
-            // Call one of the two attack animations "Attack1" or "Attack2"
-            m_animator.SetTrigger("Attack" + m_currentAttack);
 
-            // Reset timer
-            m_timeSinceAttack = 0.0f;
 
-            if (m_grounded)
-            {
-                // Disable movement 
-                m_disableMovementTimer = 0.35f;
-            }
-        }
 
         // Dodge
         else if (Input.GetKeyDown("left shift") && m_grounded && !m_dodging && !m_ledgeGrab && !m_ledgeClimb)
@@ -243,12 +240,12 @@ public class PrototypeHero : MonoBehaviour {
         }
 
         // Ledge Climb
-        else if(Input.GetButtonDown("Jump") && m_ledgeGrab)
+        else if (Input.GetButtonDown("Jump") && m_ledgeGrab)
         {
             DisableWallSensors();
             m_ledgeClimb = true;
             m_body2d.gravityScale = 0;
-            m_disableMovementTimer = 6.0f/14.0f;
+            m_disableMovementTimer = 6.0f / 14.0f;
             m_animator.SetTrigger("LedgeClimb");
         }
 
@@ -262,11 +259,11 @@ public class PrototypeHero : MonoBehaviour {
         else if (Input.GetButtonDown("Jump") && (m_grounded || m_wallSlide) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching && m_disableMovementTimer < 0.0f)
         {
             // Check if it's a normal jump or a wall jump
-            if(!m_wallSlide)
+            if (!m_wallSlide)
                 m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
             else
             {
-                m_body2d.velocity = new Vector2(-m_facingDirection * m_jumpForce / 2.0f, m_jumpForce);
+                m_body2d.velocity = new Vector2(-m_facingDirection * m_jumpForce / 3.0f, m_jumpForce);
                 m_facingDirection = -m_facingDirection;
                 m_SR.flipX = !m_SR.flipX;
             }
@@ -291,12 +288,66 @@ public class PrototypeHero : MonoBehaviour {
         }
 
         //Run
-        else if(m_moving)
+        else if (m_moving)
             m_animator.SetInteger("AnimState", 1);
 
         //Idle
         else
             m_animator.SetInteger("AnimState", 0);
+        if (curtime <= 0)
+        {
+            if (Input.GetMouseButtonDown(0) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching && m_timeSinceAttack > 0.03f)
+            {
+                
+
+                //Input.ResetInputAxes();
+                m_currentAttack++;
+                
+
+                // Loop back to one after second attack
+                if (m_currentAttack > 2){
+                    curtime = 0.2f;
+                    m_currentAttack = 1;
+                }
+                else curtime = 0.4f;
+
+                // Reset Attack combo if time since last attack is too large
+                if (m_timeSinceAttack > 1.0f){
+                    m_currentAttack = 1;
+                }
+                // Call one of the two attack animations "Attack1" or "Attack2"
+                m_animator.SetTrigger("Attack" + m_currentAttack);
+
+                if (m_currentAttack==1)
+                    damage=Random.Range(9,12);
+                else 
+                    damage=Random.Range(10,13);
+
+
+                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxsize, 0);
+                foreach (Collider2D collider in collider2Ds)
+                {
+                    if (collider.tag == "monster"){
+                        collider.GetComponent<wolf>().hit(damage);
+                        GameObject hello = Instantiate (dil);
+                        hello.transform.position=collider.transform.position;
+                        hello.GetComponent<damage>().damagechk = damage;
+                        playercamera.GetComponent<playercamera>().startshake(0.2f,0.1f);
+                        //Debug.Log("hit");
+                    //Debug.Log(collider.tag);
+                    }
+                }
+                // Reset timer
+                m_timeSinceAttack = 0.0f;
+
+                if (m_grounded)
+                {
+                    // Disable movement 
+                    m_disableMovementTimer = 0.35f;
+                }
+            }
+        }
+        else curtime -= Time.deltaTime;
     }
 
     // Function used to spawn a dust effect
@@ -324,7 +375,7 @@ public class PrototypeHero : MonoBehaviour {
         m_wallSensorR2.Disable(0.8f);
         m_wallSensorL1.Disable(0.8f);
         m_wallSensorL2.Disable(0.8f);
-        m_body2d.gravityScale = 1;
+        m_body2d.gravityScale = 2;
         m_animator.SetBool("WallSlide", m_wallSlide);
         m_animator.SetBool("LedgeGrab", m_ledgeGrab);
     }
@@ -338,7 +389,7 @@ public class PrototypeHero : MonoBehaviour {
     public void SetPositionToClimbPosition()
     {
         transform.position = m_climbPosition;
-        m_body2d.gravityScale = 1;
+        m_body2d.gravityScale = 2;
         m_wallSensorR1.Disable(3.0f / 14.0f);
         m_wallSensorR2.Disable(3.0f / 14.0f);
         m_wallSensorL1.Disable(3.0f / 14.0f);
@@ -357,5 +408,10 @@ public class PrototypeHero : MonoBehaviour {
         transform.position = Vector3.zero;
         m_dead = false;
         m_animator.Rebind();
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(pos.position, boxsize);
     }
 }

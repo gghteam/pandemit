@@ -5,7 +5,7 @@ public class Sensor_Prototype : MonoBehaviour {
 
     public int numchk;
     public GameObject player;
-    private int m_ColCount = 0;
+    public int m_ColCount = 0;
 
     private float m_DisableTimer;
 

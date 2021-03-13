@@ -14,6 +14,7 @@ public class ui : MonoBehaviour
     public GameObject startui;
     public GameObject startbutton;
     public GameObject background;
+    public GameObject wolf;
 
     public Camera camera1;
     public Camera camera2;
@@ -21,8 +22,9 @@ public class ui : MonoBehaviour
     
     void Start()
     {
-        camera2.enabled = false;
-        camera1.enabled = true;
+        Application.targetFrameRate = 60;
+        //camera2.enabled = false;
+        //camera1.enabled = true;
     }
 
     void Update()
@@ -32,6 +34,7 @@ public class ui : MonoBehaviour
     public void Startgame()
     {
         fadein.SetActive(true);
+        wolf.SetActive(true);
         macha.SetActive(true);
         //starttext.SetActive(true);
         background.SetActive(true);
