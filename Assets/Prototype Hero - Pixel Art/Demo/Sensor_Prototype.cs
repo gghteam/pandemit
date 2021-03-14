@@ -29,7 +29,8 @@ public class Sensor_Prototype : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D other)
     {
-        m_ColCount--;
+        if (other.tag != "barrier"||numchk == 10)
+            m_ColCount--;
     }
 
     void Update()

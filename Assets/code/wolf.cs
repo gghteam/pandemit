@@ -74,7 +74,7 @@ public class wolf : MonoBehaviour
                 else
                 {
                     animator.SetBool("run", false);
-                    animator.SetBool("walk", true);
+                    //animator.SetBool("walk", true);
                     //Rigid.velocity = new Vector2(speed*attacking*0.6f, Rigid.velocity.y);
                 }
             }

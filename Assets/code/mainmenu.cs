@@ -18,5 +18,6 @@ public class mainmenu : MonoBehaviour
     public void startgame()
     {
         //SceneManager.LoadScene("Pandemit", LoadSceneMode.Single); 
+        SceneManager.LoadScene("pandemit");
     }
 }

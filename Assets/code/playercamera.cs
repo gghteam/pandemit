@@ -13,7 +13,8 @@ public class playercamera : MonoBehaviour{
 	public Vector2 minPos, maxPos;
 	public bool bound;
     void Start(){
-		startshake(1f,1f);
+		Application.targetFrameRate = 60;
+		//startshake(1f,1f);
 		fstzoom = GetComponent<Camera>().orthographicSize;
     }
 	
