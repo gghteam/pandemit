@@ -38,7 +38,6 @@ public class wolf : MonoBehaviour
     {
         if (HP<=0){
             animator.SetBool("die",true);
-            Destroy(gameObject,4);
         }
         else{
             if (gogo)
@@ -133,6 +132,9 @@ public class wolf : MonoBehaviour
     public void randomway()
     {
 
+    }
+    public void destroyobject(){
+        Destroy(gameObject);
     }
     private void OnDrawGizmos()
     {

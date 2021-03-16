@@ -51,7 +51,7 @@ public class PrototypeHero : MonoBehaviour
         m_animator = GetComponentInChildren<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_SR = GetComponentInChildren<SpriteRenderer>();
-
+        m_body2d.AddForce(new Vector2(100,200));
 
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_Prototype>();
         m_wallSensorR1 = transform.Find("WallSensor_R1").GetComponent<Sensor_Prototype>();
@@ -330,7 +330,7 @@ public class PrototypeHero : MonoBehaviour
                     if (collider.tag == "monster"){
                         collider.GetComponent<wolf>().hit(damage);
                         GameObject hello = Instantiate (dil);
-                        hello.transform.position=collider.transform.position;
+                        hello.transform.position=(collider.transform.position+new Vector3(Random.Range(-0.2f,0.2f),Random.Range(-0.2f,0.2f),0));
                         hello.GetComponent<damage>().damagechk = damage;
                         playercamera.GetComponent<playercamera>().startshake(0.2f,0.1f);
                         //Debug.Log("hit");
