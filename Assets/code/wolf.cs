@@ -22,9 +22,12 @@ public class wolf : MonoBehaviour
     public int HP;
     public int MAXHP;
     public HPbar healthbar;
+    public GameObject dil,playercamera;
+    public int damage;
     // Start is called before the first frame update
     void Start()
     {
+        playercamera = GameObject.Find("playercamera");
         PlayerObj=GameObject.Find("player1");
         HP=MAXHP;
         healthbar.sethealth(HP,MAXHP);
@@ -96,9 +99,29 @@ public class wolf : MonoBehaviour
 
         Invoke("colcol", 1);
     }
+    public void attacknow()
+    {
+        Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxsize, 0);
+        foreach (Collider2D collider in collider2Ds)
+        {
+            if (collider.tag == "Player")
+            {
+                collider.GetComponent<PrototypeHero>().damagedani();
+                GameObject hello = Instantiate(dil);
+                hello.transform.position = (collider.transform.position + new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0));
+                hello.GetComponent<damage>().damagechk = damage;
+                //hello.transform.GetChild(0).GetComponent<ParticleSystem.startcolor
+                playercamera.GetComponent<playercamera>().startshake(0.4f, 0.2f);
+                //Debug.Log("hit");
+                //Debug.Log(collider.tag);
+            }
+        }
+    }
     public void andattack()
     {
         Rigid.velocity = new Vector2(5*attacking, Rigid.velocity.y);
+        
+
     }
     public void andwate()
     {

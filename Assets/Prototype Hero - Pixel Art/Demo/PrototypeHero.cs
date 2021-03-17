@@ -33,7 +33,6 @@ public class PrototypeHero : MonoBehaviour
     private float m_respawnTimer = 0.0f;
     private Vector3 m_respawnPosition = Vector3.zero;
     private int m_currentAttack = 0;
-    private float m_timeSinceAttack = 0.0f;
     public float curtime;
     public float cooltime;
     public Transform pos;
@@ -51,7 +50,7 @@ public class PrototypeHero : MonoBehaviour
         m_animator = GetComponentInChildren<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_SR = GetComponentInChildren<SpriteRenderer>();
-        m_body2d.AddForce(new Vector2(100,200));
+        m_body2d.AddForce(new Vector2(200,200));
 
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_Prototype>();
         m_wallSensorR1 = transform.Find("WallSensor_R1").GetComponent<Sensor_Prototype>();
@@ -67,7 +66,6 @@ public class PrototypeHero : MonoBehaviour
         m_respawnTimer -= Time.deltaTime;
 
         // Increase timer that controls attack combo
-        m_timeSinceAttack += Time.deltaTime;
 
         // Decrease timer that disables input movement. Used when attacking
         m_disableMovementTimer -= Time.deltaTime;
@@ -98,6 +96,10 @@ public class PrototypeHero : MonoBehaviour
 
         if (m_disableMovementTimer < 0.0f)
             inputX = Input.GetAxis("Horizontal");
+        else 
+            inputX = 0;
+        if (curtime>0)
+            inputX = 0;
 
         // GetAxisRaw returns either -1, 0 or 1
         float inputRaw = Input.GetAxisRaw("Horizontal");
@@ -109,14 +111,14 @@ public class PrototypeHero : MonoBehaviour
             m_moving = false;
 
         // Swap direction of sprite depending on move direction q
-        if (inputRaw > 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb)
+        if (inputRaw > 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb && curtime <0)
         {
             m_SR.flipX = false;
             m_facingDirection = 1;
             attackshaft.transform.localScale=new Vector3(1,1,1);
         }
 
-        else if (inputRaw < 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb)
+        else if (inputRaw < 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb && curtime <0)
         {
             m_SR.flipX = true;
             m_facingDirection = -1;
@@ -254,9 +256,8 @@ public class PrototypeHero : MonoBehaviour
         {
             DisableWallSensors();
         }
-
         //Jump
-        else if (Input.GetButtonDown("Jump") && (m_grounded || m_wallSlide) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching && m_disableMovementTimer < 0.0f)
+        else if (Input.GetButtonDown("Jump") && (m_grounded || m_wallSlide) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching)
         {
             // Check if it's a normal jump or a wall jump
             if (!m_wallSlide)
@@ -288,15 +289,15 @@ public class PrototypeHero : MonoBehaviour
         }
 
         //Run
-        else if (m_moving)
+        if (m_moving)
             m_animator.SetInteger("AnimState", 1);
 
         //Idle
         else
             m_animator.SetInteger("AnimState", 0);
-        if (curtime <= 0)
+        if (curtime < 0)
         {
-            if (Input.GetMouseButtonDown(0) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching && m_timeSinceAttack > 0.03f)
+            if (Input.GetMouseButtonDown(0) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching )
             {
                 
 
@@ -312,7 +313,7 @@ public class PrototypeHero : MonoBehaviour
                 else curtime = 0.4f;
 
                 // Reset Attack combo if time since last attack is too large
-                if (m_timeSinceAttack > 1.0f){
+                if (curtime < 0){
                     m_currentAttack = 1;
                 }
                 // Call one of the two attack animations "Attack1" or "Attack2"
@@ -338,11 +339,11 @@ public class PrototypeHero : MonoBehaviour
                     }
                 }
                 // Reset timer
-                m_timeSinceAttack = 0.0f;
 
                 if (m_grounded)
                 {
                     // Disable movement 
+                    if (m_grounded==true)
                     m_disableMovementTimer = 0.35f;
                 }
             }
@@ -365,7 +366,13 @@ public class PrototypeHero : MonoBehaviour
             newDust.transform.localScale = newDust.transform.localScale.x * new Vector3(m_facingDirection, 1, 1);
         }
     }
-
+    public void damagedani()
+    {
+            m_animator.SetTrigger("Hurt");
+            // Disable movement 
+            m_disableMovementTimer = 0.1f;
+            DisableWallSensors();
+    }
     void DisableWallSensors()
     {
         m_ledgeGrab = false;
