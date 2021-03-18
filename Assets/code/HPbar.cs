@@ -24,6 +24,8 @@ public class HPbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         //Debug.Log(transform.parent.position);
         slider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + offset);
     }

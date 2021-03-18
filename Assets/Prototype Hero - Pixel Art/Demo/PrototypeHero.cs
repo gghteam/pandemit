@@ -94,11 +94,9 @@ public class PrototypeHero : MonoBehaviour
         // -- Handle input and movement --
         float inputX = 0.0f;
 
-        if (m_disableMovementTimer < 0.0f)
+        if (m_disableMovementTimer < 0.0f&&curtime<=0)
             inputX = Input.GetAxis("Horizontal");
         else 
-            inputX = 0;
-        if (curtime>0)
             inputX = 0;
 
         // GetAxisRaw returns either -1, 0 or 1
@@ -297,7 +295,7 @@ public class PrototypeHero : MonoBehaviour
             m_animator.SetInteger("AnimState", 0);
         if (curtime < 0)
         {
-            if (Input.GetMouseButtonDown(0) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching )
+            if (Input.GetMouseButtonDown(0) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching && !m_wallSlide)
             {
                 
 
