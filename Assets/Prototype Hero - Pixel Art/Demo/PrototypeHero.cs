@@ -59,56 +59,56 @@ public class PrototypeHero : MonoBehaviour
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_Prototype>();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Update is called once per frame 프레임 마다 실행
+    void FixedUpdate()
     {
-        // Decrease death respawn timer 
+        // Decrease death respawn timer  리스폰 타이머 감소
         m_respawnTimer -= Time.deltaTime;
 
-        // Increase timer that controls attack combo
+        // Increase timer that controls attack combo 공격 콤보 제어 타이머 증가
 
-        // Decrease timer that disables input movement. Used when attacking
+        // Decrease timer that disables input movement. Used when attacking 입력 이동을 비활성화하는 타이머를 줄입니다. 공격 시 사용
         m_disableMovementTimer -= Time.deltaTime;
 
-        // Respawn Hero if dead
+        // Respawn Hero if dead 주인공 죽으면 부활
         if (m_dead && m_respawnTimer < 0.0f)
             RespawnHero();
 
         if (m_dead)
             return;
 
-        //Check if character just landed on the ground
+        //Check if character just landed on the ground 땅에 떨어졌는지 검사
         if (!m_grounded && m_groundSensor.State())
         {
             m_grounded = true;
             m_animator.SetBool("Grounded", m_grounded);
         }
 
-        //Check if character just started falling
+        //Check if character just started falling 떨어지고 있는지 검사
         if (m_grounded && !m_groundSensor.State())
         {
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
         }
 
-        // -- Handle input and movement --
+        // -- Handle input and movement -- 입력과 움직임
         float inputX = 0.0f;
 
-        if (m_disableMovementTimer < 0.0f&&curtime<=0)
+        if (m_disableMovementTimer < 0.0f && curtime <= 0)
             inputX = Input.GetAxis("Horizontal");
-        else 
+        else
             inputX = 0;
 
-        // GetAxisRaw returns either -1, 0 or 1
+        // GetAxisRaw returns either -1, 0 or 1 왼쪽 오른쪽 입력
         float inputRaw = Input.GetAxisRaw("Horizontal");
 
-        // Check if character is currently moving
+        // Check if character is currently moving 주인공이 이동 중인지 검사
         if (Mathf.Abs(inputRaw) > Mathf.Epsilon && Mathf.Sign(inputRaw) == m_facingDirection)
             m_moving = true;
         else
             m_moving = false;
 
-        // Swap direction of sprite depending on move direction q
+        // Swap direction of sprite depending on move direction q 이동방향에 따른 스프라이트 반전
         if (inputRaw > 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb && curtime <0)
         {
             m_SR.flipX = false;
@@ -123,9 +123,9 @@ public class PrototypeHero : MonoBehaviour
             attackshaft.transform.localScale=new Vector3(-1,1,1);
         }
 
-        // SlowDownSpeed helps decelerate the characters when stopping
+        // SlowDownSpeed helps decelerate the characters when stopping 마찰력
         float SlowDownSpeed = m_moving ? 1.0f : 0.5f;
-        // Set movement
+        // Set movement //움직임 세팅
         if (!m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching)
         {
             if (m_grounded)
@@ -143,17 +143,17 @@ public class PrototypeHero : MonoBehaviour
             }
         }
 
-        // AE_WallSlideSet AirSpeed in animator
+        // AE_WallSlideSet AirSpeed in animator 애니메이터 AirSpeedY 변수
         m_animator.SetFloat("AirSpeedY", m_body2d.velocity.y);
 
-        // Set Animation layer for hiding sword
+        // Set Animation layer for hiding sword 검을 숨기기 위한 애니메이션 레이어
         int boolInt = m_hideSword ? 1 : 0;
         m_animator.SetLayerWeight(1, boolInt);
 
 
         if (m_wallSensorR1 && m_wallSensorR2 && m_wallSensorL1 && m_wallSensorL2)
         {
-            //Wall Slide
+            //Wall Slide 벽 미끄러짐
             bool prevWallSlide = m_wallSlide;
             m_wallSlide = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
             if ((m_wallSensorR1.State() && m_wallSensorR2.State()) && m_facingDirection == -1 || (m_wallSensorL1.State() && m_wallSensorL2.State()) && m_facingDirection == 1)
@@ -163,12 +163,12 @@ public class PrototypeHero : MonoBehaviour
             if (m_grounded)
                 m_wallSlide = false;
             m_animator.SetBool("WallSlide", m_wallSlide);
-            //Play wall slide sound
+            //Play wall slide sound 미끄러지는 소리
             if (!m_wallSlide)
                 AudioManager_PrototypeHero.instance.StopSound("WallSlide");
 
 
-            //Grab Ledge
+            //Grab Ledge 절벽 잡기
             bool shouldGrab = !m_ledgeClimb && !m_ledgeGrab && ((m_wallSensorR1.State() && !m_wallSensorR2.State()) || (m_wallSensorL1.State() && !m_wallSensorL2.State()));
             if (shouldGrab)
             {
@@ -202,8 +202,8 @@ public class PrototypeHero : MonoBehaviour
         }
 
 
-        // -- Handle Animations --
-        //Death
+        // -- Handle Animations -- 애니메이션 처리
+        //Death 죽음
         if (Input.GetKeyDown("e") && !m_dodging)
         {
             m_animator.SetBool("noBlood", m_noBlood);
@@ -213,7 +213,7 @@ public class PrototypeHero : MonoBehaviour
             m_dead = true;
         }
 
-        //Hurt
+        //Hurt 맞음
         else if (Input.GetKeyDown("q") && !m_dodging)
         {
             m_animator.SetTrigger("Hurt");
@@ -222,14 +222,14 @@ public class PrototypeHero : MonoBehaviour
             DisableWallSensors();
         }
 
-        //Attack
+        //Attack 공격함
 
 
 
 
 
 
-        // Dodge
+        // Dodge 회피함
         else if (Input.GetKeyDown("left shift") && m_grounded && !m_dodging && !m_ledgeGrab && !m_ledgeClimb)
         {
             m_dodging = true;
@@ -239,7 +239,7 @@ public class PrototypeHero : MonoBehaviour
             m_body2d.velocity = new Vector2(m_facingDirection * m_dodgeForce, m_body2d.velocity.y);
         }
 
-        // Ledge Climb
+        // Ledge Climb 절벽 점프
         else if (Input.GetButtonDown("Jump") && m_ledgeGrab)
         {
             DisableWallSensors();
@@ -249,15 +249,15 @@ public class PrototypeHero : MonoBehaviour
             m_animator.SetTrigger("LedgeClimb");
         }
 
-        // Ledge Drop
+        // Ledge Drop 절벽 놓기
         else if (Input.GetKeyDown(KeyCode.LeftControl) && m_ledgeGrab)
         {
             DisableWallSensors();
         }
-        //Jump
+        //Jump 점프
         else if (Input.GetButtonDown("Jump") && (m_grounded || m_wallSlide) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching)
         {
-            // Check if it's a normal jump or a wall jump
+            // Check if it's a normal jump or a wall jump 일반점프인지 벽점프인지 검사
             if (!m_wallSlide)
                 m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
             else
@@ -273,7 +273,7 @@ public class PrototypeHero : MonoBehaviour
             m_groundSensor.Disable(0.2f);
         }
 
-        //Crouch / Stand up
+        //Crouch / Stand up 앉기/일어서기
         else if (Input.GetKeyDown(KeyCode.LeftControl) && m_grounded && !m_dodging && !m_ledgeGrab && !m_ledgeClimb)
         {
             m_crouching = true;
@@ -286,11 +286,11 @@ public class PrototypeHero : MonoBehaviour
             m_animator.SetBool("Crouching", false);
         }
 
-        //Run
+        //Run 달리기
         if (m_moving)
             m_animator.SetInteger("AnimState", 1);
 
-        //Idle
+        //Idle 가만히 있기
         else
             m_animator.SetInteger("AnimState", 0);
         if (curtime < 0)
@@ -303,18 +303,18 @@ public class PrototypeHero : MonoBehaviour
                 m_currentAttack++;
                 
 
-                // Loop back to one after second attack
+                // Loop back to one after second attack 공격2를 사용한 후 공격1 돌아감
                 if (m_currentAttack > 2){
                     curtime = 0.2f;
                     m_currentAttack = 1;
                 }
                 else curtime = 0.4f;
 
-                // Reset Attack combo if time since last attack is too large
+                // Reset Attack combo if time since last attack is too large 마지막 공격 이후 시간이 다 될 경우 공격1로 초기화
                 if (curtime < 0){
                     m_currentAttack = 1;
                 }
-                // Call one of the two attack animations "Attack1" or "Attack2"
+                // Call one of the two attack animations "Attack1" or "Attack2" 두 애니메이션 공격1,공격2중 하나를 부름 
                 m_animator.SetTrigger("Attack" + m_currentAttack);
 
                 if (m_currentAttack==1)
@@ -336,11 +336,11 @@ public class PrototypeHero : MonoBehaviour
                     //Debug.Log(collider.tag);
                     }
                 }
-                // Reset timer
+                // Reset timer 타이머 리셋
 
                 if (m_grounded)
                 {
-                    // Disable movement 
+                    // Disable movement 움직임 끄기
                     if (m_grounded==true)
                     m_disableMovementTimer = 0.35f;
                 }
@@ -349,15 +349,15 @@ public class PrototypeHero : MonoBehaviour
         else curtime -= Time.deltaTime;
     }
 
-    // Function used to spawn a dust effect
-    // All dust effects spawns on the floor
+    // Function used to spawn a dust effect 먼지 생성
+    // All dust effects spawns on the floor 바닥에 산란하는 먼지 효과
     // dustXoffset controls how far from the player the effects spawns.
     // Default dustXoffset is zero
     public void SpawnDustEffect(GameObject dust, float dustXOffset = 0, float dustYOffset = 0)
     {
         if (dust != null)
         {
-            // Set dust spawn position
+            // Set dust spawn position 생선한 먼지 위치 설정
             Vector3 dustSpawnPosition = transform.position + new Vector3(dustXOffset * m_facingDirection, dustYOffset, 0.0f);
             GameObject newDust = Instantiate(dust, dustSpawnPosition, Quaternion.identity) as GameObject;
             // PlaySoundTurn dust in correct X direction
@@ -367,7 +367,7 @@ public class PrototypeHero : MonoBehaviour
     public void damagedani()
     {
             m_animator.SetTrigger("Hurt");
-            // Disable movement 
+            // Disable movement 움직임 끄기
             m_disableMovementTimer = 0.1f;
             DisableWallSensors();
     }
@@ -385,7 +385,7 @@ public class PrototypeHero : MonoBehaviour
         m_animator.SetBool("LedgeGrab", m_ledgeGrab);
     }
 
-    // Called in AE_resetDodge in PrototypeHeroAnimEvents
+    // Called in AE_resetDodge in PrototypeHeroAnimEvents 애니메이션이벤트에서 회피리셋을 부른다
     public void ResetDodging()
     {
         m_dodging = false;
