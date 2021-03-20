@@ -5,19 +5,18 @@ using UnityEngine.UI;
 
 public class chest : MonoBehaviour
 {
-    public SpriteRenderer renderer;
+    Animator anim;
     public GameObject reward;
-    public Sprite Testsprite;
     public int isopen = 0;
 
 
     private void Start()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
     public void change()
     {
-        renderer.sprite = Testsprite;
+        anim.SetTrigger("open?"); // 상자 열리는 애니메이션
     }
 
     public void reward_event()
