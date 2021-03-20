@@ -35,6 +35,7 @@ public class PrototypeHero : MonoBehaviour
     private int m_currentAttack = 0;
     public float curtime;
     public float cooltime;
+    public chest chestcode;
     public Transform pos;
     public Vector2 boxsize;
     public GameObject attackshaft;
@@ -347,6 +348,27 @@ public class PrototypeHero : MonoBehaviour
             }
         }
         else curtime -= Time.deltaTime;
+
+            //Leading chest
+            Debug.DrawRay(m_body2d.position, Vector3.right, new Color(0, 1, 0));
+            Debug.DrawRay(m_body2d.position, Vector3.left, new Color(1, 1, 1));
+
+        RaycastHit2D rayHit = Physics2D.Raycast(m_body2d.position, Vector3.right, 1, LayerMask.GetMask("chest"));
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            if( rayHit.collider.tag == "chest")
+            {
+                if (chestcode.isopen == 0)
+                {
+                    chestcode.isopen++;
+                    chestcode.change();
+                    chestcode.reward_event();
+
+                }
+            }
+        }
+
+       
     }
 
     // Function used to spawn a dust effect 먼지 생성
