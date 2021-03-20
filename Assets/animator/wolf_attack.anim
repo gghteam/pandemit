@@ -94,21 +94,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.6
-    functionName: andattack
+    functionName: Andattack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.8333333
-    functionName: attacknow
+    functionName: Attacknow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.2666667
-    functionName: andwate
+    functionName: Andwate
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

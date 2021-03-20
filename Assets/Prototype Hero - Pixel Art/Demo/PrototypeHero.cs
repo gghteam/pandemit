@@ -327,7 +327,7 @@ public class PrototypeHero : MonoBehaviour
                 foreach (Collider2D collider in collider2Ds)
                 {
                     if (collider.tag == "monster"){
-                        collider.GetComponent<wolf>().hit(damage);
+                        collider.GetComponent<wolf>().Hit(damage);
                         GameObject hello = Instantiate (dil);
                         hello.transform.position=(collider.transform.position+new Vector3(Random.Range(-0.2f,0.2f),Random.Range(-0.2f,0.2f),0));
                         hello.GetComponent<damage>().damagechk = damage;
