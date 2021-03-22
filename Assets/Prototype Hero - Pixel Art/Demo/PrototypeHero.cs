@@ -60,39 +60,39 @@ public class PrototypeHero : MonoBehaviour
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_Prototype>();
     }
 
-    // Update is called once per frame ÇÁ·¹ÀÓ ¸¶´Ù ½ÇÇà
+    // Update is called once per frame ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     void FixedUpdate()
     {
-        // Decrease death respawn timer  ¸®½ºÆù Å¸ÀÌ¸Ó °¨¼Ò
+        // Decrease death respawn timer  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
         m_respawnTimer -= Time.deltaTime;
 
-        // Increase timer that controls attack combo °ø°Ý ÄÞº¸ Á¦¾î Å¸ÀÌ¸Ó Áõ°¡
+        // Increase timer that controls attack combo ï¿½ï¿½ï¿½ï¿½ ï¿½Þºï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        // Decrease timer that disables input movement. Used when attacking ÀÔ·Â ÀÌµ¿À» ºñÈ°¼ºÈ­ÇÏ´Â Å¸ÀÌ¸Ó¸¦ ÁÙÀÔ´Ï´Ù. °ø°Ý ½Ã »ç¿ë
+        // Decrease timer that disables input movement. Used when attacking ï¿½Ô·ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ï¿½Ï´ï¿½ Å¸ï¿½Ì¸Ó¸ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
         m_disableMovementTimer -= Time.deltaTime;
 
-        // Respawn Hero if dead ÁÖÀÎ°ø Á×À¸¸é ºÎÈ°
+        // Respawn Hero if dead ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°
         if (m_dead && m_respawnTimer < 0.0f)
             RespawnHero();
 
         if (m_dead)
             return;
 
-        //Check if character just landed on the ground ¶¥¿¡ ¶³¾îÁ³´ÂÁö °Ë»ç
+        //Check if character just landed on the ground ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
         if (!m_grounded && m_groundSensor.State())
         {
             m_grounded = true;
             m_animator.SetBool("Grounded", m_grounded);
         }
 
-        //Check if character just started falling ¶³¾îÁö°í ÀÖ´ÂÁö °Ë»ç
+        //Check if character just started falling ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
         if (m_grounded && !m_groundSensor.State())
         {
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
         }
 
-        // -- Handle input and movement -- ÀÔ·Â°ú ¿òÁ÷ÀÓ
+        // -- Handle input and movement -- ï¿½Ô·Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         float inputX = 0.0f;
 
         if (m_disableMovementTimer < 0.0f && curtime <= 0)
@@ -100,16 +100,16 @@ public class PrototypeHero : MonoBehaviour
         else
             inputX = 0;
 
-        // GetAxisRaw returns either -1, 0 or 1 ¿ÞÂÊ ¿À¸¥ÂÊ ÀÔ·Â
+        // GetAxisRaw returns either -1, 0 or 1 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
         float inputRaw = Input.GetAxisRaw("Horizontal");
 
-        // Check if character is currently moving ÁÖÀÎ°øÀÌ ÀÌµ¿ ÁßÀÎÁö °Ë»ç
+        // Check if character is currently moving ï¿½ï¿½ï¿½Î°ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
         if (Mathf.Abs(inputRaw) > Mathf.Epsilon && Mathf.Sign(inputRaw) == m_facingDirection)
             m_moving = true;
         else
             m_moving = false;
 
-        // Swap direction of sprite depending on move direction q ÀÌµ¿¹æÇâ¿¡ µû¸¥ ½ºÇÁ¶óÀÌÆ® ¹ÝÀü
+        // Swap direction of sprite depending on move direction q ï¿½Ìµï¿½ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         if (inputRaw > 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb && curtime <0)
         {
             m_SR.flipX = false;
@@ -124,9 +124,9 @@ public class PrototypeHero : MonoBehaviour
             attackshaft.transform.localScale=new Vector3(-1,1,1);
         }
 
-        // SlowDownSpeed helps decelerate the characters when stopping ¸¶Âû·Â
+        // SlowDownSpeed helps decelerate the characters when stopping ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         float SlowDownSpeed = m_moving ? 1.0f : 0.5f;
-        // Set movement //¿òÁ÷ÀÓ ¼¼ÆÃ
+        // Set movement //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (!m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching)
         {
             if (m_grounded)
@@ -144,17 +144,17 @@ public class PrototypeHero : MonoBehaviour
             }
         }
 
-        // AE_WallSlideSet AirSpeed in animator ¾Ö´Ï¸ÞÀÌÅÍ AirSpeedY º¯¼ö
+        // AE_WallSlideSet AirSpeed in animator ï¿½Ö´Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½ AirSpeedY ï¿½ï¿½ï¿½ï¿½
         m_animator.SetFloat("AirSpeedY", m_body2d.velocity.y);
 
-        // Set Animation layer for hiding sword °ËÀ» ¼û±â±â À§ÇÑ ¾Ö´Ï¸ÞÀÌ¼Ç ·¹ÀÌ¾î
+        // Set Animation layer for hiding sword ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½
         int boolInt = m_hideSword ? 1 : 0;
         m_animator.SetLayerWeight(1, boolInt);
 
 
         if (m_wallSensorR1 && m_wallSensorR2 && m_wallSensorL1 && m_wallSensorL2)
         {
-            //Wall Slide º® ¹Ì²ô·¯Áü
+            //Wall Slide ï¿½ï¿½ ï¿½Ì²ï¿½ï¿½ï¿½ï¿½ï¿½
             bool prevWallSlide = m_wallSlide;
             m_wallSlide = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
             if ((m_wallSensorR1.State() && m_wallSensorR2.State()) && m_facingDirection == -1 || (m_wallSensorL1.State() && m_wallSensorL2.State()) && m_facingDirection == 1)
@@ -164,12 +164,12 @@ public class PrototypeHero : MonoBehaviour
             if (m_grounded)
                 m_wallSlide = false;
             m_animator.SetBool("WallSlide", m_wallSlide);
-            //Play wall slide sound ¹Ì²ô·¯Áö´Â ¼Ò¸®
+            //Play wall slide sound ï¿½Ì²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½
             if (!m_wallSlide)
                 AudioManager_PrototypeHero.instance.StopSound("WallSlide");
 
 
-            //Grab Ledge Àýº® Àâ±â
+            //Grab Ledge ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             bool shouldGrab = !m_ledgeClimb && !m_ledgeGrab && ((m_wallSensorR1.State() && !m_wallSensorR2.State()) || (m_wallSensorL1.State() && !m_wallSensorL2.State()));
             if (shouldGrab)
             {
@@ -203,8 +203,8 @@ public class PrototypeHero : MonoBehaviour
         }
 
 
-        // -- Handle Animations -- ¾Ö´Ï¸ÞÀÌ¼Ç Ã³¸®
-        //Death Á×À½
+        // -- Handle Animations -- ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ Ã³ï¿½ï¿½
+        //Death ï¿½ï¿½ï¿½ï¿½
         if (Input.GetKeyDown("e") && !m_dodging)
         {
             m_animator.SetBool("noBlood", m_noBlood);
@@ -214,7 +214,7 @@ public class PrototypeHero : MonoBehaviour
             m_dead = true;
         }
 
-        //Hurt ¸ÂÀ½
+        //Hurt ï¿½ï¿½ï¿½ï¿½
         else if (Input.GetKeyDown("q") && !m_dodging)
         {
             m_animator.SetTrigger("Hurt");
@@ -223,14 +223,14 @@ public class PrototypeHero : MonoBehaviour
             DisableWallSensors();
         }
 
-        //Attack °ø°ÝÇÔ
+        //Attack ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 
 
 
 
-        // Dodge È¸ÇÇÇÔ
+        // Dodge È¸ï¿½ï¿½ï¿½ï¿½
         else if (Input.GetKeyDown("left shift") && m_grounded && !m_dodging && !m_ledgeGrab && !m_ledgeClimb)
         {
             m_dodging = true;
@@ -240,7 +240,7 @@ public class PrototypeHero : MonoBehaviour
             m_body2d.velocity = new Vector2(m_facingDirection * m_dodgeForce, m_body2d.velocity.y);
         }
 
-        // Ledge Climb Àýº® Á¡ÇÁ
+        // Ledge Climb ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         else if (Input.GetButtonDown("Jump") && m_ledgeGrab)
         {
             DisableWallSensors();
@@ -250,15 +250,15 @@ public class PrototypeHero : MonoBehaviour
             m_animator.SetTrigger("LedgeClimb");
         }
 
-        // Ledge Drop Àýº® ³õ±â
+        // Ledge Drop ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         else if (Input.GetKeyDown(KeyCode.LeftControl) && m_ledgeGrab)
         {
             DisableWallSensors();
         }
-        //Jump Á¡ÇÁ
+        //Jump ï¿½ï¿½ï¿½ï¿½
         else if (Input.GetButtonDown("Jump") && (m_grounded || m_wallSlide) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching)
         {
-            // Check if it's a normal jump or a wall jump ÀÏ¹ÝÁ¡ÇÁÀÎÁö º®Á¡ÇÁÀÎÁö °Ë»ç
+            // Check if it's a normal jump or a wall jump ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
             if (!m_wallSlide)
                 m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
             else
@@ -274,7 +274,7 @@ public class PrototypeHero : MonoBehaviour
             m_groundSensor.Disable(0.2f);
         }
 
-        //Crouch / Stand up ¾É±â/ÀÏ¾î¼­±â
+        //Crouch / Stand up ï¿½É±ï¿½/ï¿½Ï¾î¼­ï¿½ï¿½
         else if (Input.GetKeyDown(KeyCode.LeftControl) && m_grounded && !m_dodging && !m_ledgeGrab && !m_ledgeClimb)
         {
             m_crouching = true;
@@ -287,11 +287,11 @@ public class PrototypeHero : MonoBehaviour
             m_animator.SetBool("Crouching", false);
         }
 
-        //Run ´Þ¸®±â
+        //Run ï¿½Þ¸ï¿½ï¿½ï¿½
         if (m_moving)
             m_animator.SetInteger("AnimState", 1);
 
-        //Idle °¡¸¸È÷ ÀÖ±â
+        //Idle ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
         else
             m_animator.SetInteger("AnimState", 0);
         if (curtime < 0)
@@ -304,18 +304,18 @@ public class PrototypeHero : MonoBehaviour
                 m_currentAttack++;
                 
 
-                // Loop back to one after second attack °ø°Ý2¸¦ »ç¿ëÇÑ ÈÄ °ø°Ý1 µ¹¾Æ°¨
+                // Loop back to one after second attack ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1 ï¿½ï¿½ï¿½Æ°ï¿½
                 if (m_currentAttack > 2){
                     curtime = 0.2f;
                     m_currentAttack = 1;
                 }
                 else curtime = 0.4f;
 
-                // Reset Attack combo if time since last attack is too large ¸¶Áö¸· °ø°Ý ÀÌÈÄ ½Ã°£ÀÌ ´Ù µÉ °æ¿ì °ø°Ý1·Î ÃÊ±âÈ­
+                // Reset Attack combo if time since last attack is too large ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ ï¿½Ê±ï¿½È­
                 if (curtime < 0){
                     m_currentAttack = 1;
                 }
-                // Call one of the two attack animations "Attack1" or "Attack2" µÎ ¾Ö´Ï¸ÞÀÌ¼Ç °ø°Ý1,°ø°Ý2Áß ÇÏ³ª¸¦ ºÎ¸§ 
+                // Call one of the two attack animations "Attack1" or "Attack2" ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½1,ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ 
                 m_animator.SetTrigger("Attack" + m_currentAttack);
 
                 if (m_currentAttack==1)
@@ -337,11 +337,11 @@ public class PrototypeHero : MonoBehaviour
                     //Debug.Log(collider.tag);
                     }
                 }
-                // Reset timer Å¸ÀÌ¸Ó ¸®¼Â
+                // Reset timer Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 
                 if (m_grounded)
                 {
-                    // Disable movement ¿òÁ÷ÀÓ ²ô±â
+                    // Disable movement ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     if (m_grounded==true)
                     m_disableMovementTimer = 0.35f;
                 }
@@ -371,15 +371,15 @@ public class PrototypeHero : MonoBehaviour
        
     }
 
-    // Function used to spawn a dust effect ¸ÕÁö »ý¼º
-    // All dust effects spawns on the floor ¹Ù´Ú¿¡ »ê¶õÇÏ´Â ¸ÕÁö È¿°ú
+    // Function used to spawn a dust effect ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    // All dust effects spawns on the floor ï¿½Ù´Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½
     // dustXoffset controls how far from the player the effects spawns.
     // Default dustXoffset is zero
     public void SpawnDustEffect(GameObject dust, float dustXOffset = 0, float dustYOffset = 0)
     {
         if (dust != null)
         {
-            // Set dust spawn position »ý¼±ÇÑ ¸ÕÁö À§Ä¡ ¼³Á¤
+            // Set dust spawn position ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
             Vector3 dustSpawnPosition = transform.position + new Vector3(dustXOffset * m_facingDirection, dustYOffset, 0.0f);
             GameObject newDust = Instantiate(dust, dustSpawnPosition, Quaternion.identity) as GameObject;
             // PlaySoundTurn dust in correct X direction
@@ -389,7 +389,7 @@ public class PrototypeHero : MonoBehaviour
     public void damagedani()
     {
             m_animator.SetTrigger("Hurt");
-            // Disable movement ¿òÁ÷ÀÓ ²ô±â
+            // Disable movement ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             m_disableMovementTimer = 0.1f;
             DisableWallSensors();
     }
@@ -407,7 +407,7 @@ public class PrototypeHero : MonoBehaviour
         m_animator.SetBool("LedgeGrab", m_ledgeGrab);
     }
 
-    // Called in AE_resetDodge in PrototypeHeroAnimEvents ¾Ö´Ï¸ÞÀÌ¼ÇÀÌº¥Æ®¿¡¼­ È¸ÇÇ¸®¼ÂÀ» ºÎ¸¥´Ù
+    // Called in AE_resetDodge in PrototypeHeroAnimEvents ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½Ìºï¿½Æ®ï¿½ï¿½ï¿½ï¿½ È¸ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½
     public void ResetDodging()
     {
         m_dodging = false;
