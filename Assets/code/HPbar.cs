@@ -8,7 +8,9 @@ public class HPbar : MonoBehaviour
     public Slider slider;
     public Vector3 offset;
     // Start is called before the first frame update
-    
+    void Start(){
+        slider.gameObject.SetActive(false);
+    }
     public void sethealth(float health, float maxhealth){
         slider.gameObject.SetActive(health<maxhealth);
         slider.value = health;
