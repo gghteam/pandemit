@@ -236,6 +236,7 @@ public class kimjooplayercode : MonoBehaviour
             m_crouching = false;
             m_animator.SetBool("Crouching", false);
             m_animator.SetTrigger("Dodge");
+            Debug.Log("dd");
             m_body2d.velocity = new Vector2(m_facingDirection * m_dodgeForce, m_body2d.velocity.y);
         }
 

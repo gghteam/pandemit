@@ -3711,7 +3711,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1756530128}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &867257819
 MonoBehaviour:
@@ -3804,7 +3804,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1756530128}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &917339973
 MonoBehaviour:
@@ -6119,7 +6119,7 @@ TilemapRenderer:
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
-  m_SortOrder: 0
+  m_SortOrder: 3
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
@@ -9755,6 +9755,7 @@ GameObject:
   - component: {fileID: 1756530126}
   - component: {fileID: 1756530125}
   - component: {fileID: 1756530124}
+  - component: {fileID: 1756530129}
   m_Layer: 6
   m_Name: player1
   m_TagString: Player
@@ -9869,14 +9870,44 @@ Transform:
   - {fileID: 1206070612}
   - {fileID: 1287928764}
   - {fileID: 561436490}
-  - {fileID: 917339972}
   - {fileID: 867257818}
+  - {fileID: 917339972}
   - {fileID: 1291957910}
   - {fileID: 770973444}
   - {fileID: 1749369692}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1756530129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756530123}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67f3a1e13b242f4b85b943e584dce8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxSpeed: 4
+  m_jumpForce: 10
+  m_dodgeForce: 8
+  m_noBlood: 0
+  m_hideSword: 1
+  m_grounded: 0
+  m_moving: 0
+  m_wallSlide: 0
+  m_facingDirection: 1
+  curtime: 0
+  cooltime: -0.3
+  chestcode: {fileID: 663253534}
+  pos: {fileID: 1512876761}
+  boxsize: {x: 1.3, y: 1.2}
+  attackshaft: {fileID: 770973443}
+  dil: {fileID: 8239405177480021636, guid: d04b26b8d1b75b9439734e66b9fb9ca5, type: 3}
+  playercamera: {fileID: 1372041065}
+  damage: 0
 --- !u!1001 &1861714158
 PrefabInstance:
   m_ObjectHideFlags: 0
