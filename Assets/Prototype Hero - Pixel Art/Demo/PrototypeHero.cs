@@ -241,7 +241,7 @@ public class PrototypeHero : MonoBehaviour
         }
 
         // Ledge Climb ���� ����
-        else if (Input.GetButtonDown("Jump") && m_ledgeGrab)
+        else if (Input.GetKeyDown(KeyCode.Space) && m_ledgeGrab)
         {
             DisableWallSensors();
             m_ledgeClimb = true;
@@ -256,7 +256,7 @@ public class PrototypeHero : MonoBehaviour
             DisableWallSensors();
         }
         //Jump ����
-        else if (Input.GetButtonDown("Jump") && (m_grounded || m_wallSlide) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching)
+        else if (Input.GetKeyDown(KeyCode.Space) && (m_grounded || m_wallSlide) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching)
         {
             // Check if it's a normal jump or a wall jump �Ϲ��������� ���������� �˻�
             if (!m_wallSlide)
