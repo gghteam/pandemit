@@ -154,7 +154,7 @@ public class PrototypeHero : MonoBehaviour
     //움직임
     public void Onmove()
     {
-        if (textmanager.isAction) return;
+        //if (textmanager.isAction) return;
         // Dodge ȸ����
         //Check if character just landed on the ground ���� ���������� �˻�
         if (!m_grounded && m_groundSensor.State())
@@ -346,7 +346,7 @@ public class PrototypeHero : MonoBehaviour
     //공격
     public void Onattack()
     {
-        if (textmanager.isAction) return;
+//        if (textmanager.isAction) return;
         if (curtime < 0)
         {
             if (Input.GetMouseButtonDown(0) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching && !m_wallSlide)
@@ -393,6 +393,7 @@ public class PrototypeHero : MonoBehaviour
                     if (collider.tag == "box")
                     {
                         attack(collider.gameObject, new Color(0.3679245f, 0.2641726f, 0.1853506f, 1));
+                        collider.GetComponent<boxbox>().boxhit(damage);
                         //attackCOLOR = new Color(0.682353f,0,0,1);
                     }
                 }

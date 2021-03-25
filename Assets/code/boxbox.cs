@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class boxbox : MonoBehaviour
 {
+    public GameObject dil;
+    private int boxHP=30;
     // Start is called before the first frame update
     void Start()
     {
@@ -11,8 +13,14 @@ public class boxbox : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    public void boxhit(int damage){
+        boxHP-=damage;  
+        if (boxHP<0)
+        {
+            GameObject hello = Instantiate (dil);
+            hello.transform.position=(transform.position);
+            Destroy(gameObject);
+
+        }
     }
 }
