@@ -16,7 +16,6 @@ public class CutManager : MonoBehaviour
     {
         
     }
-
     public void OnCunsecne()
     {
         fade[0].gameObject.SetActive(true);

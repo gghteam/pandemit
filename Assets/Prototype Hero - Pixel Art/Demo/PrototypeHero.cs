@@ -46,6 +46,9 @@ public class PrototypeHero : MonoBehaviour
     public int damage;
     public Color attackCOLOR;
 
+    //대화
+    public TextManager textmanager;
+
 
 
     // AE_SheathSwordUse this for initialization
@@ -228,14 +231,46 @@ public class PrototypeHero : MonoBehaviour
         }
 
         //Attack ������
+        Onmove();
 
 
 
 
 
 
-        // Dodge ȸ����
-        else if (Input.GetKeyDown("left shift") && m_grounded && !m_dodging && !m_ledgeGrab && !m_ledgeClimb)
+
+        Onattack();
+
+            //Leading chest
+            Debug.DrawRay(m_body2d.position, Vector3.right, new Color(0, 1, 0));
+            Debug.DrawRay(m_body2d.position, Vector3.left, new Color(1, 1, 1));
+
+        RaycastHit2D rayHit = Physics2D.Raycast(m_body2d.position, Vector3.right, 1, LayerMask.GetMask("chest"));
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            if( rayHit.collider.tag == "chest")
+            {
+                if (chestcode.isopen == 0)
+                {
+                    chestcode.isopen++;
+                    chestcode.change();
+                    chestcode.reward_event();
+
+                }
+            }
+            if (rayHit.collider.tag == "sign")
+            {
+                textmanager.Action(rayHit.collider.gameObject);
+            }
+        }
+
+       
+    }
+    //움직임
+    public void Onmove()
+    {
+                // Dodge ȸ����
+        if (Input.GetKeyDown("left shift") && m_grounded && !m_dodging && !m_ledgeGrab && !m_ledgeClimb)
         {
             m_dodging = true;
             m_crouching = false;
@@ -298,48 +333,56 @@ public class PrototypeHero : MonoBehaviour
         //Idle ������ �ֱ�
         else
             m_animator.SetInteger("AnimState", 0);
+    }
+    //공격
+    public void Onattack()
+    {
         if (curtime < 0)
         {
             if (Input.GetMouseButtonDown(0) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching && !m_wallSlide)
             {
-                
+
 
                 //Input.ResetInputAxes();
                 m_currentAttack++;
-                
+
 
                 // Loop back to one after second attack ����2�� ����� �� ����1 ���ư�
-                if (m_currentAttack > 2){
+                if (m_currentAttack > 2)
+                {
                     curtime = 0.2f;
                     m_currentAttack = 1;
                 }
                 else curtime = 0.4f;
 
                 // Reset Attack combo if time since last attack is too large ������ ���� ���� �ð��� �� �� ��� ����1�� �ʱ�ȭ
-                if (curtime < 0){
+                if (curtime < 0)
+                {
                     m_currentAttack = 1;
                 }
                 // Call one of the two attack animations "Attack1" or "Attack2" �� �ִϸ��̼� ����1,����2�� �ϳ��� �θ� 
                 m_animator.SetTrigger("Attack" + m_currentAttack);
 
-                if (m_currentAttack==1)
-                    damage=Random.Range(9,12);
-                else 
-                    damage=Random.Range(10,13);
+                if (m_currentAttack == 1)
+                    damage = Random.Range(9, 12);
+                else
+                    damage = Random.Range(10, 13);
 
 
                 Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxsize, 0);
                 foreach (Collider2D collider in collider2Ds)
                 {
-                    if (collider.tag == "monster"){
-                        attack(collider.gameObject,new Color(0.682353f,0,0,1));  
-                        collider.GetComponent<wolf>().Hit(damage);  
+                    if (collider.tag == "monster")
+                    {
+                        attack(collider.gameObject, new Color(0.682353f, 0, 0, 1));
+                        collider.GetComponent<wolf>().Hit(damage);
                         //Debug.Log("hit");
-                    //Debug.Log(collider.tag);
+                        //Debug.Log(collider.tag);
                     }
-                    
-                    if (collider.tag == "box"){
-                        attack(collider.gameObject,new Color(0.3679245f,0.2641726f,0.1853506f,1));
+
+                    if (collider.tag == "box")
+                    {
+                        attack(collider.gameObject, new Color(0.3679245f, 0.2641726f, 0.1853506f, 1));
                         //attackCOLOR = new Color(0.682353f,0,0,1);
                     }
                 }
@@ -348,33 +391,12 @@ public class PrototypeHero : MonoBehaviour
                 if (m_grounded)
                 {
                     // Disable movement ������ ����
-                    if (m_grounded==true)
-                    m_disableMovementTimer = 0.35f;
+                    if (m_grounded == true)
+                        m_disableMovementTimer = 0.35f;
                 }
             }
         }
         else curtime -= Time.deltaTime;
-
-            //Leading chest
-            Debug.DrawRay(m_body2d.position, Vector3.right, new Color(0, 1, 0));
-            Debug.DrawRay(m_body2d.position, Vector3.left, new Color(1, 1, 1));
-
-        RaycastHit2D rayHit = Physics2D.Raycast(m_body2d.position, Vector3.right, 1, LayerMask.GetMask("chest"));
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            if( rayHit.collider.tag == "chest")
-            {
-                if (chestcode.isopen == 0)
-                {
-                    chestcode.isopen++;
-                    chestcode.change();
-                    chestcode.reward_event();
-
-                }
-            }
-        }
-
-       
     }
 
     // Function used to spawn a dust effect ���� ����
