@@ -385,7 +385,7 @@ public class PrototypeHero : MonoBehaviour
                     if (collider.tag == "monster")
                     {
                         attack(collider.gameObject, new Color(0.682353f, 0, 0, 1));
-                        collider.GetComponent<wolf>().Hit(damage);
+                        collider.GetComponent<Enemy>().Hit(damage);
                         //Debug.Log("hit");
                         //Debug.Log(collider.tag);
                     }

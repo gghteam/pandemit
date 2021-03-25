@@ -12,6 +12,9 @@ public class wolf : MonoBehaviour
     public HPbar healthbar;
     public GameObject dil, playercamera;
 
+    [SerializeField]
+    private Enemy enemy;
+
     public double attacklt;//공격거리
     public double rangth; //플레이어와 늑대의 거리차이
     public int speed; //이동속도
@@ -22,9 +25,6 @@ public class wolf : MonoBehaviour
     int attacking;
     public float curtime;
     public float cooltime;
-    public int HP;
-    public int MAXHP;
-    public int damage;
 
     Rigidbody2D Rigid;
 
@@ -32,8 +32,7 @@ public class wolf : MonoBehaviour
     {
         playercamera = GameObject.Find("playercamera");
         PlayerObj=GameObject.Find("player1");
-        HP=MAXHP;
-        healthbar.sethealth(HP,MAXHP);
+        enemy = GetComponent<Enemy>();
         gogo = true;
         animator = GetComponent<Animator>();
         Rigid = gameObject.GetComponent<Rigidbody2D>();
@@ -41,7 +40,7 @@ public class wolf : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (HP<=0){
+        if (enemy.HP<=0){
             animator.SetBool("die",true); // 체력이 0 이면 죽는 애니메이션 출력
         }
         else if (gogo) //gogo가 켜져있을 때
@@ -108,25 +107,7 @@ public class wolf : MonoBehaviour
     }
 
 
-    public void Hit(int damege) //데미지를 받음
-    {
-        
-        if (HP>0){
-            HP-=damege;
-            healthbar.sethealth(HP,MAXHP);
-            if (PlayerObj.transform.position.x > Rigid.transform.position.x)
-            {
-                attacking = 1;
-            }
-            else if (PlayerObj.transform.position.x < Rigid.transform.position.x)
-            {
-                attacking = -1;
-            }
-            Rigid.velocity = new Vector2(-3*attacking, Rigid.velocity.y);
-            gogo=false;
-            animator.SetTrigger("hit");
-        }
-    }
+
 
     void Colcol() //쿨타임이 충전됨
     {
@@ -156,7 +137,7 @@ public class wolf : MonoBehaviour
                 //데미지 출력
                 GameObject hello = Instantiate(dil);
                 hello.transform.position = (collider.transform.position + new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0));
-                hello.GetComponent<damage>().damagechk = damage;
+                hello.GetComponent<damage>().damagechk = enemy.damage;
 
                 //hello.transform.GetChild(0).GetComponent<ParticleSystem.startcolor
 
