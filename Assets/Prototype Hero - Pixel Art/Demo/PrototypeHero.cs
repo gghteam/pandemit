@@ -15,11 +15,18 @@ public class PrototypeHero : MonoBehaviour
     private Rigidbody2D m_body2d;
     private SpriteRenderer m_SR;
     private ParticleSystem particle;
+
+    [SerializeField]
     private Sensor_Prototype m_groundSensor;
+    [SerializeField]
     private Sensor_Prototype m_wallSensorR1;
+    [SerializeField]
     private Sensor_Prototype m_wallSensorR2;
+    [SerializeField]
     private Sensor_Prototype m_wallSensorL1;
+    [SerializeField]
     private Sensor_Prototype m_wallSensorL2;
+
     public bool m_grounded = false;
     public bool m_moving = false;
     private bool m_dead = false;
@@ -85,6 +92,70 @@ public class PrototypeHero : MonoBehaviour
         if (m_dead)
             return;
 
+        
+
+
+        // -- Handle Animations -- �ִϸ��̼� ó��
+        //Death ����
+        if (Input.GetKeyDown("e") && !m_dodging)
+        {
+            m_animator.SetBool("noBlood", m_noBlood);
+            m_animator.SetTrigger("Death");
+            m_respawnTimer = 2.5f;
+            DisableWallSensors();
+            m_dead = true;
+        }
+
+        //Hurt ����
+        else if (Input.GetKeyDown("q") && !m_dodging)
+        {
+            m_animator.SetTrigger("Hurt");
+            // Disable movement 
+            m_disableMovementTimer = 0.1f;
+            DisableWallSensors();
+        }
+
+        //Attack ������
+        Onmove();
+
+
+
+
+
+
+
+        Onattack();
+
+            //Leading chest
+            Debug.DrawRay(m_body2d.position, Vector3.right, new Color(0, 1, 0));
+            Debug.DrawRay(m_body2d.position, Vector3.left, new Color(1, 1, 1));
+
+        RaycastHit2D rayHit = Physics2D.Raycast(m_body2d.position, Vector3.right, 1, LayerMask.GetMask("chest"));
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            if( rayHit.collider.tag == "chest")
+            {
+                if (chestcode.isopen == 0)
+                {
+                    chestcode.isopen++;
+                    chestcode.change();
+                    chestcode.reward_event();
+
+                }
+            }
+            if (rayHit.collider.tag == "sign")
+            {
+                textmanager.Action(rayHit.collider.gameObject);
+            }
+        }
+
+       
+    }
+    //움직임
+    public void Onmove()
+    {
+        if (textmanager.isAction) return;
+        // Dodge ȸ����
         //Check if character just landed on the ground ���� ���������� �˻�
         if (!m_grounded && m_groundSensor.State())
         {
@@ -117,18 +188,18 @@ public class PrototypeHero : MonoBehaviour
             m_moving = false;
 
         // Swap direction of sprite depending on move direction q �̵����⿡ ���� ��������Ʈ ����
-        if (inputRaw > 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb && curtime <0)
+        if (inputRaw > 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb && curtime < 0)
         {
             m_SR.flipX = false;
             m_facingDirection = 1;
-            attackshaft.transform.localScale=new Vector3(1,1,1);
+            attackshaft.transform.localScale = new Vector3(1, 1, 1);
         }
 
-        else if (inputRaw < 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb && curtime <0)
+        else if (inputRaw < 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb && curtime < 0)
         {
             m_SR.flipX = true;
             m_facingDirection = -1;
-            attackshaft.transform.localScale=new Vector3(-1,1,1);
+            attackshaft.transform.localScale = new Vector3(-1, 1, 1);
         }
 
         // SlowDownSpeed helps decelerate the characters when stopping ������
@@ -208,68 +279,6 @@ public class PrototypeHero : MonoBehaviour
             }
 
         }
-
-
-        // -- Handle Animations -- �ִϸ��̼� ó��
-        //Death ����
-        if (Input.GetKeyDown("e") && !m_dodging)
-        {
-            m_animator.SetBool("noBlood", m_noBlood);
-            m_animator.SetTrigger("Death");
-            m_respawnTimer = 2.5f;
-            DisableWallSensors();
-            m_dead = true;
-        }
-
-        //Hurt ����
-        else if (Input.GetKeyDown("q") && !m_dodging)
-        {
-            m_animator.SetTrigger("Hurt");
-            // Disable movement 
-            m_disableMovementTimer = 0.1f;
-            DisableWallSensors();
-        }
-
-        //Attack ������
-        Onmove();
-
-
-
-
-
-
-
-        Onattack();
-
-            //Leading chest
-            Debug.DrawRay(m_body2d.position, Vector3.right, new Color(0, 1, 0));
-            Debug.DrawRay(m_body2d.position, Vector3.left, new Color(1, 1, 1));
-
-        RaycastHit2D rayHit = Physics2D.Raycast(m_body2d.position, Vector3.right, 1, LayerMask.GetMask("chest"));
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            if( rayHit.collider.tag == "chest")
-            {
-                if (chestcode.isopen == 0)
-                {
-                    chestcode.isopen++;
-                    chestcode.change();
-                    chestcode.reward_event();
-
-                }
-            }
-            if (rayHit.collider.tag == "sign")
-            {
-                textmanager.Action(rayHit.collider.gameObject);
-            }
-        }
-
-       
-    }
-    //움직임
-    public void Onmove()
-    {
-                // Dodge ȸ����
         if (Input.GetKeyDown("left shift") && m_grounded && !m_dodging && !m_ledgeGrab && !m_ledgeClimb)
         {
             m_dodging = true;
@@ -337,6 +346,7 @@ public class PrototypeHero : MonoBehaviour
     //공격
     public void Onattack()
     {
+        if (textmanager.isAction) return;
         if (curtime < 0)
         {
             if (Input.GetMouseButtonDown(0) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching && !m_wallSlide)

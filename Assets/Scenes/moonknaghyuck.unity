@@ -10884,6 +10884,11 @@ MonoBehaviour:
   m_dodgeForce: 8
   m_noBlood: 0
   m_hideSword: 1
+  m_groundSensor: {fileID: 1287928765}
+  m_wallSensorR1: {fileID: 561436491}
+  m_wallSensorR2: {fileID: 917339973}
+  m_wallSensorL1: {fileID: 867257819}
+  m_wallSensorL2: {fileID: 1291957911}
   m_grounded: 0
   m_moving: 0
   m_wallSlide: 0
@@ -10892,7 +10897,7 @@ MonoBehaviour:
   cooltime: 0.3
   chestcode: {fileID: 663253534}
   pos: {fileID: 1512876761}
-  attackeffectpos: {fileID: 0}
+  attackeffectpos: {fileID: 1512876761}
   boxsize: {x: 1.3, y: 1.2}
   attackshaft: {fileID: 770973443}
   dil: {fileID: 8239405177480021636, guid: d04b26b8d1b75b9439734e66b9fb9ca5, type: 3}
