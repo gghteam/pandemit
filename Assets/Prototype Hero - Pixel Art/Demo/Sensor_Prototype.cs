@@ -23,13 +23,13 @@ public class Sensor_Prototype : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag != "barrier"||numchk == 10)
+        if (other.tag != "box"&&other.tag != "barrier"||numchk == 10)
             m_ColCount++;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag != "barrier"||numchk == 10)
+        if (other.tag != "box"&&other.tag != "barrier"||numchk == 10)
             m_ColCount--;
     }
 

@@ -14,6 +14,7 @@ public class PrototypeHero : MonoBehaviour
     private Animator m_animator;
     private Rigidbody2D m_body2d;
     private SpriteRenderer m_SR;
+    private ParticleSystem particle;
     private Sensor_Prototype m_groundSensor;
     private Sensor_Prototype m_wallSensorR1;
     private Sensor_Prototype m_wallSensorR2;
@@ -37,11 +38,13 @@ public class PrototypeHero : MonoBehaviour
     public float cooltime;
     public chest chestcode;
     public Transform pos;
+    public Transform attackeffectpos;
     public Vector2 boxsize;
     public GameObject attackshaft;
     public GameObject dil;
     public GameObject playercamera;
     public int damage;
+    public Color attackCOLOR;
 
 
 
@@ -52,6 +55,7 @@ public class PrototypeHero : MonoBehaviour
         m_body2d = GetComponent<Rigidbody2D>();
         m_SR = GetComponentInChildren<SpriteRenderer>();
         m_body2d.AddForce(new Vector2(200,200));
+        attackeffectpos = GameObject.Find("attackeffectpos").transform;
 
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_Prototype>();
         m_wallSensorR1 = transform.Find("WallSensor_R1").GetComponent<Sensor_Prototype>();
@@ -61,7 +65,7 @@ public class PrototypeHero : MonoBehaviour
     }
 
     // Update is called once per frame ������ ���� ����
-    void FixedUpdate()
+    void Update()
     {
         // Decrease death respawn timer  ������ Ÿ�̸� ����
         m_respawnTimer -= Time.deltaTime;
@@ -328,13 +332,15 @@ public class PrototypeHero : MonoBehaviour
                 foreach (Collider2D collider in collider2Ds)
                 {
                     if (collider.tag == "monster"){
-                        collider.GetComponent<wolf>().Hit(damage);
-                        GameObject hello = Instantiate (dil);
-                        hello.transform.position=(collider.transform.position+new Vector3(Random.Range(-0.2f,0.2f),Random.Range(-0.2f,0.2f),0));
-                        hello.GetComponent<damage>().damagechk = damage;
-                        playercamera.GetComponent<playercamera>().startshake(0.2f,0.1f);
+                        attack(collider.gameObject,new Color(0.682353f,0,0,1));  
+                        collider.GetComponent<wolf>().Hit(damage);  
                         //Debug.Log("hit");
                     //Debug.Log(collider.tag);
+                    }
+                    
+                    if (collider.tag == "box"){
+                        attack(collider.gameObject,new Color(0.3679245f,0.2641726f,0.1853506f,1));
+                        //attackCOLOR = new Color(0.682353f,0,0,1);
                     }
                 }
                 // Reset timer Ÿ�̸� ����
@@ -375,6 +381,8 @@ public class PrototypeHero : MonoBehaviour
     // All dust effects spawns on the floor �ٴڿ� ����ϴ� ���� ȿ��
     // dustXoffset controls how far from the player the effects spawns.
     // Default dustXoffset is zero
+
+
     public void SpawnDustEffect(GameObject dust, float dustXOffset = 0, float dustYOffset = 0)
     {
         if (dust != null)
@@ -428,6 +436,16 @@ public class PrototypeHero : MonoBehaviour
     public bool IsWallSliding()
     {
         return m_wallSlide;
+    }
+    void attack(GameObject collider,Color color){
+        
+        GameObject hello = Instantiate (dil);
+        particle = hello.transform.GetChild(0).GetComponent<ParticleSystem>();
+        ParticleSystem.MainModule parmain = particle.main;
+        parmain.startColor=color;
+        hello.transform.position=(attackeffectpos.transform.position+new Vector3(Random.Range(-0.2f,0.2f),Random.Range(-0.2f,0.2f),0));
+        hello.GetComponent<damage>().damagechk = damage;
+        playercamera.GetComponent<playercamera>().startshake(0.2f,0.1f);
     }
 
     void RespawnHero()
