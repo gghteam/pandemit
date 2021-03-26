@@ -6,14 +6,16 @@ using UnityEngine.UI;
 
 public class fadein : MonoBehaviour
 {
-    GameObject SplashObj;               //판넬오브젝트
-    Image image;                            //판넬 이미지
-    private bool checkbool = false;     //투명도 조절 논리형 변수
+    GameObject SplashObj;              
+    Image image;
+    public Text text; 
+    public float delay=2.0f,speed=0.01f;                     
+    private bool checkbool = false;    
     void Awake()
     {
-        SplashObj = this.gameObject;                         //스크립트 참조된 오브젝트
+        SplashObj = this.gameObject;                        
 
-        image = gameObject.GetComponent<Image>();    //판넬오브젝트에 이미지 참조
+        image = gameObject.GetComponent<Image>();
 
     }
 
@@ -35,17 +37,21 @@ public class fadein : MonoBehaviour
 
     IEnumerator MainSplash()
     {
+        yield return new WaitForSeconds(delay);
         Color color = image.color;
         for (int i = 100; i >= 0; i--)
 
         {
-            color.a -= Time.deltaTime * 0.01f;
+            color.a -= Time.deltaTime * speed;
             image.color = color; 
+            if (text!=null)
+                text.color = color;
             if (image.color.a <= 0)
             {
-                checkbool = true;                           
+                checkbool = true;               
             }
         }
+        
         yield return null;                                 
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class boxbox : MonoBehaviour
 {
     public GameObject dil;
-    private int boxHP=30;
+    private int boxHP=40;
     // Start is called before the first frame update
     void Start()
     {
