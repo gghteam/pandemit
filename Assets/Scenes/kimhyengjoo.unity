@@ -123,6 +123,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &79367539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 79367541}
+  - component: {fileID: 79367540}
+  m_Layer: 0
+  m_Name: stagemanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &79367540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79367539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d204295da49c841b9db5c65411d3d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MapendingPoint: 13
+  playercamera: {fileID: 1372041065}
+  player: {fileID: 1756530123}
+  faidin: {fileID: 2001266423}
+--- !u!4 &79367541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79367539}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &81832903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1793,7 +1840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
-  delay: 0
+  delay: 0.5
   speed: 0.01
 --- !u!114 &232320773
 MonoBehaviour:
@@ -5597,8 +5644,9 @@ MonoBehaviour:
   hihi: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   minPos: {x: -13.5, y: -20}
-  maxPos: {x: 20, y: 20}
+  maxPos: {x: 13, y: 20}
   bound: 1
+  mousegogo: 0
 --- !u!81 &1372041067
 AudioListener:
   m_ObjectHideFlags: 0

@@ -18,8 +18,7 @@ public class fadein : MonoBehaviour
         image = gameObject.GetComponent<Image>();
 
     }
-
-
+    
 
     void Update()
 
@@ -29,7 +28,7 @@ public class fadein : MonoBehaviour
 
         if (checkbool)                                           
         {
-            Destroy(this.gameObject);                       
+            //Destroy(this.gameObject);                       
         }
     }
 
@@ -54,4 +53,5 @@ public class fadein : MonoBehaviour
         
         yield return null;                                 
     }
+    
 }
