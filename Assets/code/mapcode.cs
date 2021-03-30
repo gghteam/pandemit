@@ -14,8 +14,8 @@ public class mapcode : MonoBehaviour
 
     void Update()
     {
-        if (player.transform.position.x>=MapendingPoint){
-            Debug.Log("dddddd");
+        if (player.transform.position.x>=MapendingPoint+playercamera.transform.localScale.x){
+            Debug.Log("d");
         }
     }
 }

@@ -29,11 +29,7 @@ public class playercamera : MonoBehaviour
         {
             target = (player.transform.position + hihi.transform.position) / 2;
         }
-		if (mousegogo)
-        {
-            targerPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			target = (target + Vector3.MoveTowards(transform.localPosition, targerPosition,5)) / 2;
-        }
+		
         else target = player.transform.position;
         float posX = Mathf.SmoothDamp(transform.position.x, target.x, ref velocity.x, smoothTimeX);
         float posY = Mathf.SmoothDamp(transform.position.y, target.y + 1f, ref velocity.y, smoothTimeY);
