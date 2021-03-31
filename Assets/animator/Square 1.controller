@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: Roguelike
+    m_ConditionEvent: New Int
     m_EventTreshold: 4
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2445847274847308033}
@@ -34,7 +34,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: Roguelike
+    m_ConditionEvent: New Int
     m_EventTreshold: 3
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6495660019955827332}
@@ -145,7 +145,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: Roguelike
+    m_ConditionEvent: New Int
     m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -369696501223443917}
@@ -222,7 +222,7 @@ AnimatorController:
   m_Name: Square 1
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Roguelike
+  - m_Name: New Int
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -306,7 +306,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: Roguelike
+    m_ConditionEvent: New Int
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1802793158853769213}
