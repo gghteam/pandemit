@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class fadein : MonoBehaviour
 {
+    GameObject stagemanager;
+    public bool fadeoutbool,slowout;
     GameObject SplashObj;              
     Image image;
     public Text text; 
@@ -13,6 +16,7 @@ public class fadein : MonoBehaviour
     private bool checkbool = false;    
     void Awake()
     {
+        stagemanager=GameObject.Find("stagemanager");
         SplashObj = this.gameObject;                        
 
         image = gameObject.GetComponent<Image>();
@@ -23,6 +27,8 @@ public class fadein : MonoBehaviour
     void Update()
 
     {
+        if(stagemanager.GetComponent<mapcode>().endending)
+            fadeoutbool=true;
 
         StartCoroutine("MainSplash");                       
 
@@ -36,18 +42,35 @@ public class fadein : MonoBehaviour
 
     IEnumerator MainSplash()
     {
+        if(fadeoutbool&&slowout)
+            yield return new WaitForSeconds(1f);
         yield return new WaitForSeconds(delay);
         Color color = image.color;
         for (int i = 100; i >= 0; i--)
 
         {
-            color.a -= Time.deltaTime * speed;
+            if(fadeoutbool){
+                color.a += Time.deltaTime * speed;
+            }
+            else
+                color.a -= Time.deltaTime * speed;
             image.color = color; 
             if (text!=null)
                 text.color = color;
-            if (image.color.a <= 0)
+            if (!fadeoutbool&&image.color.a <= 0)
             {
+                color.a=0;
                 checkbool = true;               
+            }
+            if (fadeoutbool&&image.color.a >= 1)
+            {
+                color.a=100;
+                checkbool = true;       
+                if (slowout){
+                    SceneManager.LoadScene("Roguelike");
+                }
+
+
             }
         }
         

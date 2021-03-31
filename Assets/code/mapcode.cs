@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class mapcode : MonoBehaviour
 {
     [SerializeField]
+    public bool endending;
     private float MapendingPoint=13;
     public GameObject playercamera,player,faidin;
     void Start()
@@ -14,8 +16,8 @@ public class mapcode : MonoBehaviour
 
     void Update()
     {
-        if (player.transform.position.x>=MapendingPoint+playercamera.transform.localScale.x){
-            Debug.Log("d");
+        if ((!endending)&&player.transform.position.x>=MapendingPoint+playercamera.transform.localScale.x){
+            endending = true;
         }
     }
 }

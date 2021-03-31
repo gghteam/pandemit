@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/pandemit.unity
     guid: 1f76e8d2067c46b41965e1d0315aa65c
+  - enabled: 1
+    path: Assets/Scenes/kimhyengjoo.unity
+    guid: 9427b7a9ee3e85048a240ddb74b44320
+  - enabled: 1
+    path: Assets/Scenes/Roguelike.unity
+    guid: aea43378b637be4419263922ce6fae1d
   m_configObjects: {}
