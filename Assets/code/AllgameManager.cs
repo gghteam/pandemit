@@ -7,9 +7,8 @@ public class AllgameManager : MonoBehaviour
 {
     private Animator roomani;
     public GameObject roompp;
-
     int[,] xy=new int[20,20];
-    
+    public int myX=0,myY= 0;
     void Start()
     {
         
@@ -20,7 +19,7 @@ public class AllgameManager : MonoBehaviour
         maploding();
     }
     void maploding(){
-        int myX=0,myY= 0;
+        
         int roomX=0,roomY=0;
         int randomgogo = Random.Range(0,4);
         int randomroomgo = Random.Range(1,5);
@@ -44,6 +43,8 @@ public class AllgameManager : MonoBehaviour
             GameObject room = Instantiate(roompp);
             roomani = room.GetComponent<roomgogo>().animator;
             room.GetComponent<roomgogo>().randomroom=randomroomgo;
+            room.GetComponent<roomgogo>().myXX=roomX;
+            room.GetComponent<roomgogo>().myYY=roomY;
             room.transform.position = new Vector3(room.transform.localScale.x*roomX,room.transform.localScale.y*roomY,0);
         }
         

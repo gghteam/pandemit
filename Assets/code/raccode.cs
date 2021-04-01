@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class raccode : MonoBehaviour
 {
     public Text ScriptTxt;
-    float second=0.5f;
+    float second=1f;
     
      void Update()
     {
