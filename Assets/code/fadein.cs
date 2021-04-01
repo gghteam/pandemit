@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class fadein : MonoBehaviour
 {
+    GameObject allgamemanager;
     GameObject stagemanager;
     public bool fadeoutbool,slowout;
     GameObject SplashObj;              
@@ -17,6 +18,8 @@ public class fadein : MonoBehaviour
     void Awake()
     {
         stagemanager=GameObject.Find("stagemanager");
+        allgamemanager=GameObject.Find("AllgameManager");
+
         SplashObj = this.gameObject;                        
 
         image = gameObject.GetComponent<Image>();
@@ -30,7 +33,7 @@ public class fadein : MonoBehaviour
         if(stagemanager.GetComponent<mapcode>().endending)
             fadeoutbool=true;
 
-        StartCoroutine("MainSplash");                       
+        StartCoroutine("MainSplash");
 
         if (checkbool)                                           
         {
@@ -68,6 +71,7 @@ public class fadein : MonoBehaviour
                 checkbool = true;       
                 if (slowout){
                     SceneManager.LoadScene("Roguelike");
+                    allgamemanager.GetComponent<AllgameManager>().roguelike();
                 }
 
 

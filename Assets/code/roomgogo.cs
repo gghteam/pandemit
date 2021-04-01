@@ -4,14 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class roomgogo : MonoBehaviour
 {
-    public int myXX;
-    public int myYY;
-    GameObject systemmanager;
     public Animator animator;
     public int randomroom;
     void Start()
     {
-        systemmanager = GameObject.Find("AllgameManager");
         animator = GetComponent<Animator>();
 
         
@@ -25,8 +21,6 @@ public class roomgogo : MonoBehaviour
         if(Input.GetMouseButtonDown(0)){
             if (hit.collider != null)
             {
-                systemmanager.GetComponent<AllgameManager>().myX = myXX;
-                systemmanager.GetComponent<AllgameManager>().myY = myYY;
                 SceneManager.LoadScene("kimhyengjoo");
             }
         }
