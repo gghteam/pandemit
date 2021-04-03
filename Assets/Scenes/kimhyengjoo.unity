@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endending: 0
+  MapendingPoint: 8
   playercamera: {fileID: 1372041065}
   player: {fileID: 1756530123}
   faidin: {fileID: 2001266423}

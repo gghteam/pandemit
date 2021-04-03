@@ -7,11 +7,12 @@ public class mapcode : MonoBehaviour
 {
     [SerializeField]
     public bool endending;
+    [SerializeField]
     private float MapendingPoint=13;
     public GameObject playercamera,player,faidin;
     void Start()
     {
-        playercamera.GetComponent<playercamera>().maxPos.x = MapendingPoint;
+        playercamera.GetComponent<playercamera>().maxPos.x = MapendingPoint;    
     }
 
     void Update()

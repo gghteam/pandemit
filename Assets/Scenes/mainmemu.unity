@@ -411,6 +411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9563c6f67e44c14bb39da68c74b9d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myX: 0
+  myY: 0
   roompp: {fileID: 6353406991721002080, guid: b510c3d92bea77a4582b09a407a32a59, type: 3}
 --- !u!4 &696954977
 Transform:

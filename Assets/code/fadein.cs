@@ -71,7 +71,6 @@ public class fadein : MonoBehaviour
                 checkbool = true;       
                 if (slowout){
                     SceneManager.LoadScene("Roguelike");
-                    allgamemanager.GetComponent<AllgameManager>().roguelike();
                 }
 
 
