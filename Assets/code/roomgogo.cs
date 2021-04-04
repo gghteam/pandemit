@@ -23,10 +23,10 @@ public class roomgogo : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0f);
         
         
-        if (Mathf.RoundToInt(myx - allgamemanager.GetComponent<AllgameManager>().myX)==1||
-        Mathf.RoundToInt(myy - allgamemanager.GetComponent<AllgameManager>().myY)==1){
-            if (!(Mathf.RoundToInt(myx - allgamemanager.GetComponent<AllgameManager>().myX)==1&&
-            Mathf.RoundToInt(myy - allgamemanager.GetComponent<AllgameManager>().myY)==1)){
+        if (Mathf.Abs(myx - allgamemanager.GetComponent<AllgameManager>().myX)==1||
+        Mathf.Abs(myy - allgamemanager.GetComponent<AllgameManager>().myY)==1){
+            if (!(Mathf.Abs(myx - allgamemanager.GetComponent<AllgameManager>().myX)==1&&
+            Mathf.Abs(myy - allgamemanager.GetComponent<AllgameManager>().myY)==1)){
         
                 if(hit.collider != null){
                     target = hit.collider.gameObject;
@@ -43,7 +43,8 @@ public class roomgogo : MonoBehaviour
                 }
                 else
                         gameObject.GetComponent<SpriteRenderer>().color=new Color(1,1,1);
-             }
+             
+            }
         }
     }
 }
