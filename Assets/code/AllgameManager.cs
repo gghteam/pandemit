@@ -10,7 +10,7 @@ public class AllgameManager : MonoBehaviour
     private Animator roomani;
     public GameObject roompp;
     [SerializeField]
-    int[,] xy=new int[20,20];
+    int[,] xy=new int[40,40];
     
     
     void Start()
