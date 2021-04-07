@@ -22,29 +22,33 @@ public class roomgogo : MonoBehaviour
         Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0f);
         
-        
-        if (Mathf.Abs(myx - allgamemanager.GetComponent<AllgameManager>().myX)==1||
-        Mathf.Abs(myy - allgamemanager.GetComponent<AllgameManager>().myY)==1){
-            if (!(Mathf.Abs(myx - allgamemanager.GetComponent<AllgameManager>().myX)==1&&
-            Mathf.Abs(myy - allgamemanager.GetComponent<AllgameManager>().myY)==1)){
-        
-                if(hit.collider != null){
-                    target = hit.collider.gameObject;
-                    if (target.gameObject == this.gameObject)
-                    {
-                        gameObject.GetComponent<SpriteRenderer>().color=new Color(0.5f,0.5f,0.5f);
-                        if(Input.GetMouseButtonDown(0)){
-                            gameObject.GetComponent<SpriteRenderer>().color=new Color(1,1,1);
-                            allgamemanager.GetComponent<AllgameManager>().myX=myx;
-                            allgamemanager.GetComponent<AllgameManager>().myY=myy;
-                            SceneManager.LoadScene("kimhyengjoo");
-                        }
+        gameObject.GetComponent<SpriteRenderer>().color=new Color(0.5f,0.5f,0.5f);
+        if ((Mathf.Abs(myx - allgamemanager.GetComponent<AllgameManager>().myX)==1&&Mathf.Abs(myy - allgamemanager.GetComponent<AllgameManager>().myY)==0)||
+        (Mathf.Abs(myy - allgamemanager.GetComponent<AllgameManager>().myY)==1&&Mathf.Abs(myx - allgamemanager.GetComponent<AllgameManager>().myX)==0)){
+
+            if(hit.collider != null){
+                target = hit.collider.gameObject;
+                if (target.gameObject == this.gameObject)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().color=new Color(0.5f,0.5f,0.5f);
+                    if(Input.GetMouseButtonDown(0)){
+                        gameObject.GetComponent<SpriteRenderer>().color=new Color(1,1,1);
+                        allgamemanager.GetComponent<AllgameManager>().myX=myx;
+                        allgamemanager.GetComponent<AllgameManager>().myY=myy;
+                        StartCoroutine(gogogo());
                     }
                 }
-                else
-                        gameObject.GetComponent<SpriteRenderer>().color=new Color(1,1,1);
-             
+                else gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1,1);
             }
+            else gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1,1);
         }
     }
+    IEnumerator gogogo(){
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("kimhyengjoo");
+    }
+
+
+
+
 }

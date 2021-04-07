@@ -4838,7 +4838,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0409f2fddf07780408257c186ab69681, type: 3}
-  m_Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
+  m_Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9812,7 +9812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxSpeed: 4
   m_jumpForce: 10
-  m_dodgeForce: 8
+  m_dodgeForce: 9
   m_noBlood: 0
   m_hideSword: 1
   m_groundSensor: {fileID: 0}
@@ -9824,6 +9824,7 @@ MonoBehaviour:
   m_moving: 0
   m_wallSlide: 0
   m_facingDirection: 1
+  m_disableMovementTimer: -0.5
   curtime: 0
   cooltime: 0.3
   chestcode: {fileID: 0}
@@ -10771,6 +10772,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 457623455}
     m_Modifications:
+    - target: {fileID: 1298109499009752425, guid: f24dd11cbd607cb4782a9fff7ff00c2f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1298109499009752430, guid: f24dd11cbd607cb4782a9fff7ff00c2f, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -10786,6 +10791,30 @@ PrefabInstance:
     - target: {fileID: 1298109499009752431, guid: f24dd11cbd607cb4782a9fff7ff00c2f, type: 3}
       propertyPath: slowout
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298109499152042790, guid: f24dd11cbd607cb4782a9fff7ff00c2f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298109499152042790, guid: f24dd11cbd607cb4782a9fff7ff00c2f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298109499152042790, guid: f24dd11cbd607cb4782a9fff7ff00c2f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298109499455394962, guid: f24dd11cbd607cb4782a9fff7ff00c2f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.49056602
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298109499455394962, guid: f24dd11cbd607cb4782a9fff7ff00c2f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.49056602
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298109499455394962, guid: f24dd11cbd607cb4782a9fff7ff00c2f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.49056602
       objectReference: {fileID: 0}
     - target: {fileID: 1298109499455394963, guid: f24dd11cbd607cb4782a9fff7ff00c2f, type: 3}
       propertyPath: m_Pivot.x

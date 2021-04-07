@@ -413,6 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myX: 0
   myY: 0
+  Progress: 0
   roompp: {fileID: 6353406991721002080, guid: b510c3d92bea77a4582b09a407a32a59, type: 3}
 --- !u!4 &696954977
 Transform:

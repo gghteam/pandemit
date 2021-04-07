@@ -67,10 +67,11 @@ public class fadein : MonoBehaviour
             }
             if (fadeoutbool&&image.color.a >= 1)
             {
-                color.a=100;
-                checkbool = true;       
+                color.a=1;
+                checkbool = true;
                 if (slowout){
                     SceneManager.LoadScene("Roguelike");
+                    yield return null;
                 }
 
 

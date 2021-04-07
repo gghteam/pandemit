@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PrototypeHero : MonoBehaviour
 {
@@ -37,7 +38,8 @@ public class PrototypeHero : MonoBehaviour
     private bool m_crouching = false;
     private Vector3 m_climbPosition;
     public int m_facingDirection = 1;
-    private float m_disableMovementTimer = 0.0f;
+    [SerializeField]
+    private float m_disableMovementTimer = -0.5f;
     private float m_respawnTimer = 0.0f;
     private Vector3 m_respawnPosition = Vector3.zero;
     private int m_currentAttack = 0;
@@ -61,6 +63,7 @@ public class PrototypeHero : MonoBehaviour
     // AE_SheathSwordUse this for initialization
     void Start()
     {
+        this.gameObject.layer = 6;
         m_animator = GetComponentInChildren<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_SR = GetComponentInChildren<SpriteRenderer>();
@@ -83,7 +86,8 @@ public class PrototypeHero : MonoBehaviour
         // Increase timer that controls attack combo ���� �޺� ���� Ÿ�̸� ����
 
         // Decrease timer that disables input movement. Used when attacking �Է� �̵��� ��Ȱ��ȭ�ϴ� Ÿ�̸Ӹ� ���Դϴ�. ���� �� ���
-        m_disableMovementTimer -= Time.deltaTime;
+        if(m_disableMovementTimer>0)
+            m_disableMovementTimer -= Time.deltaTime;
 
         // Respawn Hero if dead ���ΰ� ������ ��Ȱ
         if (m_dead && m_respawnTimer < 0.0f)
@@ -109,6 +113,7 @@ public class PrototypeHero : MonoBehaviour
         //Hurt ����
         else if (Input.GetKeyDown("q") && !m_dodging)
         {
+            SceneManager.LoadScene("Roguelike");
             m_animator.SetTrigger("Hurt");
             // Disable movement 
             m_disableMovementTimer = 0.1f;
@@ -427,12 +432,20 @@ public class PrototypeHero : MonoBehaviour
             newDust.transform.localScale = newDust.transform.localScale.x * new Vector3(m_facingDirection, 1, 1);
         }
     }
+    public IEnumerator godmode(float timedeley){
+        this.gameObject.layer = 11;
+        yield return new WaitForSeconds(timedeley);
+        this.gameObject.layer = 6;
+    }
     public void damagedani()
     {
+        if(!m_dodging){
+            StartCoroutine(godmode(0.6f));
             m_animator.SetTrigger("Hurt");
             // Disable movement ������ ����
             m_disableMovementTimer = 0.1f;
             DisableWallSensors();
+        }
     }
     void DisableWallSensors()
     {

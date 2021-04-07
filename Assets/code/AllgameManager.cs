@@ -8,9 +8,11 @@ public class AllgameManager : MonoBehaviour
     [SerializeField]
     public int myX=0,myY= 0;
     private Animator roomani;
+    [SerializeField]
+    private int Progress=0;
     public GameObject roompp;
     [SerializeField]
-    int[,] xy=new int[40,40];
+    private int[,] xy=new int[40,40];
     
     
     void Start()
@@ -51,7 +53,7 @@ public class AllgameManager : MonoBehaviour
 
     }
     public void roguelike(){
-        
+        Progress++;
         maploding();maploding();maploding();maploding();
         for(int i=0;i<20;i++){
             for(int j=0;j<20;j++){

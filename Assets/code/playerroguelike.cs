@@ -15,6 +15,7 @@ public class playerroguelike : MonoBehaviour
 
     void Update()
     {
-        
+        transform.position=new Vector3(allgamemanager.GetComponent<AllgameManager>().myX*room.transform.localScale.x,
+        allgamemanager.GetComponent<AllgameManager>().myY*room.transform.localScale.x,0);
     }
 }
