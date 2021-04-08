@@ -23,7 +23,21 @@ public class AllgameManager : MonoBehaviour
     void maploding(){
         
         int randomgogo = Random.Range(0,4);
-        int randomroomgo = Random.Range(1,5);
+        int randomroomgo = Random.Range(1,101);
+        if(randomroomgo<7){
+            if(Progress<7)
+                randomroomgo=1;
+            else
+                randomroomgo=2;
+        }else if(randomroomgo<30){
+            randomroomgo=4;
+        }else if(randomroomgo<40){
+            randomroomgo=3;
+        }else if(randomroomgo<100){
+            randomroomgo=2;
+        }else{
+            randomroomgo=2;
+        }
         int roomX=0,roomY=0;
 
         switch(randomgogo){
@@ -66,9 +80,5 @@ public class AllgameManager : MonoBehaviour
                 }
             }
         }
-    }
-    void Update()
-    {
-
     }
 }
