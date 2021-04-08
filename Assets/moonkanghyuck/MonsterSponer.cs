@@ -32,7 +32,8 @@ public class MonsterSponer : MonoBehaviour
         for (int i = 0; i < transforms.Length; i++)
         {
             int random = Random.Range(0, monsters.Count);
-            Instantiate(monsters[random], transforms[i].position, Quaternion.identity);
+            int randomper = Random.Range(0, random + 1);
+            Instantiate(monsters[randomper], transforms[i].position, Quaternion.identity);
         }
     }
 }
