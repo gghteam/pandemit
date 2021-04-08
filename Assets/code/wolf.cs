@@ -11,9 +11,9 @@ public class wolf : MonoBehaviour
     public Vector2 boxsize;
     public HPbar healthbar;
     public GameObject dil, playercamera;
-
     [SerializeField]
     private Enemy enemy;
+    Rigidbody2D Rigid;
 
     public double attacklt;//공격거리
     public double rangth; //플레이어와 늑대의 거리차이
@@ -26,13 +26,13 @@ public class wolf : MonoBehaviour
     public float curtime;
     public float cooltime;
 
-    Rigidbody2D Rigid;
+    
 
     void Start()
     {
+        enemy = GetComponent<Enemy>();
         playercamera = GameObject.Find("playercamera");
         PlayerObj=GameObject.Find("player1");
-        enemy = GetComponent<Enemy>();
         gogo = true;
         animator = GetComponent<Animator>();
         Rigid = gameObject.GetComponent<Rigidbody2D>();
@@ -87,6 +87,10 @@ public class wolf : MonoBehaviour
                     //Rigid.velocity = new Vector2(speed*attacking*0.6f, Rigid.velocity.y);
                 }
             }
+        else
+        {
+            animator.SetBool("die", false);
+        }
     }
     void Attack()
     {/*
@@ -102,7 +106,6 @@ public class wolf : MonoBehaviour
         animator.SetTrigger("attack"); //공격 애니메이션 켜짐
         gogo = false; //이동,거리측정 모두 멈춤
         coltime = false;//쿨타임
-
         Invoke("Colcol", 1); //쿨타임 충전
     }
 
