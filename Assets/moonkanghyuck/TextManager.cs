@@ -13,7 +13,7 @@ public class TextManager : MonoBehaviour
     //public CutManager cutmanager;
     public Animator fadeanim;
     public Animator fadeanim2;
-    public Text talkText;
+    public TextEffect talkText;
     public bool isAction;
     public int talkIndex;
 
@@ -42,11 +42,11 @@ public class TextManager : MonoBehaviour
         }
         if (isNpc)
         {
-            talkText.text = talkdata;
+            talkText.SetMsg(talkdata);
         }
         else
         {
-            talkText.text = talkdata;
+            talkText.SetMsg(talkdata);
         }
         isAction = true;
     }
