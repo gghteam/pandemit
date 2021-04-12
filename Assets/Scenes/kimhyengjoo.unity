@@ -4628,7 +4628,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 1a631ada4ecd9cf49a88b135aa70c396, type: 3}
     - {fileID: 8300000, guid: ee00faf8b8432ff40a6e008c84d5ae59, type: 3}
     - {fileID: 8300000, guid: 9b0833c02b71a294faba6438278d937a, type: 3}
-    volume: 1
+    volume: 0.526
     pitch: 1
     m_randomVolumeRange: {x: 0.6, y: 1}
     m_randomPitchRange: {x: 0.6, y: 0.9}
@@ -4644,15 +4644,15 @@ MonoBehaviour:
   - m_name: Jump
     m_clips:
     - {fileID: 8300000, guid: 5a18f2ef7db9f1943bedda13ff85ee89, type: 3}
-    volume: 0.4
-    pitch: 0.821
+    volume: 0.238
+    pitch: 0.839
     m_randomVolumeRange: {x: 1, y: 1}
     m_randomPitchRange: {x: 1, y: 1}
     m_loop: 0
   - m_name: Landing1
     m_clips:
     - {fileID: 8300000, guid: c536bb1c2b832d44d9576f98b1b1aaba, type: 3}
-    volume: 0.185
+    volume: 0.095
     pitch: 0.71
     m_randomVolumeRange: {x: 1, y: 1}
     m_randomPitchRange: {x: 1, y: 1}
@@ -4692,7 +4692,7 @@ MonoBehaviour:
   - m_name: Dodge
     m_clips:
     - {fileID: 8300000, guid: cc0a09af0c0ff0e45843d8ebcf4bf2e0, type: 3}
-    volume: 1
+    volume: 0.567
     pitch: 1.2
     m_randomVolumeRange: {x: 1, y: 1}
     m_randomPitchRange: {x: 0.9, y: 1.1}
@@ -5213,7 +5213,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004840851, y: 0}
+  m_Offset: {x: 0.00040912628, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5224,7 +5224,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.41335678, y: 0.1}
+  m_Size: {x: 0.4840145, y: 0.1}
   m_EdgeRadius: 0
 --- !u!1 &1291957909
 GameObject:
@@ -9822,6 +9822,7 @@ MonoBehaviour:
   m_wallSensorL2: {fileID: 0}
   m_grounded: 0
   m_moving: 0
+  m_dodging: 0
   m_wallSlide: 0
   m_facingDirection: 1
   m_disableMovementTimer: -0.5

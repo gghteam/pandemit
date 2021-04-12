@@ -12,12 +12,12 @@ public class AllgameManager : MonoBehaviour
     private int Progress=0;
     public GameObject roompp;
     [SerializeField]
-    private int[,] xy=new int[40,40];
+    private int[,,] xy=new int[40,40,3];
     
     
     void Start()
     {
-        xy[10,10]=10;
+        xy[10,10,0]=10;
         DontDestroyOnLoad(this);
     }
     void maploding(){
@@ -25,7 +25,7 @@ public class AllgameManager : MonoBehaviour
         int randomgogo = Random.Range(0,4);
         int randomroomgo = Random.Range(1,101);
         if(randomroomgo<7){
-            if(Progress<7)
+            if(Progress>7)
                 randomroomgo=1;
             else
                 randomroomgo=2;
@@ -58,8 +58,8 @@ public class AllgameManager : MonoBehaviour
             roomX = myX;
             break;
         }
-        if(xy[roomX+10,roomY+10]==0){
-            xy[roomX+10,roomY+10]=randomroomgo;
+        if(xy[roomX+10,roomY+10,0]==0){
+            xy[roomX+10,roomY+10,0]=randomroomgo;
         }   
         
         
@@ -68,14 +68,16 @@ public class AllgameManager : MonoBehaviour
     }
     public void roguelike(){
         Progress++;
-        maploding();maploding();maploding();maploding();
+        if(xy[myX+10,myY+10,0]!=1){
+            maploding();maploding();maploding();maploding();
+        }
         for(int i=0;i<20;i++){
             for(int j=0;j<20;j++){
-                if(xy[i,j]!=0){
+                if(xy[i,j,0]!=0){
                     GameObject room = Instantiate(roompp);
                     room.GetComponent<roomgogo>().myx=i-10;
                     room.GetComponent<roomgogo>().myy=j-10;
-                    room.GetComponent<roomgogo>().randomroom=xy[i,j];
+                    room.GetComponent<roomgogo>().randomroom=xy[i,j,0];
                     room.transform.position = new Vector3(room.transform.localScale.x*(i-10),room.transform.localScale.y*(j -10),0);
                 }
             }

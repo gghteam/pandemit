@@ -106,7 +106,7 @@ public class wolf : MonoBehaviour
         animator.SetTrigger("attack"); //공격 애니메이션 켜짐
         gogo = false; //이동,거리측정 모두 멈춤
         coltime = false;//쿨타임
-        Invoke("Colcol", 1); //쿨타임 충전
+        Invoke("Colcol", Random.Range(2.1f,3.1f)); //쿨타임 충전
     }
 
 
@@ -135,18 +135,19 @@ public class wolf : MonoBehaviour
         {
             if (collider.tag == "Player") //공격해서 플레이어를 맞춤
             {
-                collider.GetComponent<PrototypeHero>().damagedani();
+                if(!collider.GetComponent<PrototypeHero>().m_dodging){
+                    collider.GetComponent<PrototypeHero>().damagedani();
 
-                //데미지 출력
-                GameObject hello = Instantiate(dil);
-                hello.transform.position = (collider.transform.position + new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0));
-                hello.GetComponent<damage>().damagechk = enemy.damage;
+                    //데미지 출력
+                    GameObject hello = Instantiate(dil);
+                    hello.transform.position = (collider.transform.position + new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0));
+                    hello.GetComponent<damage>().damagechk = enemy.damage;
 
-                //hello.transform.GetChild(0).GetComponent<ParticleSystem.startcolor
+                    //hello.transform.GetChild(0).GetComponent<ParticleSystem.startcolor
 
-                //진동
-                playercamera.GetComponent<playercamera>().startshake(0.4f, 0.2f);
-
+                    //진동
+                    playercamera.GetComponent<playercamera>().startshake(0.4f, 0.2f);
+                }
             }
         }
     }

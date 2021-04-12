@@ -31,7 +31,7 @@ public class PrototypeHero : MonoBehaviour
     public bool m_grounded = false;
     public bool m_moving = false;
     private bool m_dead = false;
-    private bool m_dodging = false;
+    public bool m_dodging = false;
     public bool m_wallSlide = false;
     private bool m_ledgeGrab = false;
     private bool m_ledgeClimb = false;
@@ -113,7 +113,6 @@ public class PrototypeHero : MonoBehaviour
         //Hurt ����
         else if (Input.GetKeyDown("q") && !m_dodging)
         {
-            SceneManager.LoadScene("Roguelike");
             m_animator.SetTrigger("Hurt");
             // Disable movement 
             m_disableMovementTimer = 0.1f;
@@ -432,15 +431,10 @@ public class PrototypeHero : MonoBehaviour
             newDust.transform.localScale = newDust.transform.localScale.x * new Vector3(m_facingDirection, 1, 1);
         }
     }
-    public IEnumerator godmode(float timedeley){
-        this.gameObject.layer = 11;
-        yield return new WaitForSeconds(timedeley);
-        this.gameObject.layer = 6;
-    }
+    
     public void damagedani()
     {
         if(!m_dodging){
-            StartCoroutine(godmode(0.6f));
             m_animator.SetTrigger("Hurt");
             // Disable movement ������ ����
             m_disableMovementTimer = 0.1f;
