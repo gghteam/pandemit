@@ -10,15 +10,17 @@ public class TextManager : MonoBehaviour
     public TalkManager talkmanager;
     public GameObject scanObject;
     public GameObject textpanel;
-    public CutManager cutmanager;
-    public Text talkText;
+    //public CutManager cutmanager;
+    public Animator fadeanim;
+    public Animator fadeanim2;
+    public TextEffect talkText;
     public bool isAction;
     public int talkIndex;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -29,20 +31,22 @@ public class TextManager : MonoBehaviour
     public void Talk(int id, bool isNpc)
     {
         string talkdata = talkmanager.GetTalk(id, talkIndex);
-        if(talkdata == null)
+        if(talkdata == null) //대화가 끝날 때
         {
-            cutmanager.OffCunsecne();
+            
+            fadeanim.SetBool("IsText?", false);
+            fadeanim2.SetBool("IsText?", false);
             isAction = false;
             talkIndex = 0;
             return;
         }
         if (isNpc)
         {
-            talkText.text = talkdata;
+            talkText.SetMsg(talkdata);
         }
         else
         {
-            talkText.text = talkdata;
+            talkText.SetMsg(talkdata);
         }
         isAction = true;
     }
@@ -54,8 +58,11 @@ public class TextManager : MonoBehaviour
             }
             else
             {
-            cutmanager.OnCunsecne();
-            }
+            //대화 시작
+            fadeanim.SetBool("IsText?", true);
+            fadeanim2.SetBool("IsText?", true);
+            //대충 주인공 멈추는 스크립트 
+        }
 
             scanObject = scanObj;
             Objdata objdata = scanObject.GetComponent<Objdata>();
