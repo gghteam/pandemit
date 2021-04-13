@@ -13,6 +13,10 @@ public class roomgogo : MonoBehaviour
     {
         allgamemanager = GameObject.Find("AllgameManager");
         animator = GetComponent<Animator>();
+        if(allgamemanager.GetComponent<AllgameManager>().xy[myx+10,myy+10,1]==1){
+            int a=Random.Range(0,4);
+            transform.GetChild(a).gameObject.SetActive(true);
+        }
     }
 
     void Update()
