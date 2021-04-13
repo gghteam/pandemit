@@ -18,13 +18,12 @@ public class damage : MonoBehaviour
         alpha = text.color;
         Destroy(gameObject,1);
         //Rigid.velocity = new Vector2(Rigid.velocity.x, Rigid.velocity.y+4);
-        Rigid.AddForce(new Vector2 (Random.Range(40,-40),130));
+        Rigid.AddForce(new Vector2 (Random.Range(50,-50),200));
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody2D>().AddForce(Vector3.up*5);
         alpha.a = Mathf.Lerp(alpha.a,0,Time.deltaTime*alphaspeed);
         text.color = alpha;
     }

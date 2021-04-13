@@ -13,9 +13,8 @@ public class roomgogo : MonoBehaviour
     {
         allgamemanager = GameObject.Find("AllgameManager");
         animator = GetComponent<Animator>();
-        if(allgamemanager.GetComponent<AllgameManager>().xy[myx+10,myy+10,1]==1){
-            int a=Random.Range(0,4);
-            transform.GetChild(a).gameObject.SetActive(true);
+        if(allgamemanager.GetComponent<AllgameManager>().xy[myx+10,myy+10,1]!=0){
+            transform.GetChild(allgamemanager.GetComponent<AllgameManager>().xy[myx+10,myy+10,1]-1).gameObject.SetActive(true);
         }
     }
 
@@ -51,8 +50,4 @@ public class roomgogo : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("kimhyengjoo");
     }
-
-
-
-
 }

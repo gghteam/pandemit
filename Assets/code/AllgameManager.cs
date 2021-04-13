@@ -59,15 +59,11 @@ public class AllgameManager : MonoBehaviour
         }
         if(xy[roomX+10,roomY+10,0]==0){
             xy[roomX+10,roomY+10,0]=randomroomgo;
-        }   
-        
-        
-        
-
+        }
     }
     public void roguelike(){
         Progress++;
-        xy[myX+10,myY+10,1]=1;
+        xy[myX+10,myY+10,1]=Random.Range(1,5);
         if(xy[myX+10,myY+10,0]!=1){
             maploding();maploding();maploding();maploding();
         }
