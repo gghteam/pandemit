@@ -5,16 +5,17 @@ using UnityEngine.SceneManagement;
 public class roomgogo : MonoBehaviour
 {
     private GameObject target;
-    GameObject allgamemanager;
+    gamemanager allgamemanager;
     public Animator animator;
     public int randomroom;
     public int myx=0,myy=0;
     void Start()
     {
-        allgamemanager = GameObject.Find("AllgameManager");
+        allgamemanager=FindObjectOfType<gamemanager>();
+
         animator = GetComponent<Animator>();
-        if(allgamemanager.GetComponent<AllgameManager>().xy[myx+10,myy+10,1]!=0){
-            transform.GetChild(allgamemanager.GetComponent<AllgameManager>().xy[myx+10,myy+10,1]-1).gameObject.SetActive(true);
+        if(allgamemanager.GetComponent<gamemanager>().xy[myx+10,myy+10,1]!=0){
+            transform.GetChild(allgamemanager.GetComponent<gamemanager>().xy[myx+10,myy+10,1]-1).gameObject.SetActive(true);
         }
     }
 
@@ -26,8 +27,8 @@ public class roomgogo : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0f);
         
         gameObject.GetComponent<SpriteRenderer>().color=new Color(0.5f,0.5f,0.5f);
-        if ((Mathf.Abs(myx - allgamemanager.GetComponent<AllgameManager>().myX)==1&&Mathf.Abs(myy - allgamemanager.GetComponent<AllgameManager>().myY)==0)||
-        (Mathf.Abs(myy - allgamemanager.GetComponent<AllgameManager>().myY)==1&&Mathf.Abs(myx - allgamemanager.GetComponent<AllgameManager>().myX)==0)){
+        if ((Mathf.Abs(myx - allgamemanager.GetComponent<gamemanager>().myX)==1&&Mathf.Abs(myy - allgamemanager.GetComponent<gamemanager>().myY)==0)||
+        (Mathf.Abs(myy - allgamemanager.GetComponent<gamemanager>().myY)==1&&Mathf.Abs(myx - allgamemanager.GetComponent<gamemanager>().myX)==0)){
 
             if(hit.collider != null){
                 target = hit.collider.gameObject;
@@ -36,8 +37,8 @@ public class roomgogo : MonoBehaviour
                     gameObject.GetComponent<SpriteRenderer>().color=new Color(0.5f,0.5f,0.5f);
                     if(Input.GetMouseButtonDown(0)){
                         gameObject.GetComponent<SpriteRenderer>().color=new Color(1,1,1);
-                        allgamemanager.GetComponent<AllgameManager>().myX=myx;
-                        allgamemanager.GetComponent<AllgameManager>().myY=myy;
+                        allgamemanager.GetComponent<gamemanager>().myX=myx;
+                        allgamemanager.GetComponent<gamemanager>().myY=myy;
                         StartCoroutine(gogogo());
                     }
                 }

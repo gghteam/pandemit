@@ -15,7 +15,7 @@ public class 대사 : MonoBehaviour
     { 
         Destroy(gameObject,4.5f);
         m_Message = @"여기서부턴 데려다줄수 없을것 
-같구나.. 조심하는게 좋을꺼야..."; 
+        같구나.. 조심하는게 좋을꺼야..."; 
 
         StartCoroutine(Typing(m_TypingText, m_Message, m_Speed)); 
     } 
