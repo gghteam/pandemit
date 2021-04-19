@@ -3,34 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextManager : MonoBehaviour
+public class TalkManager : MonoBehaviour
 {
-
     // 대화
-    public TalkManager talkmanager;
+    [SerializeField]
+    private TextManager talkmanager = TextManager.Instance;
+
     public GameObject scanObject;
     public GameObject textpanel;
-    //public CutManager cutmanager;
-    public Animator fadeanim;
-    public Animator fadeanim2;
-    public TextEffect talkText;
+
+    [SerializeField]
+    private Animator fadeanim;
+    [SerializeField]
+    private Animator fadeanim2;
+    [SerializeField]
+    private TextEffect talkText;
     public bool isAction;
     public int talkIndex;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //텍스트 출력
     public void Talk(int id, bool isNpc)
     {
         string talkdata = talkmanager.GetTalk(id, talkIndex);
+
         if(talkdata == null) //대화가 끝날 때
         {
             

@@ -3,16 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TalkManager : MonoBehaviour
+public class TextManager : MonoBehaviour
 {
+    private static TextManager instance = null;
     Dictionary<int, string[]> talkdata;
     public Sheet1 sheet1;
 
     // Start is called before the first frame update
     void Awake()
     {
+        if (null == instance)
+        {
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         talkdata = new Dictionary<int, string[]>();
         GenerateData();
+    }
+    public static TextManager Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
     }
 
     // Update is called once per frame
