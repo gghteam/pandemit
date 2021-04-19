@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6569c1976259b99499f6a3de0b5aaa41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1001
+  id: 1002
   isNpc: 0
 --- !u!1001 &81832903
 PrefabInstance:
@@ -6660,6 +6660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8522a89e00d81544f86775845f7d6b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sheet1: {fileID: 11400000, guid: ccf9b70e7ab31804591a677e4925dc4e, type: 2}
 --- !u!4 &1528086970
 Transform:
   m_ObjectHideFlags: 0
@@ -11117,6 +11118,7 @@ MonoBehaviour:
   m_wallSensorL2: {fileID: 1291957911}
   m_grounded: 0
   m_moving: 0
+  m_dodging: 0
   m_wallSlide: 0
   m_facingDirection: 1
   m_disableMovementTimer: -0.5
@@ -12220,6 +12222,10 @@ PrefabInstance:
     - target: {fileID: 3466133056712519346, guid: b09c4ff7a0bef024599c3ecc32e06d05, type: 3}
       propertyPath: m_Name
       value: Sigh
+      objectReference: {fileID: 0}
+    - target: {fileID: 3466133056712519350, guid: b09c4ff7a0bef024599c3ecc32e06d05, type: 3}
+      propertyPath: id
+      value: 1001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b09c4ff7a0bef024599c3ecc32e06d05, type: 3}
