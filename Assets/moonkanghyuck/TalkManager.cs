@@ -1,23 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class TalkManager : MonoBehaviour
+public class TextManager : MonoBehaviour
 {
+    private static TextManager instance = null;
     Dictionary<int, string[]> talkdata;
+    public Sheet1 sheet1;
 
     // Start is called before the first frame update
     void Awake()
     {
+        if (null == instance)
+        {
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         talkdata = new Dictionary<int, string[]>();
         GenerateData();
+    }
+    public static TextManager Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
     }
 
     // Update is called once per frame
     void GenerateData()
     {
-        talkdata.Add(1000, new string[] {"들개 조심!", "들개라.."});
-        talkdata.Add(1001, new string[] { "테스트용 표지판 입니다" });
+        for(int i =1;sheet1.dataArray[i].Stringnumber != '0'; i++)
+        {
+            //Debug.Log("넘버:" + sheet1.dataArray[i].Stringnumber + " 텍스트 " + sheet1.dataArray[i].Talk1[0]);
+            //for(int j = 0; sheet1.dataArray[i].Talk1[j] != null; j++)
+            //{
+                talkdata.Add(sheet1.dataArray[i].Stringnumber, sheet1.dataArray[i].Talk1);
+            //}
+        }
     }
 
     public string GetTalk(int id, int talkIndex)

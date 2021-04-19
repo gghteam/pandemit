@@ -12,8 +12,35 @@ public class AllgameManager : MonoBehaviour
     private int Progress=0;
     public GameObject roompp;
     public int[,,] xy=new int[40,40,3];
-    
-    
+
+    private static AllgameManager instance = null;//싱글톤
+
+    //싱글톤 스크립트
+    void Awake()
+    {
+        if (null == instance)
+        {
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    //게임 매니저 인스턴스에 접근할 수 있는 프로퍼티. static이므로 다른 클래스에서 맘껏 호출할 수 있다.
+    public static AllgameManager Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
     void Start()
     {
         xy[10,10,0]=10;

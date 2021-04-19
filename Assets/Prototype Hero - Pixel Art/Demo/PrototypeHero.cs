@@ -56,7 +56,7 @@ public class PrototypeHero : MonoBehaviour
     public Color attackCOLOR;
 
     //대화
-    public TextManager textmanager;
+    public TalkManager talkmanager;
 
 
 
@@ -149,7 +149,7 @@ public class PrototypeHero : MonoBehaviour
             }
             if (rayHit.collider.tag == "sign")
             {
-                textmanager.Action(rayHit.collider.gameObject);
+                talkmanager.Action(rayHit.collider.gameObject);
             }
         }
 

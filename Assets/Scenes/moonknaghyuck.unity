@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6569c1976259b99499f6a3de0b5aaa41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1001
+  id: 1002
   isNpc: 0
 --- !u!1001 &81832903
 PrefabInstance:
@@ -1737,14 +1737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b7c1771d34dc242ae32682f4f47115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  talkmanager: {fileID: 1528086969}
-  scanObject: {fileID: 0}
-  textpanel: {fileID: 1669316461}
-  fadeanim: {fileID: 1297664983}
-  fadeanim2: {fileID: 579722862}
-  talkText: {fileID: 1955579552}
-  isAction: 0
-  talkIndex: 0
+  sheet1: {fileID: 11400000, guid: ccf9b70e7ab31804591a677e4925dc4e, type: 2}
 --- !u!4 &327315330
 Transform:
   m_ObjectHideFlags: 0
@@ -6660,6 +6653,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8522a89e00d81544f86775845f7d6b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  talkmanager: {fileID: 327315329}
+  scanObject: {fileID: 0}
+  textpanel: {fileID: 1669316461}
+  fadeanim: {fileID: 1297664983}
+  fadeanim2: {fileID: 579722862}
+  talkText: {fileID: 1955579552}
+  isAction: 0
+  talkIndex: 0
 --- !u!4 &1528086970
 Transform:
   m_ObjectHideFlags: 0
@@ -6805,7 +6806,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 00de6e288be9d6c4bb389a56e98bba33, type: 3}
     m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
@@ -10820,7 +10821,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 756}
+  m_AnchoredPosition: {x: 0, y: 623}
   m_SizeDelta: {x: 800, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1669316463
@@ -10843,8 +10844,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b18aa11e88b7afb4abc5ff38166b6a38, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -11117,6 +11118,7 @@ MonoBehaviour:
   m_wallSensorL2: {fileID: 1291957911}
   m_grounded: 0
   m_moving: 0
+  m_dodging: 0
   m_wallSlide: 0
   m_facingDirection: 1
   m_disableMovementTimer: -0.5
@@ -11131,7 +11133,7 @@ MonoBehaviour:
   playercamera: {fileID: 1372041065}
   damage: 0
   attackCOLOR: {r: 0, g: 0, b: 0, a: 0}
-  textmanager: {fileID: 327315329}
+  talkmanager: {fileID: 1528086969}
 --- !u!4 &1756530128
 Transform:
   m_ObjectHideFlags: 0
@@ -12220,6 +12222,10 @@ PrefabInstance:
     - target: {fileID: 3466133056712519346, guid: b09c4ff7a0bef024599c3ecc32e06d05, type: 3}
       propertyPath: m_Name
       value: Sigh
+      objectReference: {fileID: 0}
+    - target: {fileID: 3466133056712519350, guid: b09c4ff7a0bef024599c3ecc32e06d05, type: 3}
+      propertyPath: id
+      value: 1001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b09c4ff7a0bef024599c3ecc32e06d05, type: 3}
