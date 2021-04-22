@@ -67,8 +67,6 @@ public class PrototypeHero : MonoBehaviour
         m_animator = GetComponentInChildren<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_SR = GetComponentInChildren<SpriteRenderer>();
-        m_body2d.AddForce(new Vector2(200,200));
-        attackeffectpos = GameObject.Find("attackshaft").transform;
 
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_Prototype>();
         m_wallSensorR1 = transform.Find("WallSensor_R1").GetComponent<Sensor_Prototype>();

@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class playerroguelike : MonoBehaviour
 {
-    gamemanager allgamemanager;
     public GameObject room;
     void Start()
     {
-        allgamemanager=FindObjectOfType<gamemanager>();
-        if(allgamemanager==null) return;
-        transform.position=new Vector3(allgamemanager.GetComponent<gamemanager>().myX*room.transform.localScale.x,
-        allgamemanager.GetComponent<gamemanager>().myY*room.transform.localScale.x,0);
+        transform.position=new Vector3(gamemanager.instance.myX*room.transform.localScale.x,
+        gamemanager.instance.myY*room.transform.localScale.x,0);
     }
 
     void Update()
@@ -20,8 +17,7 @@ public class playerroguelike : MonoBehaviour
         // if(Input.GetKeyDown(KeyCode.A))
         // if(Input.GetKeyDown(KeyCode.S))
         // if(Input.GetKeyDown(KeyCode.D))
-        if(allgamemanager==null) return;
-        transform.position=new Vector3(allgamemanager.GetComponent<gamemanager>().myX*room.transform.localScale.x,
-        allgamemanager.GetComponent<gamemanager>().myY*room.transform.localScale.x,0);
+        transform.position=new Vector3(gamemanager.instance.myX*room.transform.localScale.x,
+        gamemanager.instance.myY*room.transform.localScale.x,0);
     }
 }

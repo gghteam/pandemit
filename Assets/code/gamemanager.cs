@@ -12,6 +12,7 @@ class room{
 
 public class gamemanager : MonoBehaviour
 {
+    public static gamemanager instance; 
     [SerializeField]
     public int myX=0,myY= 0;
     private Animator roomani;
@@ -23,6 +24,7 @@ public class gamemanager : MonoBehaviour
     
     void Start()
     {
+        instance=this;
         xy[10,10,0]=10;
         DontDestroyOnLoad(this);
     }

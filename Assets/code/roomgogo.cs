@@ -5,17 +5,15 @@ using UnityEngine.SceneManagement;
 public class roomgogo : MonoBehaviour
 {
     private GameObject target;
-    gamemanager allgamemanager;
     public Animator animator;
     public int randomroom;
     public int myx=0,myy=0;
     void Start()
     {
-        allgamemanager=FindObjectOfType<gamemanager>();
 
         animator = GetComponent<Animator>();
-        if(allgamemanager.GetComponent<gamemanager>().xy[myx+10,myy+10,1]!=0){
-            transform.GetChild(allgamemanager.GetComponent<gamemanager>().xy[myx+10,myy+10,1]-1).gameObject.SetActive(true);
+        if(gamemanager.instance.xy[myx+10,myy+10,1]!=0){
+            transform.GetChild(gamemanager.instance.xy[myx+10,myy+10,1]-1).gameObject.SetActive(true);
         }
     }
 
@@ -27,8 +25,8 @@ public class roomgogo : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0f);
         
         gameObject.GetComponent<SpriteRenderer>().color=new Color(0.5f,0.5f,0.5f);
-        if ((Mathf.Abs(myx - allgamemanager.GetComponent<gamemanager>().myX)==1&&Mathf.Abs(myy - allgamemanager.GetComponent<gamemanager>().myY)==0)||
-        (Mathf.Abs(myy - allgamemanager.GetComponent<gamemanager>().myY)==1&&Mathf.Abs(myx - allgamemanager.GetComponent<gamemanager>().myX)==0)){
+        if ((Mathf.Abs(myx - gamemanager.instance.myX)==1&&Mathf.Abs(myy - gamemanager.instance.myY)==0)||
+        (Mathf.Abs(myy - gamemanager.instance.myY)==1&&Mathf.Abs(myx - gamemanager.instance.myX)==0)){
 
             if(hit.collider != null){
                 target = hit.collider.gameObject;
@@ -37,8 +35,8 @@ public class roomgogo : MonoBehaviour
                     gameObject.GetComponent<SpriteRenderer>().color=new Color(0.5f,0.5f,0.5f);
                     if(Input.GetMouseButtonDown(0)){
                         gameObject.GetComponent<SpriteRenderer>().color=new Color(1,1,1);
-                        allgamemanager.GetComponent<gamemanager>().myX=myx;
-                        allgamemanager.GetComponent<gamemanager>().myY=myy;
+                        gamemanager.instance.myX=myx;
+                        gamemanager.instance.myY=myy;
                         StartCoroutine(gogogo());
                     }
                 }
