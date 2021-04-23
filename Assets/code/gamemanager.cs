@@ -12,7 +12,7 @@ class room{
 
 public class gamemanager : MonoBehaviour
 {
-    public static gamemanager instance; 
+    public static gamemanager instance;
     [SerializeField]
     public int myX=0,myY= 0;
     private Animator roomani;
