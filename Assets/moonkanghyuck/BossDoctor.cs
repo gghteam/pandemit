@@ -28,12 +28,19 @@ public class BossDoctor : MonoBehaviour
         switch (rangestat)
         {
             case 0: // 대기
+                onMove = true;
                 break;
             case 1: // 찌르기
+                onMove = true;
+                Attack();
                 break;
             case 2: // 던지기
+                onMove = true;
+                Throw();
                 break;
             case 3: // 달리기
+                onMove = true;
+                Run();
                 break;
         }
     }
@@ -61,12 +68,21 @@ public class BossDoctor : MonoBehaviour
 
     private void Attack()
     {
-        //찌르기 또는 던지기 거리 변수에 따라 작동
-    }    
+        //찌르기
+    }
+    private void Throw()
+    {
+        //던지기
+    }
 
     private void Run()
     {
         //달리기
+    }
+
+    public void OffMove() // 애니메이션 끝에 넣을 함수. 거리재기와 다른 동작들을 실행할 수 있게 함
+    {
+        onMove = false;
     }
 
     private void PaseTwo()
