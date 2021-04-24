@@ -4,24 +4,59 @@ using UnityEngine;
 
 public class BossDoctor : MonoBehaviour
 {
-    //스프라이트들
-    //플레이어
-    //거리 변수
+    Animator anim; // 애니메이터
+    [SerializeField]
+    private GameObject player; // 플레이어
+
+    [SerializeField]
+    private int rangestat; // 거리 상태 변수
+    [SerializeField]
+    private float rangth; // 거리
+    [SerializeField]
+    private bool onMove;
 
     private void Start()
     {
-        //변수들 지정
+        anim = GetComponent<Animator>();
+        player = FindObjectOfType<PrototypeHero>().gameObject;
     }
 
     private void FixedUpdate()
     {
-        // 타이머 만들고 시간 줄어들게 일정시간
+        if (onMove) return;
+        Range();
+        switch (rangestat)
+        {
+            case 0: // 대기
+                break;
+            case 1: // 찌르기
+                break;
+            case 2: // 던지기
+                break;
+            case 3: // 달리기
+                break;
+        }
     }
 
-    private void Range()
+    private void Range() 
     {
-        // 거리 체크
-        // 일정 거리에 따라 거리 변수 변경
+        rangth = Mathf.Abs(transform.position.x - player.transform.position.x);
+        if(rangth < 1)
+        {
+            rangestat = 1; // 찌르기
+        }
+        else if (rangth < 1.5)
+        {
+            rangestat = 2; // 던지기
+        }
+        else if (rangth < 2)
+        {
+            rangestat = 3; // 달리기
+        }
+        else
+        {
+            rangestat = 0; // 대기
+        }
     }    
 
     private void Attack()
