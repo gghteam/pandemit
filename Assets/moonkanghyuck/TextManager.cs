@@ -17,10 +17,24 @@ public class TalkManager : MonoBehaviour
     [SerializeField]
     private Animator fadeanim2;
     [SerializeField]
+    private Animator UIHpbar;
+    [SerializeField]
+    private Animator UIWashbar;
+    [SerializeField]
+    private Animator UIHpback;
+    [SerializeField]
+    private Animator UIWashback;
+
+    [SerializeField]
     private TextEffect talkText;
     public bool isAction;
     public int talkIndex;
 
+    private void Start()
+    {
+        //UIHpbar = GameObject.Find("Canvas").transform.Find("UIhpbar").GetComponent<Animator>();
+        //UIWashbar = GameObject.Find("Canvas").transform.Find("UIwashbar").GetComponent<Animator>();
+    }
     //텍스트 출력
     public void Talk(int id, bool isNpc)
     {
@@ -31,6 +45,10 @@ public class TalkManager : MonoBehaviour
             
             fadeanim.SetBool("IsText?", false);
             fadeanim2.SetBool("IsText?", false);
+            UIHpbar.SetBool("IsText?", false);
+            UIWashbar.SetBool("IsText?", false);
+            UIHpback.SetBool("IsText?", false);
+            UIWashback.SetBool("IsText?", false);
             isAction = false;
             talkIndex = 0;
             return;
@@ -56,6 +74,10 @@ public class TalkManager : MonoBehaviour
             //대화 시작
             fadeanim.SetBool("IsText?", true);
             fadeanim2.SetBool("IsText?", true);
+            UIHpbar.SetBool("IsText?", true);
+            UIWashbar.SetBool("IsText?", true);
+            UIHpback.SetBool("IsText?", true);
+            UIWashback.SetBool("IsText?", true);
             //대충 주인공 멈추는 스크립트 
         }
 

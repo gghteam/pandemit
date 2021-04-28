@@ -20,8 +20,13 @@ public class gamemanager : MonoBehaviour
     private int Progress=0;
     public GameObject roompp;
     public int[,,] xy=new int[40,40,3];
-    //int roomcnt=0;
-    
+    int roomcnt=0;
+
+    public float hp = 100;
+    public float maxhp = 100;
+    public float wash = 100;
+    public float maxwash = 100;
+
     void Start()
     {
         instance=this;
