@@ -20,7 +20,7 @@ public class gamemanager : MonoBehaviour
     private int Progress=0;
     public GameObject roompp;
     public int[,,] xy=new int[40,40,3];
-    int roomcnt=0;
+    //int roomcnt=0;
     
     void Start()
     {
