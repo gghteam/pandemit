@@ -5,21 +5,15 @@ using UnityEngine.UI;
 
 public class UIwashbar : MonoBehaviour
 {
-    [SerializeField]
-    private float wash;
-    [SerializeField]
-    private float maxwash;
 
-    Image hpimage;
+    Image washimage;
 
     private void Start()
     {
-        maxwash = gamemanager.instance.maxwash;
-        wash = gamemanager.instance.wash;
-        hpimage = GetComponent<Image>();
+        washimage = GetComponent<Image>();
     }
     void Update()
     {
-        hpimage.fillAmount = wash / maxwash;
+        washimage.fillAmount = gamemanager.instance.wash / gamemanager.instance.maxwash;
     }
 }

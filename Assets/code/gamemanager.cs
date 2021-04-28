@@ -22,10 +22,10 @@ public class gamemanager : MonoBehaviour
     public int[,,] xy=new int[40,40,3];
     int roomcnt=0;
 
-    public float hp;
-    public float maxhp;
-    public float wash;
-    public float maxwash;
+    public float hp = 100;
+    public float maxhp = 100;
+    public float wash = 100;
+    public float maxwash = 100;
 
     void Start()
     {
