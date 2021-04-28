@@ -21,7 +21,12 @@ public class gamemanager : MonoBehaviour
     public GameObject roompp;
     public int[,,] xy=new int[40,40,3];
     int roomcnt=0;
-    
+
+    public float hp;
+    public float maxhp;
+    public float wash;
+    public float maxwash;
+
     void Start()
     {
         instance=this;
