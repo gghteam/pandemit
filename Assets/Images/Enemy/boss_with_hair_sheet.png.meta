@@ -137,6 +137,21 @@ TextureImporter:
   - first:
       213: 2247824460845664719
     second: boss_with_hair_sheet_44
+  - first:
+      213: -6756147897277207012
+    second: boss_with_hair_sheet_45
+  - first:
+      213: 2159053888330898479
+    second: boss_with_hair_sheet_46
+  - first:
+      213: -1482869398669254144
+    second: boss_with_hair_sheet_47
+  - first:
+      213: 268371666814557068
+    second: boss_with_hair_sheet_48
+  - first:
+      213: 5651233492842024538
+    second: boss_with_hair_sheet_49
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -229,12 +244,12 @@ TextureImporter:
       name: boss_with_hair_sheet_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 64
         y: 384
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -250,12 +265,12 @@ TextureImporter:
       name: boss_with_hair_sheet_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 192
         y: 384
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -271,12 +286,12 @@ TextureImporter:
       name: boss_with_hair_sheet_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 320
         y: 384
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -292,12 +307,12 @@ TextureImporter:
       name: boss_with_hair_sheet_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 448
         y: 384
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -310,36 +325,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_with_hair_sheet_4
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 384
-        width: 128
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b9c666bc8e469d1f0800000000000000
-      internalID: -1019672889615029093
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: boss_with_hair_sheet_5
       rect:
         serializedVersion: 2
-        x: 640
+        x: 555
         y: 384
-        width: 128
+        width: 86
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.6, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -352,36 +346,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_with_hair_sheet_6
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 384
-        width: 128
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5186cf7fa4db2ff60800000000000000
-      internalID: 8066718012259723285
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: boss_with_hair_sheet_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 320
-        width: 128
+        x: 684
+        y: 384
+        width: 84
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.6, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -394,36 +367,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_with_hair_sheet_8
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 320
-        width: 128
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 58fbec0888dc401e0800000000000000
-      internalID: -2232433529108643963
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: boss_with_hair_sheet_9
       rect:
         serializedVersion: 2
-        x: 256
-        y: 320
-        width: 128
+        x: 812
+        y: 384
+        width: 84
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.6, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -439,12 +391,12 @@ TextureImporter:
       name: boss_with_hair_sheet_10
       rect:
         serializedVersion: 2
-        x: 384
+        x: 64
         y: 320
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -460,12 +412,12 @@ TextureImporter:
       name: boss_with_hair_sheet_11
       rect:
         serializedVersion: 2
-        x: 512
+        x: 192
         y: 320
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -481,12 +433,12 @@ TextureImporter:
       name: boss_with_hair_sheet_12
       rect:
         serializedVersion: 2
-        x: 640
+        x: 320
         y: 320
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -502,12 +454,12 @@ TextureImporter:
       name: boss_with_hair_sheet_13
       rect:
         serializedVersion: 2
-        x: 768
+        x: 448
         y: 320
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -523,12 +475,12 @@ TextureImporter:
       name: boss_with_hair_sheet_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
-        width: 128
+        x: 576
+        y: 320
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -544,12 +496,12 @@ TextureImporter:
       name: boss_with_hair_sheet_15
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
-        width: 128
+        x: 704
+        y: 320
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -565,12 +517,12 @@ TextureImporter:
       name: boss_with_hair_sheet_16
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
-        width: 128
+        x: 832
+        y: 320
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -586,12 +538,12 @@ TextureImporter:
       name: boss_with_hair_sheet_17
       rect:
         serializedVersion: 2
-        x: 384
+        x: 64
         y: 256
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -607,12 +559,12 @@ TextureImporter:
       name: boss_with_hair_sheet_18
       rect:
         serializedVersion: 2
-        x: 512
+        x: 192
         y: 256
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -628,12 +580,12 @@ TextureImporter:
       name: boss_with_hair_sheet_19
       rect:
         serializedVersion: 2
-        x: 640
+        x: 320
         y: 256
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -649,12 +601,12 @@ TextureImporter:
       name: boss_with_hair_sheet_20
       rect:
         serializedVersion: 2
-        x: 768
+        x: 448
         y: 256
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -670,12 +622,12 @@ TextureImporter:
       name: boss_with_hair_sheet_21
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
-        width: 128
+        x: 576
+        y: 256
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -691,12 +643,12 @@ TextureImporter:
       name: boss_with_hair_sheet_22
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
-        width: 128
+        x: 704
+        y: 256
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -712,12 +664,12 @@ TextureImporter:
       name: boss_with_hair_sheet_23
       rect:
         serializedVersion: 2
-        x: 256
-        y: 192
-        width: 128
+        x: 832
+        y: 256
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -733,12 +685,12 @@ TextureImporter:
       name: boss_with_hair_sheet_24
       rect:
         serializedVersion: 2
-        x: 384
+        x: 64
         y: 192
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -754,12 +706,12 @@ TextureImporter:
       name: boss_with_hair_sheet_25
       rect:
         serializedVersion: 2
-        x: 512
+        x: 192
         y: 192
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -775,12 +727,12 @@ TextureImporter:
       name: boss_with_hair_sheet_26
       rect:
         serializedVersion: 2
-        x: 640
+        x: 320
         y: 192
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -796,12 +748,12 @@ TextureImporter:
       name: boss_with_hair_sheet_27
       rect:
         serializedVersion: 2
-        x: 768
+        x: 448
         y: 192
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -817,12 +769,12 @@ TextureImporter:
       name: boss_with_hair_sheet_28
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
-        width: 128
+        x: 576
+        y: 192
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -838,12 +790,12 @@ TextureImporter:
       name: boss_with_hair_sheet_29
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
-        width: 128
+        x: 704
+        y: 192
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -859,12 +811,12 @@ TextureImporter:
       name: boss_with_hair_sheet_30
       rect:
         serializedVersion: 2
-        x: 256
-        y: 128
-        width: 128
+        x: 832
+        y: 192
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -880,12 +832,12 @@ TextureImporter:
       name: boss_with_hair_sheet_31
       rect:
         serializedVersion: 2
-        x: 384
+        x: 64
         y: 128
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -901,12 +853,12 @@ TextureImporter:
       name: boss_with_hair_sheet_32
       rect:
         serializedVersion: 2
-        x: 512
+        x: 192
         y: 128
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -919,36 +871,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_with_hair_sheet_33
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 128
-        width: 128
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b9d4936eed642a720800000000000000
-      internalID: 2855923036865514907
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: boss_with_hair_sheet_34
       rect:
         serializedVersion: 2
-        x: 768
+        x: 314
         y: 128
-        width: 128
+        width: 70
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.55, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -961,36 +892,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_with_hair_sheet_35
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 128
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 25299753b499a8b40800000000000000
-      internalID: 5443331647929422418
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: boss_with_hair_sheet_36
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
-        width: 128
+        x: 440
+        y: 128
+        width: 72
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.55, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1006,12 +916,12 @@ TextureImporter:
       name: boss_with_hair_sheet_37
       rect:
         serializedVersion: 2
-        x: 256
-        y: 64
-        width: 128
+        x: 576
+        y: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1027,12 +937,12 @@ TextureImporter:
       name: boss_with_hair_sheet_38
       rect:
         serializedVersion: 2
-        x: 384
-        y: 64
-        width: 128
+        x: 704
+        y: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1048,12 +958,12 @@ TextureImporter:
       name: boss_with_hair_sheet_39
       rect:
         serializedVersion: 2
-        x: 512
-        y: 64
-        width: 128
+        x: 832
+        y: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1069,12 +979,12 @@ TextureImporter:
       name: boss_with_hair_sheet_40
       rect:
         serializedVersion: 2
-        x: 640
+        x: 64
         y: 64
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1090,12 +1000,12 @@ TextureImporter:
       name: boss_with_hair_sheet_41
       rect:
         serializedVersion: 2
-        x: 768
+        x: 192
         y: 64
-        width: 128
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1111,12 +1021,12 @@ TextureImporter:
       name: boss_with_hair_sheet_42
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 128
+        x: 320
+        y: 64
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1132,12 +1042,12 @@ TextureImporter:
       name: boss_with_hair_sheet_43
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
+        x: 448
+        y: 64
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1153,12 +1063,12 @@ TextureImporter:
       name: boss_with_hair_sheet_44
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 128
+        x: 576
+        y: 64
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1166,6 +1076,111 @@ TextureImporter:
       bones: []
       spriteID: fc9c32a0070e13f10800000000000000
       internalID: 2247824460845664719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_with_hair_sheet_45
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1e2ac478475d32a0800000000000000
+      internalID: -6756147897277207012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_with_hair_sheet_46
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2c93e0821086fd10800000000000000
+      internalID: 2159053888330898479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_with_hair_sheet_47
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 002a504732acb6be0800000000000000
+      internalID: -1482869398669254144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_with_hair_sheet_48
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8bd24ceb9279b300800000000000000
+      internalID: 268371666814557068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_with_hair_sheet_49
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5e83a39be63d6e40800000000000000
+      internalID: 5651233492842024538
       vertices: []
       indices: 
       edges: []

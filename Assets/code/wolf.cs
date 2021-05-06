@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class wolf : MonoBehaviour
+public class wolf : Enemy
 {
     private Animator animator;
-    public GameObject PlayerObj;
     public Transform pos;
     public Vector2 boxsize;
-    public HPbar healthbar;
     public GameObject dil, playercamera;
-    [SerializeField]
-    private Enemy enemy;
     Rigidbody2D Rigid;
 
     public double attacklt;//공격거리
@@ -21,40 +17,39 @@ public class wolf : MonoBehaviour
     public double rangthrun; //달리는거리
     public double rangthf; //탐지거리
     bool coltime = true;
-    public bool gogo;
     int attacking;
     public float curtime;
     public float cooltime;
+    [SerializeField]
+    private int damage = 5;
 
-    
 
-    void Start()
+    protected override void Start()
     {
-        enemy = GetComponent<Enemy>();
-        playercamera = GameObject.Find("playercamera");
-        PlayerObj=GameObject.Find("player1");
+        playercamera = FindObjectOfType<playercamera>().gameObject;
         gogo = true;
         animator = GetComponent<Animator>();
         Rigid = gameObject.GetComponent<Rigidbody2D>();
+        base.Start();
     }
 
     void FixedUpdate()
     {
-        if (enemy.HP<=0){
+        if (HP<=0){
             animator.SetBool("die",true); // 체력이 0 이면 죽는 애니메이션 출력
         }
         else if (gogo) //gogo가 켜져있을 때
             {
-                rangth = Mathf.Abs(Mathf.Abs(PlayerObj.transform.position.x) - Mathf.Abs(Rigid.transform.position.x)); //플레이어 오브젝트의 x좌표에서 늑대의 x좌표를 빼서 절대값으로 만듬
+                rangth = Mathf.Abs(Mathf.Abs(player.transform.position.x) - Mathf.Abs(Rigid.transform.position.x)); //플레이어 오브젝트의 x좌표에서 늑대의 x좌표를 빼서 절대값으로 만듬
                 if (rangth < rangthf) //사정거리 안에 플에이어가 들어올 때
                 {
 
-                    if (PlayerObj.transform.position.x > Rigid.transform.position.x) //플레이어가 오른쪽에 있을 때
+                    if (player.transform.position.x > Rigid.transform.position.x) //플레이어가 오른쪽에 있을 때
                     {
                         transform.localScale = new Vector3(-Mathf.Abs(transform.lossyScale.x), transform.lossyScale.y, transform.lossyScale.y); //오른쪽으로 바라봄
                         attacking = 1;
                     }
-                    else if (PlayerObj.transform.position.x < Rigid.transform.position.x) //플레이어가 왼쪽에 있을 때
+                    else if (player.transform.position.x < Rigid.transform.position.x) //플레이어가 왼쪽에 있을 때
                     {
                         transform.localScale = new Vector3(Mathf.Abs(transform.lossyScale.x), transform.lossyScale.y, transform.lossyScale.y); //왼쪽으로 바라봄
                         attacking = -1;
@@ -141,7 +136,7 @@ public class wolf : MonoBehaviour
                     //데미지 출력
                     GameObject hello = Instantiate(dil);
                     hello.transform.position = (collider.transform.position + new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0));
-                    hello.GetComponent<damage>().damagechk = enemy.damage;
+                    hello.GetComponent<damage>().damagechk = damage;
 
                     //hello.transform.GetChild(0).GetComponent<ParticleSystem.startcolor
 
@@ -154,6 +149,12 @@ public class wolf : MonoBehaviour
     public void Andattack()
     {
         Rigid.velocity = new Vector2(5 * attacking, Rigid.velocity.y);//공격하면서 이동   
+    }
+
+    public override void Hit(int damege)
+    {
+        base.Hit(damege);
+        if(HP > 0) animator.SetTrigger("hit");
     }
     public void Andwate() //gogo가 켜짐
     {

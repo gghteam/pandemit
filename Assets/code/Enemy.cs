@@ -4,51 +4,38 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private Animator animator;
-    public GameObject PlayerObj;
-    public HPbar healthbar;
+    [SerializeField]
+    private float nuckback = 3f;
+
+    public GameObject player;
+    HPbar healthbar;
 
     public bool gogo;
-    int attacking;
-    public int HP;
-    public int MAXHP;
-    public int damage;
+
+    public float HP;
+    public float MAXHP;
 
     Rigidbody2D Rigid;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        PlayerObj = GameObject.Find("player1");
+        healthbar = GetComponentInChildren<HPbar>();
+        player = FindObjectOfType<PrototypeHero>().gameObject;
         HP = MAXHP;
         healthbar.sethealth(HP, MAXHP);
         gogo = true;
-        animator = GetComponent<Animator>();
         Rigid = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Hit(int damege) //데미지를 받음
     {
-        
-    }
-    public void Hit(int damege) //데미지를 받음
-    {
-
         if (HP > 0)
         {
             HP -= damege;
             healthbar.sethealth(HP, MAXHP);
-            if (PlayerObj.transform.position.x > Rigid.transform.position.x)
-            {
-                attacking = 1;
-            }
-            else if (PlayerObj.transform.position.x < Rigid.transform.position.x)
-            {
-                attacking = -1;
-            }
-            Rigid.velocity = new Vector2(-3 * attacking, Rigid.velocity.y);
+            int angle = player.transform.position.x > Rigid.transform.position.x ? 1 : -1;
+            Rigid.velocity = new Vector2(-nuckback * angle, Rigid.velocity.y);
             gogo = false;
-            animator.SetTrigger("hit");
         }
     }
 }
