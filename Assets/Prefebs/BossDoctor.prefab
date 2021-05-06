@@ -229,7 +229,7 @@ MonoBehaviour:
   rangth: 0
   onMove: 0
   pos: {fileID: 5727903412763112696}
-  boxsize: {x: 2, y: 2}
+  boxsize: {x: 3, y: 2}
   potionprefeb: {fileID: 4862790370910349491, guid: 42410ce38c718ac45b3870c2dce5d9d2, type: 3}
   pase: 1
   sevant:
@@ -510,7 +510,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5069552090150074045}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.54, y: -0.027, z: 0}
+  m_LocalPosition: {x: -1.38, y: -0.027, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3197434520317241165}

@@ -97,23 +97,7 @@ public class BossDoctor : Enemy
             switch(pase)
             {
                 case 1: // 페이즈1
-                    if (rangth < 1.5)
-                    {
-                        rangestat = 1; // 찌르기
-
-                    }
-                    else if (rangth < 4)
-                    {
-                        rangestat = 2; // 던지기
-                    }
-                    else if (rangth < 5)
-                    {
-                        rangestat = 0; //각혈주사기
-                    }
-                    else
-                    {
-                        rangestat = 0; // 대기
-                    }
+                    Pattern();
                     break;
                 case 2: // 페이즈2
                     if (!sevanton[0])
@@ -122,23 +106,7 @@ public class BossDoctor : Enemy
                         sevanton[0] = true;
                     }
 
-                    if (rangth < 1.5)
-                    {
-                        rangestat = 1; // 찌르기
-
-                    }
-                    else if (rangth < 4)
-                    {
-                        rangestat = 2; // 던지기
-                    }
-                    else if (rangth < 5)
-                    {
-                        rangestat = 0; //각혈주사기
-                    }
-                    else
-                    {
-                        rangestat = 0; // 대기
-                    }
+                    Pattern();
                     if (timer > coltime)
                     {
                         timer = 0;
@@ -151,23 +119,7 @@ public class BossDoctor : Enemy
                         StartCoroutine(Sumon(1, 3));
                         sevanton[1] = true;
                     }
-                    if (rangth < 1.5)
-                    {
-                        rangestat = 1; // 찌르기
-
-                    }
-                    else if (rangth < 4)
-                    {
-                        rangestat = 2; // 던지기
-                    }
-                    else if (rangth < 5)
-                    {
-                        rangestat = 0; //각혈주사기
-                    }
-                    else
-                    {
-                        rangestat = 0; // 대기
-                    }
+                    Pattern();
                     if (timer > coltime)
                     {
                         timer = 0;
@@ -187,6 +139,26 @@ public class BossDoctor : Enemy
             sevant[i] = Instantiate(sevantprefeb, transform.localPosition, Quaternion.identity);
             sevant[i].transform.SetParent(null);
             yield return new WaitForSeconds(0.2f);
+        }
+    }
+    private void Pattern()
+    {
+        if (rangth < 2.5)
+        {
+            rangestat = 1; // 찌르기
+
+        }
+        else if (rangth < 4)
+        {
+            rangestat = 2; // 던지기
+        }
+        else if (rangth < 5)
+        {
+            rangestat = 0; //각혈주사기
+        }
+        else
+        {
+            rangestat = 0; // 대기
         }
     }
 
