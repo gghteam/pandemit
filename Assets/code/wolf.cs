@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class wolf : Enemy
 {
-    private Animator animator;
+    private Animator anim;
     public Transform pos;
     public Vector2 boxsize;
     public GameObject dil, playercamera;
@@ -28,7 +28,7 @@ public class wolf : Enemy
     {
         playercamera = FindObjectOfType<playercamera>().gameObject;
         gogo = true;
-        animator = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         Rigid = gameObject.GetComponent<Rigidbody2D>();
         base.Start();
     }
@@ -36,7 +36,7 @@ public class wolf : Enemy
     void FixedUpdate()
     {
         if (HP<=0){
-            animator.SetBool("die",true); // 체력이 0 이면 죽는 애니메이션 출력
+            anim.SetBool("die",true); // 체력이 0 이면 죽는 애니메이션 출력
         }
         else if (gogo) //gogo가 켜져있을 때
             {
@@ -63,20 +63,20 @@ public class wolf : Enemy
                     }
                     else if(rangth < rangthrun) //달리는 거리안에 들어오면 달려서 가까우면 달림
                     {
-                        animator.SetBool("run", true); //달리는 애니메이션 나옴
+                        anim.SetBool("run", true); //달리는 애니메이션 나옴
                         Rigid.velocity = new Vector2(speed * attacking, Rigid.velocity.y); //attacking은 방향
                     }
                     else //달리는 거리안에 없지만 사정거리 안에 있으면 천천히 걸어서 접근함
                     {
-                        animator.SetBool("walk", true); //걷는 애니메이션 나옴
-                        animator.SetBool("run", false);
+                        anim.SetBool("walk", true); //걷는 애니메이션 나옴
+                        anim.SetBool("run", false);
                     Rigid.velocity = new Vector2(speed / 2 * attacking, Rigid.velocity.y); //attacking은 방향
                 }
                 }
                 else //사정거리 안에 없을 때 이동을 멈추고 냄새를 맡는 애니메이션이 나옴
                 {
-                    animator.SetBool("run", false); //달리기 애니매이션이 꺼짐
-                    animator.SetBool("walk", false); //걷기 애니매이션이 꺼짐
+                    anim.SetBool("run", false); //달리기 애니매이션이 꺼짐
+                    anim.SetBool("walk", false); //걷기 애니매이션이 꺼짐
                     
                     //animator.SetBool("walk", true);
                     //Rigid.velocity = new Vector2(speed*attacking*0.6f, Rigid.velocity.y);
@@ -84,7 +84,7 @@ public class wolf : Enemy
             }
         else
         {
-            animator.SetBool("die", false);
+            anim.SetBool("die", false);
         }
     }
     void Attack()
@@ -96,9 +96,9 @@ public class wolf : Enemy
                 //collider.GetComponent<PrototypeHero>().
             }
         }*/
-        animator.SetBool("run", false); // 달리기 꺼짐
-        animator.SetBool("walk", false); // 달리기 꺼짐
-        animator.SetTrigger("attack"); //공격 애니메이션 켜짐
+        anim.SetBool("run", false); // 달리기 꺼짐
+        anim.SetBool("walk", false); // 달리기 꺼짐
+        anim.SetTrigger("attack"); //공격 애니메이션 켜짐
         gogo = false; //이동,거리측정 모두 멈춤
         coltime = false;//쿨타임
         Invoke("Colcol", Random.Range(2.1f,3.1f)); //쿨타임 충전
@@ -154,7 +154,12 @@ public class wolf : Enemy
     public override void Hit(int damege)
     {
         base.Hit(damege);
-        if(HP > 0) animator.SetTrigger("hit");
+        if (HP <= 0)
+        {
+            if (!anim.GetBool("die?")) anim.SetTrigger("hit?");
+            anim.SetBool("die?", true);
+        }
+        if (HP > 0) anim.SetTrigger("hit?");
     }
     public void Andwate() //gogo가 켜짐
     {

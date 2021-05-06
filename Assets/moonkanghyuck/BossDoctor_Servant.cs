@@ -138,6 +138,11 @@ public class BossDoctor_Servant : Enemy
     public override void Hit(int damege)
     {
         base.Hit(damege);
+        if (HP <= 0)
+        {
+            if (!anim.GetBool("die?")) anim.SetTrigger("hit?");
+            anim.SetBool("die?", true);
+        }
         if (HP > 0) anim.SetTrigger("hit?");
     }
     public void OffMove()

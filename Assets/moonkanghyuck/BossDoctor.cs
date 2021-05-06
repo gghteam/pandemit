@@ -46,7 +46,6 @@ public class BossDoctor : Enemy
 
     Enemy enemy;
     Rigidbody2D rigid;
-    private bool die = false;
 
     protected override void Start()
     {
@@ -254,8 +253,7 @@ public class BossDoctor : Enemy
         base.Hit(damege);
         if (HP <= 0)
         {
-            if(!die) anim.SetTrigger("hit?");
-            die = true;
+            if(!anim.GetBool("die?")) anim.SetTrigger("hit?");
             anim.SetBool("die?", true);
         }
         if (HP > 0) anim.SetTrigger("hit?");
