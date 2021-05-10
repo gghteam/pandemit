@@ -156,10 +156,10 @@ public class wolf : Enemy
         base.Hit(damege);
         if (HP <= 0)
         {
-            if (!anim.GetBool("die?")) anim.SetTrigger("hit?");
-            anim.SetBool("die?", true);
+            if (!anim.GetBool("die")) anim.SetTrigger("hit");
+            anim.SetBool("die", true);
         }
-        if (HP > 0) anim.SetTrigger("hit?");
+        if (HP > 0) anim.SetTrigger("hit");
     }
     public void Andwate() //gogo가 켜짐
     {
