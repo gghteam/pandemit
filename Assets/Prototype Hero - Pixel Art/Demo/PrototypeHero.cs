@@ -481,7 +481,7 @@ public class PrototypeHero : MonoBehaviour
         particle = hello.transform.GetChild(0).GetComponent<ParticleSystem>();
         ParticleSystem.MainModule parmain = particle.main;
         parmain.startColor=color;
-        hello.transform.position=(attackeffectpos.transform.position+new Vector3(Random.Range(-0.2f,0.2f),Random.Range(-0.2f,0.2f),0));
+        hello.transform.position=(attackeffectpos.transform.position+new Vector3(Random.Range(-0.2f,0.2f),Random.Range(-0.2f,0.2f),-1));
         hello.GetComponent<damage>().damagechk = damage;
         playercamera.GetComponent<playercamera>().startshake(0.2f,0.1f);
     }
