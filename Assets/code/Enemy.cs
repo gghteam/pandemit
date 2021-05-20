@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float nuckback = 3f;
 
-    public GameObject player;
+    protected GameObject player;
     HPbar healthbar;
 
     public bool gogo;
