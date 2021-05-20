@@ -14,13 +14,12 @@ public class gamemanager : MonoBehaviour
 {
     public static gamemanager instance;
     [SerializeField]
-    public int myX=0,myY= 0;
+    public int myX=0,myY= 0,randoMap;
     private Animator roomani;
     [SerializeField]
     private int Progress=0;
     public GameObject roompp;
     public int[,,] xy=new int[40,40,3];
-    int roomcnt=0;
 
     public float hp = 100;
     public float maxhp = 100;
@@ -32,6 +31,7 @@ public class gamemanager : MonoBehaviour
         instance=this;
         xy[10,10,0]=10;
         DontDestroyOnLoad(this);
+        randoMap = Random.Range(0,3);
     }
     void maploding(){
         
