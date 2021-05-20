@@ -9,10 +9,11 @@ public class mapcode : MonoBehaviour
     public bool endending;
     [SerializeField]
     private float MapendingPoint=13;
-    public GameObject playercamera,player,faidin;
+    public GameObject playercamera,player,faidin,NormalMaps;
     void Start()
     {
-        playercamera.GetComponent<playercamera>().maxPos.x = MapendingPoint;    
+        playercamera.GetComponent<playercamera>().maxPos.x = MapendingPoint;
+        NormalMaps.transform.GetChild(gamemanager.instance.randoMap).gameObject.SetActive(true);
     }
 
     void Update()
