@@ -6,17 +6,20 @@ public class BossDoctor_syringe : MonoBehaviour
 {
     private GameObject player;
     [SerializeField]
-    private float speed = 3f;
+    private float speed = 5f;
     private float timer = 3f;
     WaitForFixedUpdate wait = new WaitForFixedUpdate();
     private Vector2 dir;
     private float angle;
     private Quaternion angleAxis;
     private Material material;
+    private Collider2D col;
     private void Start()
     {
+        col = GetComponent<Collider2D>();
         material = GetComponent<SpriteRenderer>().material;
         player = FindObjectOfType<PrototypeHero>().gameObject;
+        col.enabled = false;
         StartCoroutine(Attack());
     }
 
@@ -35,7 +38,8 @@ public class BossDoctor_syringe : MonoBehaviour
         Vector2 target = player.transform.position;
         SetAngle();
         yield return new WaitForSeconds(0.5f);
-        while(true)
+        col.enabled = true;
+        while (true)
         {
             //transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
             transform.Translate(Vector2.right * speed * Time.deltaTime);
@@ -73,6 +77,7 @@ public class BossDoctor_syringe : MonoBehaviour
         }
         if (collision.gameObject.layer == 7)
         {
+            Debug.Log("asd");
             Destroy(gameObject);
         }
     }

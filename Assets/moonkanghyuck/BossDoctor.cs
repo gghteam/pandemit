@@ -25,6 +25,11 @@ public class BossDoctor : Enemy
     //약물던지기
     [SerializeField]
     private GameObject potionprefeb;
+    //각혈주사기
+    [SerializeField]
+    private GameObject syringerprefeb;
+    [SerializeField]
+    private float syringertimer = 0.5f;
     //페이즈 변수
     [SerializeField]
     private int pase = 1;
@@ -72,6 +77,7 @@ public class BossDoctor : Enemy
             if (pase > 1) timer += Time.deltaTime;
             if (onMove) return;
             Range();
+            syringertimer -= Time.deltaTime;
             if (rangestat != 0) onMove = true;
         }
         else if(HP <= 0)
@@ -130,16 +136,6 @@ public class BossDoctor : Enemy
             
             anim.SetInteger("Range?", rangestat);
         }
-    }    
-
-    IEnumerator Sumon(int num, int range)
-    {
-        for(int i = num; i < range; i++)
-        {
-            sevant[i] = Instantiate(sevantprefeb, transform.localPosition, Quaternion.identity);
-            sevant[i].transform.SetParent(null);
-            yield return new WaitForSeconds(0.2f);
-        }
     }
     private void Pattern()
     {
@@ -154,14 +150,42 @@ public class BossDoctor : Enemy
         }
         else if (rangth < 5)
         {
-            rangestat = 0; //각혈주사기
+            
+            if(syringertimer <= 0)
+            {
+                //rangestat = 5; //각혈주사기
+                StartCoroutine(Syringer(3, 0.2f));
+                syringertimer = 0.5f; 
+            }
+            else
+            {
+                rangestat = 3; // 달리기
+            }
+            
         }
         else
         {
             rangestat = 0; // 대기
         }
     }
-
+    IEnumerator Sumon(int num, int range)
+    {
+        for(int i = num; i < range; i++)
+        {
+            sevant[i] = Instantiate(sevantprefeb, transform.localPosition, Quaternion.identity);
+            sevant[i].transform.SetParent(null);
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+    IEnumerator Syringer(int num, float dely)
+    {
+        for (int i = 0; i < num; i++)
+        {
+            Instantiate(syringerprefeb, new Vector2(transform.position.x + (transform.localScale.x * i ), transform.position.y + 1 + ((i*3) / num)),Quaternion.identity);
+            yield return new WaitForSeconds(dely);
+        }
+    }
+    //애니메이션에 넣는 함수들
     private void Attack()
     {
         //찌르기
