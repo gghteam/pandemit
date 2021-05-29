@@ -624,8 +624,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myX: 0
   myY: 0
+  randoMap: 0
   Progress: 0
   roompp: {fileID: 6353406991721002080, guid: b510c3d92bea77a4582b09a407a32a59, type: 3}
+  roomCnt: 7
+  hp: 100
+  maxhp: 100
+  wash: 100
+  maxwash: 100
 --- !u!4 &1750256415
 Transform:
   m_ObjectHideFlags: 0

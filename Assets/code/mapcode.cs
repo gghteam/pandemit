@@ -9,17 +9,18 @@ public class mapcode : MonoBehaviour
     public bool endending;
     [SerializeField]
     private float MapendingPoint=13;
-    public GameObject playercamera,player,faidin,NormalMaps;
+    public GameObject playercamera,player,faidin;
     void Start()
     {
+        faidin.SetActive(true);
         playercamera.GetComponent<playercamera>().maxPos.x = MapendingPoint;
-        NormalMaps.transform.GetChild(gamemanager.instance.randoMap).gameObject.SetActive(true);
     }
 
     void Update()
     {
-        if ((!endending)&&player.transform.position.x>=MapendingPoint+playercamera.transform.localScale.x){
-            endending = true;
+        if ((!endending)&&player.transform.position.x-playercamera.transform.localScale.x>=MapendingPoint){
+            faidin.transform.GetChild(1).GetComponent<fadein>().fadeoutbool=true;
+            faidin.GetComponent<fadein>().fadeoutbool=true;
         }
     }
 }

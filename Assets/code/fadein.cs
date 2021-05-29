@@ -30,8 +30,6 @@ public class fadein : MonoBehaviour
     void Update()
 
     {
-        if(stagemanager.GetComponent<mapcode>().endending)
-            fadeoutbool=true;
 
         StartCoroutine("MainSplash");
 

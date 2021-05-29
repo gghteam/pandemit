@@ -151,7 +151,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2879582351398839647, guid: 25059301619808443a2c4bbf84945abe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -231,6 +231,7 @@ MonoBehaviour:
   boxsize: {x: 3, y: 2}
   potionprefeb: {fileID: 4862790370910349491, guid: 42410ce38c718ac45b3870c2dce5d9d2, type: 3}
   syringerprefeb: {fileID: 5914265432595910578, guid: a1e4b4e68ba71c14880b54b3d1200daf, type: 3}
+  syringertimer: 0.5
   pase: 1
   sevant:
   - {fileID: 0}
