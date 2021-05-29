@@ -386,7 +386,7 @@ MonoBehaviour:
   nuckback: 3
   gogo: 0
   HP: 0
-  MAXHP: 100
+  MAXHP: 50
   pos: {fileID: 1031106265268605444}
   boxsize: {x: 0.8, y: 0.5}
   dil: {fileID: 8239405177480021636, guid: d04b26b8d1b75b9439734e66b9fb9ca5, type: 3}

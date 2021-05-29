@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1031106265012958651, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
+      propertyPath: MAXHP
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1031106265012958654, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -354,6 +358,10 @@ PrefabInstance:
     - target: {fileID: 1031106263556163293, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031106265012958651, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
+      propertyPath: MAXHP
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1031106265012958654, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
       propertyPath: m_RootOrder
@@ -1796,6 +1804,10 @@ PrefabInstance:
     - target: {fileID: 1031106263556163293, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031106265012958651, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
+      propertyPath: MAXHP
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1031106265012958654, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
       propertyPath: m_RootOrder
@@ -13372,7 +13384,7 @@ MonoBehaviour:
   nuckback: 3
   gogo: 0
   HP: 0
-  MAXHP: 100
+  MAXHP: 50
   pos: {fileID: 371680400}
   boxsize: {x: 0.8, y: 0.5}
   dil: {fileID: 8239405177480021636, guid: d04b26b8d1b75b9439734e66b9fb9ca5, type: 3}
@@ -14651,7 +14663,7 @@ MonoBehaviour:
   nuckback: 3
   gogo: 0
   HP: 0
-  MAXHP: 100
+  MAXHP: 50
   pos: {fileID: 1365107991}
   boxsize: {x: 0.8, y: 0.5}
   dil: {fileID: 8239405177480021636, guid: d04b26b8d1b75b9439734e66b9fb9ca5, type: 3}
@@ -16402,7 +16414,7 @@ MonoBehaviour:
   nuckback: 3
   gogo: 0
   HP: 0
-  MAXHP: 100
+  MAXHP: 50
   pos: {fileID: 1585303772}
   boxsize: {x: 0.8, y: 0.5}
   dil: {fileID: 8239405177480021636, guid: d04b26b8d1b75b9439734e66b9fb9ca5, type: 3}
@@ -20434,7 +20446,7 @@ MonoBehaviour:
   nuckback: 3
   gogo: 0
   HP: 0
-  MAXHP: 100
+  MAXHP: 50
   pos: {fileID: 1243791822}
   boxsize: {x: 0.8, y: 0.5}
   dil: {fileID: 8239405177480021636, guid: d04b26b8d1b75b9439734e66b9fb9ca5, type: 3}
@@ -21434,6 +21446,10 @@ PrefabInstance:
     - target: {fileID: 1031106263556163293, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031106265012958651, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
+      propertyPath: MAXHP
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1031106265012958654, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
       propertyPath: m_RootOrder
@@ -25099,7 +25115,7 @@ MonoBehaviour:
   nuckback: 3
   gogo: 0
   HP: 0
-  MAXHP: 100
+  MAXHP: 50
   pos: {fileID: 1224339031}
   boxsize: {x: 0.8, y: 0.5}
   dil: {fileID: 8239405177480021636, guid: d04b26b8d1b75b9439734e66b9fb9ca5, type: 3}
@@ -26580,6 +26596,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1031106265012958651, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
+      propertyPath: MAXHP
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1031106265012958654, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -27071,6 +27091,10 @@ PrefabInstance:
     - target: {fileID: 1031106263556163293, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031106265012958651, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
+      propertyPath: MAXHP
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1031106265012958654, guid: 5dedb2b7aa9d357479d56ffe3fff3604, type: 3}
       propertyPath: m_RootOrder
@@ -32453,7 +32477,7 @@ MonoBehaviour:
   nuckback: 3
   gogo: 0
   HP: 0
-  MAXHP: 100
+  MAXHP: 50
   pos: {fileID: 566419413}
   boxsize: {x: 0.8, y: 0.5}
   dil: {fileID: 8239405177480021636, guid: d04b26b8d1b75b9439734e66b9fb9ca5, type: 3}
