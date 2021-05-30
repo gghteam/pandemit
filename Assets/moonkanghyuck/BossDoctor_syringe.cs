@@ -6,17 +6,17 @@ public class BossDoctor_syringe : MonoBehaviour
 {
     private GameObject player;
     [SerializeField]
-    private float speed = 5f;
+    protected float speed = 5f;
     private Vector2 dir;
     private float angle;
     private Quaternion angleAxis;
-    private Material material;
-    private Collider2D col;
-    private float materialscale = 0f;
+    protected Material material;
+    protected Collider2D col;
+    protected float materialscale = 0f;
 
     //타이머들
-    private float angletimer = 3f;
-    private float targettimer = 0f;
+    protected float angletimer = 3f;
+    protected float targettimer = 0f;
 
     //풀매니저
     private PoolManager poolManager;
@@ -26,7 +26,7 @@ public class BossDoctor_syringe : MonoBehaviour
         material = GetComponent<SpriteRenderer>().material;
         player = FindObjectOfType<PrototypeHero>().gameObject;
     }
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         if(col == null)
             col = GetComponent<Collider2D>();
@@ -36,9 +36,13 @@ public class BossDoctor_syringe : MonoBehaviour
         materialscale = 0f;
         speed = 5f;
     }
-    private void Update()
+    public virtual void Update()
     {
-        if(angletimer > 0)
+        MaterialSet();
+    }
+    protected virtual void MaterialSet()
+    {
+        if (angletimer > 0)
         {
             angletimer -= Time.deltaTime;
             SetAngle();
@@ -46,7 +50,7 @@ public class BossDoctor_syringe : MonoBehaviour
             materialscale = Mathf.Lerp(materialscale, 1000, 0.05f * Time.deltaTime);
             material.SetFloat("_Causticspower", materialscale);
         }
-        else if(targettimer < 0.5f)
+        else if (targettimer < 0.5f)
         {
             targettimer += Time.deltaTime;
             col.enabled = true;
@@ -58,7 +62,7 @@ public class BossDoctor_syringe : MonoBehaviour
         }
     }
 
-    private void SetAngle()
+    protected void SetAngle()
     {
         dir = player.transform.position - transform.position;
         angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
