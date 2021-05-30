@@ -43,7 +43,8 @@ public class gamemanager : MonoBehaviour
 
     void Start()
     {
-        ESC = FindObjectOfType<ButtenEscManager>().transform.GetChild(0).gameObject;
+        if(FindObjectOfType<ButtenEscManager>()!=null)
+            ESC = FindObjectOfType<ButtenEscManager>().transform.GetChild(0).gameObject;
         randoMap = Random.Range(0,roomCnt);
         xy[10,10,0]=10;
         DontDestroyOnLoad(this);
