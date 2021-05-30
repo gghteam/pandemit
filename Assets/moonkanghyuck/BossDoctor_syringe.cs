@@ -7,46 +7,47 @@ public class BossDoctor_syringe : MonoBehaviour
     private GameObject player;
     [SerializeField]
     private float speed = 5f;
-    private float timer = 3f;
     WaitForFixedUpdate wait = new WaitForFixedUpdate();
     private Vector2 dir;
     private float angle;
     private Quaternion angleAxis;
     private Material material;
     private Collider2D col;
+
+    //타이머들
+    private float angletimer = 3f;
+    private float targettimer = 0f;
     private void Start()
     {
         col = GetComponent<Collider2D>();
         material = GetComponent<SpriteRenderer>().material;
         player = FindObjectOfType<PrototypeHero>().gameObject;
-        col.enabled = false;
-        StartCoroutine(Attack());
     }
-
-
-    private IEnumerator Attack()
+    private void OnEnable()
     {
-        float materialscale = 0;
-        while (timer > 0)
+        col.enabled = false;
+    }
+    private void Update()
+    {
+        if(angletimer > 0)
         {
-            timer -= Time.deltaTime;
+            angletimer -= Time.deltaTime;
             SetAngle();
+            //생성될 때 비주얼 
+            float materialscale = 0;
             materialscale = Mathf.Lerp(materialscale, 1000, 0.05f * Time.deltaTime);
             material.SetFloat("_Causticspower", materialscale);
-            yield return wait;
         }
-        Vector2 target = player.transform.position;
-        SetAngle();
-        yield return new WaitForSeconds(0.5f);
-        col.enabled = true;
-        while (true)
+        else if(targettimer < 0.5f)
         {
-            //transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            targettimer += Time.deltaTime;
+            col.enabled = true;
+        }
+        else
+        {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
             speed += 0.5f;
-            yield return wait;
         }
-        Destroy(gameObject);
     }
 
     private void SetAngle()
@@ -55,13 +56,6 @@ public class BossDoctor_syringe : MonoBehaviour
         angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         angleAxis = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, angleAxis, speed * Time.deltaTime);
-    }
-    private Vector2 Vec2Abs(Vector2 target)
-    {
-        Vector2 absvector;
-        absvector.x = Mathf.Abs(target.x);
-        absvector.y = Mathf.Abs(target.y);
-        return absvector;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
