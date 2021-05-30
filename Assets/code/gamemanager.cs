@@ -31,20 +31,27 @@ public class gamemanager : MonoBehaviour
     private Animator roomani;
     [SerializeField]
     private int Progress=0;
-    public GameObject roompp;
+    public GameObject roompp,ESC;
     public int roomCnt=7;
     public int[,,] xy=new int[40,40,3];
 
     public float hp = 100;
     public float maxhp = 100;
     public float wash = 100;
-    public float maxwash = 100;
+    public float maxwash = 100,timeSpeed=0f;
+    private bool ESCON;
 
     void Start()
     {
+        ESC = FindObjectOfType<ButtenEscManager>().transform.GetChild(0).gameObject;
         randoMap = Random.Range(0,roomCnt);
         xy[10,10,0]=10;
         DontDestroyOnLoad(this);
+    }
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            Continue();
+        }
     }
     void maploding(){
         
@@ -86,6 +93,20 @@ public class gamemanager : MonoBehaviour
         }
         if(xy[roomX+10,roomY+10,0]==0){
             xy[roomX+10,roomY+10,0]=randomroomgo;
+        }
+    }
+    public void Continue(){
+        
+        if(!ESCON){
+            timeSpeed = Time.timeScale;
+            ESC.SetActive(true);
+            ESCON=true;
+            Time.timeScale = 0f;
+        }
+        else {
+            ESC.SetActive(false);
+            ESCON=false;
+            Time.timeScale = timeSpeed;
         }
     }
     public void roguelike(){
