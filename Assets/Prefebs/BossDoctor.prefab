@@ -131,7 +131,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -233,9 +233,6 @@ MonoBehaviour:
   syringerprefeb: {fileID: 5914265432595910578, guid: a1e4b4e68ba71c14880b54b3d1200daf, type: 3}
   syringertimer: 0.5
   pase: 1
-  sevant:
-  - {fileID: 0}
-  - {fileID: 0}
   sevanton: 0000
   sevantprefeb: {fileID: 7182603055342063106, guid: e7571eb1da2d37a46a4b3563b48f65a2, type: 3}
   dil: {fileID: 8239405177480021636, guid: d04b26b8d1b75b9439734e66b9fb9ca5, type: 3}
