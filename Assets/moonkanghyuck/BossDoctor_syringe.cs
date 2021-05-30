@@ -59,13 +59,13 @@ public class BossDoctor_syringe : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player") //°ø°ÝÇØ¼­ ÇÃ·¹ÀÌ¾î¸¦ ¸ÂÃã
+        if (collision.tag == "Player") //ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½
         {
             if (!collision.GetComponent<PrototypeHero>().m_dodging)
             {
                 collision.GetComponent<PrototypeHero>().damagedani();
 
-                //µ¥¹ÌÁö Ãâ·Â
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿?
                 Destroy(gameObject);
             }
         }

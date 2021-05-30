@@ -46,7 +46,7 @@ public class roomgogo : MonoBehaviour
         }
     }
     IEnumerator gogogo(){
-        gamemanager.instance.randoMap = Random.Range(0,3);
+        gamemanager.instance.randoMap = Random.Range(0,gamemanager.instance.roomCnt);
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("kimhyengjoo");
         

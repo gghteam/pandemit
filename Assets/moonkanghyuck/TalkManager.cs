@@ -42,7 +42,7 @@ public class TextManager : MonoBehaviour
     {
         for(int i =1;sheet1.dataArray[i].Stringnumber != '0'; i++)
         {
-            //Debug.Log("³Ñ¹ö:" + sheet1.dataArray[i].Stringnumber + " ÅØ½ºÆ® " + sheet1.dataArray[i].Talk1[0]);
+            //Debug.Log("ï¿½Ñ¹ï¿½:" + sheet1.dataArray[i].Stringnumber + " ï¿½Ø½ï¿½Æ® " + sheet1.dataArray[i].Talk1[0]);
             //for(int j = 0; sheet1.dataArray[i].Talk1[j] != null; j++)
             //{
                 talkdata.Add(sheet1.dataArray[i].Stringnumber, sheet1.dataArray[i].Talk1);

@@ -257,7 +257,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -277,9 +277,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 4456770550988293665, guid: 6f90dbb678ddcff4c8920b0845aec07f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -383,16 +383,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d7f53d06799ac4e8e47f08a65ce2f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  healthbar: {fileID: 1031106265421383609}
+  nuckback: 3
   gogo: 0
   HP: 0
-  MAXHP: 100
+  MAXHP: 50
   pos: {fileID: 1031106265268605444}
   boxsize: {x: 0.8, y: 0.5}
   dil: {fileID: 8239405177480021636, guid: d04b26b8d1b75b9439734e66b9fb9ca5, type: 3}
   playercamera: {fileID: 0}
-  enemy: {fileID: 0}
   attacklt: 1.3
   rangth: 0
   speed: 2

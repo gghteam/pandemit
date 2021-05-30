@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
 class room{
     bool isClear;
     int x,y;
@@ -12,13 +11,28 @@ class room{
 
 public class gamemanager : MonoBehaviour
 {
-    public static gamemanager instance;
+
+    private static gamemanager _instance;
+    public static gamemanager instance
+    {
+        get{
+            if(_instance == null){
+                _instance = FindObjectOfType<gamemanager>();
+                if(_instance == null){
+                    _instance = new GameObject("GameManager").AddComponent<gamemanager>();
+                }
+            }
+            return _instance;
+        }
+    }
+
     [SerializeField]
     public int myX=0,myY= 0,randoMap;
     private Animator roomani;
     [SerializeField]
     private int Progress=0;
     public GameObject roompp;
+    public int roomCnt=7;
     public int[,,] xy=new int[40,40,3];
 
     public float hp = 100;
@@ -28,10 +42,9 @@ public class gamemanager : MonoBehaviour
 
     void Start()
     {
-        instance=this;
+        randoMap = Random.Range(0,roomCnt);
         xy[10,10,0]=10;
         DontDestroyOnLoad(this);
-        randoMap = Random.Range(0,3);
     }
     void maploding(){
         
