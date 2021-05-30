@@ -23,11 +23,11 @@ public class BatEnemy : Enemy
     [SerializeField]
     private float cooltime = 1f;
 
-    protected override void Start()
+    protected override void Awake()
     {
         startPosition = transform.position;
         playercamera = FindObjectOfType<playercamera>();
-        base.Start();
+        base.Awake();
     }
 
     private void FixedUpdate()

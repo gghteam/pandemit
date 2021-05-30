@@ -35,8 +35,6 @@ public class BossDoctor : Enemy
     private int pase = 1;
     //소환수
     [SerializeField]
-    private GameObject[] sevant = new GameObject[3];
-    [SerializeField]
     private bool[] sevanton = new bool[2];
     [SerializeField]
     private GameObject sevantprefeb;
@@ -49,16 +47,20 @@ public class BossDoctor : Enemy
     [SerializeField]
     private int damage;
 
-    Enemy enemy;
     Rigidbody2D rigid;
 
-    protected override void Start()
+
+    protected override void Awake()
     {
-        enemy = GetComponent<Enemy>();
         anim = GetComponent<Animator>();
         playercamera = FindObjectOfType<playercamera>();
         rigid = GetComponent<Rigidbody2D>();
-        base.Start();
+        base.Awake();
+    }
+    private void OnEnable()
+    {
+        HP = MAXHP;
+        anim.SetBool("die?", false);
     }
 
     private void FixedUpdate()
@@ -108,7 +110,7 @@ public class BossDoctor : Enemy
                 case 2: // 페이즈2
                     if (!sevanton[0])
                     {
-                        StartCoroutine(Sumon(0,1));
+                        GetPoolServant();
                         sevanton[0] = true;
                     }
 
@@ -122,7 +124,8 @@ public class BossDoctor : Enemy
                 case 3:
                     if (!sevanton[1])
                     {
-                        StartCoroutine(Sumon(1, 3));
+                        GetPoolServant();
+                        GetPoolServant();
                         sevanton[1] = true;
                     }
                     Pattern();
@@ -154,7 +157,7 @@ public class BossDoctor : Enemy
             if(syringertimer <= 0)
             {
                 //rangestat = 5; //각혈주사기
-                StartCoroutine(Syringer(3, 0.2f));
+                GetSyringer();
                 syringertimer = 0.5f; 
             }
             else
@@ -168,22 +171,84 @@ public class BossDoctor : Enemy
             rangestat = 0; // 대기
         }
     }
-    IEnumerator Sumon(int num, int range)
+    private void GetSyringer()
     {
-        for(int i = num; i < range; i++)
+        
+        float syringertimer = 0;
+        for (int i = 0; i < 3; i++)
         {
-            sevant[i] = Instantiate(sevantprefeb, transform.localPosition, Quaternion.identity);
-            sevant[i].transform.SetParent(null);
-            yield return new WaitForSeconds(0.2f);
+            var syringerson = poolManager.transform.GetComponentInChildren<BossDoctor_syringe>(true);
+            if (syringerson == null)
+            {
+                Instantiate(syringerprefeb, new Vector2(transform.position.x + (transform.localScale.x * i), transform.position.y + 1 + ((i * 3) / 3)), Quaternion.identity);
+            }
+            else
+            {
+                syringerson.transform.position = new Vector2(transform.position.x + (transform.localScale.x * i), transform.position.y + 1 + ((i * 3) / 3));
+                syringerson.transform.SetParent(null);
+                syringerson.gameObject.SetActive(true);
+            }
+            while(syringertimer < 0.2f)
+            {
+                syringertimer += Time.deltaTime;
+            }
+            syringertimer = 0;
         }
     }
-    IEnumerator Syringer(int num, float dely)
+    private void GetBounding()
     {
-        for (int i = 0; i < num; i++)
+
+        float syringertimer = 0;
+        for (int i = 0; i < 3; i++)
         {
-            Instantiate(syringerprefeb, new Vector2(transform.position.x + (transform.localScale.x * i ), transform.position.y + 1 + ((i*3) / num)),Quaternion.identity);
-            yield return new WaitForSeconds(dely);
+            var syringerson = poolManager.transform.GetComponentInChildren<BossDoctor_syringe>(true);
+            if (syringerson == null)
+            {
+                Instantiate(syringerprefeb, new Vector2(transform.position.x + (transform.localScale.x * i), transform.position.y + 1 + ((i * 3) / 3)), Quaternion.identity);
+            }
+            else
+            {
+                syringerson.transform.position = new Vector2(transform.position.x + (transform.localScale.x * i), transform.position.y + 1 + ((i * 3) / 3));
+                syringerson.transform.SetParent(null);
+                syringerson.gameObject.SetActive(true);
+            }
+            while (syringertimer < 0.2f)
+            {
+                syringertimer += Time.deltaTime;
+            }
+            syringertimer = 0;
         }
+    }
+    private void GetPoolServant()
+    {
+        BossDoctor_Servant servantson_script = poolManager.transform.GetComponentInChildren<BossDoctor_Servant>();
+        if (servantson_script == null)
+        {
+            Instantiate(sevantprefeb, transform.localPosition, Quaternion.identity);
+        }
+        else
+        {
+            GameObject servantson = servantson_script.gameObject;
+            servantson.transform.position = transform.position;
+            servantson.transform.SetParent(null);
+            servantson.SetActive(true);
+        }
+    }
+    private GameObject GetPostion()
+    {
+        GameObject potion;
+        if(poolManager.GetComponentInChildren<BossDoctor_Potion>(true) == null)
+        {
+            potion = Instantiate(potionprefeb, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            potion = poolManager.GetComponentInChildren<BossDoctor_Potion>(true).gameObject;
+            potion.transform.SetParent(null);
+            potion.transform.position = transform.position;
+            potion.SetActive(true);
+        }
+        return potion;
     }
     //애니메이션에 넣는 함수들
     private void Attack()
@@ -211,7 +276,7 @@ public class BossDoctor : Enemy
     {
         //던지기
         GameObject potion = null;
-        potion = Instantiate(potionprefeb, transform.position, Quaternion.identity);
+        potion = GetPostion();
         int randomangle = Random.Range(0,2);
         int xnuck = 0, ynuck = 0;
         switch(randomangle)
@@ -231,6 +296,7 @@ public class BossDoctor : Enemy
         potion.transform.localScale = transform.lossyScale;
         if(transform.lossyScale.x == -1) potion.GetComponent<Animator>().SetBool("Right?", true);
     }
+
 
     private void Run()
     {
@@ -273,6 +339,7 @@ public class BossDoctor : Enemy
     }
     public void Destroyobject()
     { //죽으면서 오브젝트 삭제
-        Destroy(gameObject);
+        gameObject.transform.SetParent(poolManager.transform);
+        gameObject.SetActive(false);
     }
 }

@@ -24,13 +24,13 @@ public class wolf : Enemy
     private int damage = 5;
 
 
-    protected override void Start()
+    protected override void Awake()
     {
         playercamera = FindObjectOfType<playercamera>().gameObject;
         gogo = true;
         anim = GetComponent<Animator>();
         Rigid = gameObject.GetComponent<Rigidbody2D>();
-        base.Start();
+        base.Awake();
     }
 
     void FixedUpdate()

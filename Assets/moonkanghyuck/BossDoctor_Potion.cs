@@ -10,10 +10,13 @@ public class BossDoctor_Potion : MonoBehaviour
     private playercamera playercamera;
 
     Rigidbody2D rigid;
-    void Start()
+
+    private PoolManager poolManager;
+    void Awake()
     {
         playercamera = FindObjectOfType<playercamera>();
         rigid = GetComponent<Rigidbody2D>();
+        poolManager = FindObjectOfType<PoolManager>();
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,12 +32,17 @@ public class BossDoctor_Potion : MonoBehaviour
                 hello.transform.position = (collision.transform.position + new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0));
                 hello.GetComponent<damage>().damagechk = 10;
                 playercamera.GetComponent<playercamera>().startshake(0.4f, 0.2f);
-                Destroy(gameObject);
+                DestroyGameObject();
             }
         }
         if(collision.gameObject.layer == 7)
         {
-            Destroy(gameObject);
+            DestroyGameObject();
         }
+    }
+    private void DestroyGameObject()
+    {
+        transform.SetParent(poolManager.transform);
+        gameObject.SetActive(false);
     }
 }

@@ -14,10 +14,11 @@ public class Enemy : MonoBehaviour
 
     public float HP;
     public float MAXHP;
+    protected PoolManager poolManager;
 
     Rigidbody2D Rigid;
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         healthbar = GetComponentInChildren<HPbar>();
         player = FindObjectOfType<PrototypeHero>().gameObject;
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
         healthbar.sethealth(HP, MAXHP);
         gogo = true;
         Rigid = gameObject.GetComponent<Rigidbody2D>();
+        poolManager = FindObjectOfType<PoolManager>();
     }
 
     public virtual void Hit(int damege) //데미지를 받음

@@ -46,7 +46,7 @@ public class BossDoctor_Servant : Enemy
         cooltime += Time.deltaTime;
     }
 
-    protected override void Start()
+    protected override void Awake()
     {
         enemy = GetComponent<Enemy>();
         rigid = GetComponent<Rigidbody2D>();
@@ -55,7 +55,7 @@ public class BossDoctor_Servant : Enemy
         playercamera = FindObjectOfType<playercamera>();
         anim.SetTrigger("start?");
         StartCoroutine(AttackSelect());
-        base.Start();
+        base.Awake();
     }
 
     private void Range()
@@ -152,7 +152,8 @@ public class BossDoctor_Servant : Enemy
     }
     public void Destroyobject()
     { //죽으면서 오브젝트 삭제
-        Destroy(gameObject);
+        transform.SetParent(poolManager.transform);
+        gameObject.SetActive(false);
     }
 
     private void OnDrawGizmos()

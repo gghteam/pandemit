@@ -7,25 +7,34 @@ public class BossDoctor_syringe : MonoBehaviour
     private GameObject player;
     [SerializeField]
     private float speed = 5f;
-    WaitForFixedUpdate wait = new WaitForFixedUpdate();
     private Vector2 dir;
     private float angle;
     private Quaternion angleAxis;
     private Material material;
     private Collider2D col;
+    private float materialscale = 0f;
 
     //Å¸ÀÌ¸Óµé
     private float angletimer = 3f;
     private float targettimer = 0f;
+
+    //Ç®¸Å´ÏÀú
+    private PoolManager poolManager;
     private void Start()
     {
-        col = GetComponent<Collider2D>();
+        poolManager = FindObjectOfType<PoolManager>();
         material = GetComponent<SpriteRenderer>().material;
         player = FindObjectOfType<PrototypeHero>().gameObject;
     }
     private void OnEnable()
     {
+        if(col == null)
+            col = GetComponent<Collider2D>();
         col.enabled = false;
+        angletimer = 3f;
+        targettimer = 0f;
+        materialscale = 0f;
+        speed = 5f;
     }
     private void Update()
     {
@@ -33,8 +42,7 @@ public class BossDoctor_syringe : MonoBehaviour
         {
             angletimer -= Time.deltaTime;
             SetAngle();
-            //»ý¼ºµÉ ¶§ ºñÁÖ¾ó 
-            float materialscale = 0;
+            //»ý¼ºµÉ ¶§ ½¦ÀÌ´õ     
             materialscale = Mathf.Lerp(materialscale, 1000, 0.05f * Time.deltaTime);
             material.SetFloat("_Causticspower", materialscale);
         }
@@ -66,13 +74,18 @@ public class BossDoctor_syringe : MonoBehaviour
                 collision.GetComponent<PrototypeHero>().damagedani();
 
                 //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿?
-                Destroy(gameObject);
+                DestroyGameObject();
             }
         }
         if (collision.gameObject.layer == 7)
         {
-            Debug.Log("asd");
-            Destroy(gameObject);
+            DestroyGameObject();
         }
+    }
+
+    private void DestroyGameObject()
+    {
+        transform.SetParent(poolManager.transform);
+        gameObject.SetActive(false);
     }
 }
