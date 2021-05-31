@@ -26,13 +26,13 @@ public class gamemanager : MonoBehaviour
         }
     }
 
-    [SerializeField]
     public int myX=0,myY= 0,randoMap;
     private Animator roomani;
     [SerializeField]
     private int Progress=0;
     public GameObject roompp,ESC;
     public int roomCnt=7;
+    
     public int[,,] xy=new int[40,40,3];
 
     public float hp = 100;
@@ -46,7 +46,7 @@ public class gamemanager : MonoBehaviour
         if(FindObjectOfType<ButtenEscManager>()!=null)
             ESC = FindObjectOfType<ButtenEscManager>().transform.GetChild(0).gameObject;
         randoMap = Random.Range(0,roomCnt);
-        xy[10,10,0]=10;
+        xy[10,10,0]=2;
         DontDestroyOnLoad(this);
     }
     void Update(){
@@ -113,6 +113,7 @@ public class gamemanager : MonoBehaviour
     public void roguelike(){
         Progress++;
         xy[myX+10,myY+10,1]=Random.Range(1,5);
+        xy[myX+10,myY+10,2]=Random.Range(0,roomCnt+1);
         if(xy[myX+10,myY+10,0]!=1){
             maploding();maploding();maploding();maploding();
         }
