@@ -6922,7 +6922,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -11608,7 +11608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1615379845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11626,6 +11626,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 478d3563485354f4bb229f99917d7f5a, type: 2}
   - {fileID: 11400000, guid: e5f5b1e313ca29a48a0fa6776d7f69ce, type: 2}
   - {fileID: 11400000, guid: 791dcd719b461ea4b9d61666cc09fea9, type: 2}
+  - {fileID: 11400000, guid: f20b327ebcc17964b941d4eb512339c0, type: 2}
   Num: 0
 --- !u!4 &1615379847
 Transform:
