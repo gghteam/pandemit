@@ -13604,7 +13604,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 791dcd719b461ea4b9d61666cc09fea9, type: 2}
   - {fileID: 11400000, guid: 478d3563485354f4bb229f99917d7f5a, type: 2}
   - {fileID: 11400000, guid: e5f5b1e313ca29a48a0fa6776d7f69ce, type: 2}
-  num: 1
+  Num: 0
 --- !u!114 &525909502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13671,6 +13671,7 @@ Transform:
   - {fileID: 1909151596}
   - {fileID: 1144545544}
   - {fileID: 1227671112}
+  - {fileID: 1595066398}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15816,6 +15817,7 @@ Transform:
   - {fileID: 71765805512639674}
   - {fileID: 5935213742486183944}
   - {fileID: 5307086381513064380}
+  - {fileID: 1339105467}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20776,11 +20778,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7889659950032534950, guid: 6633b4d1278de3b4c9175d6e82567793, type: 3}
   m_PrefabInstance: {fileID: 96480384}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1227671112 stripped
+--- !u!4 &1227671112
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 3197434520317241165, guid: 65804c68ee13b9040802bad43b1f8859, type: 3}
   m_PrefabInstance: {fileID: 412428150}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978656500}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 541364856}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1239274196
 GameObject:
   m_ObjectHideFlags: 0
@@ -24957,6 +24968,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1046113658}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1339105466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1339105467}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1339105467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339105466}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 835564488}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1344797960
 PrefabInstance:
@@ -34389,6 +34430,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
+--- !u!1 &1595066397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1595066398}
+  m_Layer: 0
+  m_Name: BossDoctor (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1595066398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595066397}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 541364856}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1603654690
 GameObject:
   m_ObjectHideFlags: 0
@@ -48901,6 +48972,22 @@ Transform:
   m_Father: {fileID: 429986504}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1978656500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1227671112}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1987781281
 GameObject:
   m_ObjectHideFlags: 0
