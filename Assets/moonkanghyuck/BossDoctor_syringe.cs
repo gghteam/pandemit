@@ -87,7 +87,7 @@ public class BossDoctor_syringe : MonoBehaviour
         }
     }
 
-    private void DestroyGameObject()
+    protected void DestroyGameObject()
     {
         transform.SetParent(poolManager.transform);
         gameObject.SetActive(false);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class BossDoctor : Enemy
 {
@@ -25,9 +26,13 @@ public class BossDoctor : Enemy
     //약물던지기
     [SerializeField]
     private GameObject potionprefeb;
+    [SerializeField]
+    private GameObject reversepotionprefeb;
     //각혈주사기
     [SerializeField]
     private GameObject syringerprefeb;
+    [SerializeField]
+    private GameObject boundingprefeb;
     [SerializeField]
     private float syringertimer = 0.5f;
     //페이즈 변수
@@ -43,6 +48,8 @@ public class BossDoctor : Enemy
     private GameObject dil;
     
     private playercamera playercamera;
+    [SerializeField]
+    private Light2D bosslight;
 
     [SerializeField]
     private int damage;
@@ -70,10 +77,13 @@ public class BossDoctor : Enemy
         {
             if (HP / MAXHP < 0.5f) // HP를 MAXHP로 나눠서 백분율 만듬
             {
+                bosslight.intensity = 2f;
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(1,0,0,1);
                 pase = 3;
             }
             else if (HP / MAXHP < 0.7f) // HP를 MAXHP로 나눠서 백분율 만듬
             {
+                bosslight.intensity = 1f;
                 pase = 2;
             }
             if (pase > 1) timer += Time.deltaTime;
@@ -153,18 +163,37 @@ public class BossDoctor : Enemy
         }
         else if (rangth < 5)
         {
-            
-            if(syringertimer <= 0)
+            if (syringertimer <= 0)
             {
-                //rangestat = 5; //각혈주사기
                 GetSyringer();
-                syringertimer = 0.5f; 
+                syringertimer = 0.5f;
             }
             else
             {
                 rangestat = 3; // 달리기
             }
             
+        }
+        else if (rangth < 6)
+        {
+            if (pase > 2)
+            {
+                int random = Random.Range(0, 2);
+                switch (random)
+                {
+                    case 0:
+                        rangestat = 5;
+                        break;
+                    case 1:
+                        GetBounding();
+                        break;
+                }
+            }
+            else
+            {
+                rangestat = 3; // 달리기
+            }
+
         }
         else
         {
@@ -197,26 +226,16 @@ public class BossDoctor : Enemy
     }
     private void GetBounding()
     {
-
-        float syringertimer = 0;
-        for (int i = 0; i < 3; i++)
+        var syringerson = poolManager.transform.GetComponentInChildren<BossDoctor_BoundingSyringer>(true);
+        if (syringerson == null)
         {
-            var syringerson = poolManager.transform.GetComponentInChildren<BossDoctor_syringe>(true);
-            if (syringerson == null)
-            {
-                Instantiate(syringerprefeb, new Vector2(transform.position.x + (transform.localScale.x * i), transform.position.y + 1 + ((i * 3) / 3)), Quaternion.identity);
-            }
-            else
-            {
-                syringerson.transform.position = new Vector2(transform.position.x + (transform.localScale.x * i), transform.position.y + 1 + ((i * 3) / 3));
-                syringerson.transform.SetParent(null);
-                syringerson.gameObject.SetActive(true);
-            }
-            while (syringertimer < 0.2f)
-            {
-                syringertimer += Time.deltaTime;
-            }
-            syringertimer = 0;
+            Instantiate(boundingprefeb, new Vector2(transform.position.x + (transform.localScale.x * 1), transform.position.y + 2), Quaternion.identity);
+        }
+        else
+        {
+            syringerson.transform.position = new Vector2(transform.position.x + (transform.localScale.x * 1), transform.position.y + 2);
+            syringerson.transform.SetParent(null);
+            syringerson.gameObject.SetActive(true);
         }
     }
     private void GetPoolServant()
@@ -237,13 +256,29 @@ public class BossDoctor : Enemy
     private GameObject GetPostion()
     {
         GameObject potion;
-        if(poolManager.GetComponentInChildren<BossDoctor_Potion>(true) == null)
+        if(poolManager.GetComponentInChildren<BossDoctor_NormalPotion>(true) == null)
         {
             potion = Instantiate(potionprefeb, transform.position, Quaternion.identity);
         }
         else
         {
-            potion = poolManager.GetComponentInChildren<BossDoctor_Potion>(true).gameObject;
+            potion = poolManager.GetComponentInChildren<BossDoctor_NormalPotion>(true).gameObject;
+            potion.transform.SetParent(null);
+            potion.transform.position = transform.position;
+            potion.SetActive(true);
+        }
+        return potion;
+    }
+    private GameObject GetReversePostion()
+    {
+        GameObject potion;
+        if (poolManager.GetComponentInChildren<BossDoctor_ReversePotion>(true) == null)
+        {
+            potion = Instantiate(reversepotionprefeb, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            potion = poolManager.GetComponentInChildren<BossDoctor_ReversePotion>(true).gameObject;
             potion.transform.SetParent(null);
             potion.transform.position = transform.position;
             potion.SetActive(true);
@@ -296,7 +331,17 @@ public class BossDoctor : Enemy
         potion.transform.localScale = transform.lossyScale;
         if(transform.lossyScale.x == -1) potion.GetComponent<Animator>().SetBool("Right?", true);
     }
-
+    private void ThrowReverse()
+    {
+        //던지기
+        GameObject potion = null;
+        potion = GetReversePostion();
+        int xnuck = 50, ynuck = 400;
+        potion.GetComponent<Rigidbody2D>().AddForce(Vector2.up * ynuck);
+        potion.GetComponent<Rigidbody2D>().AddForce(Vector2.right * (this.gameObject.transform.lossyScale.x == 1 ? -xnuck : xnuck));
+        potion.transform.localScale = transform.lossyScale;
+        if (transform.lossyScale.x == -1) potion.GetComponent<Animator>().SetBool("Right?", true);
+    }
 
     private void Run()
     {

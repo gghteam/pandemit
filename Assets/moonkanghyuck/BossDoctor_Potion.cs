@@ -11,7 +11,7 @@ public class BossDoctor_Potion : MonoBehaviour
 
     Rigidbody2D rigid;
 
-    private PoolManager poolManager;
+    protected PoolManager poolManager;
     void Awake()
     {
         playercamera = FindObjectOfType<playercamera>();
@@ -19,7 +19,7 @@ public class BossDoctor_Potion : MonoBehaviour
         poolManager = FindObjectOfType<PoolManager>();
         
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player") //공격해서 플레이어를 맞춤
         {
@@ -40,7 +40,7 @@ public class BossDoctor_Potion : MonoBehaviour
             DestroyGameObject();
         }
     }
-    private void DestroyGameObject()
+    protected virtual void DestroyGameObject()
     {
         transform.SetParent(poolManager.transform);
         gameObject.SetActive(false);

@@ -12,8 +12,7 @@ public class PostChange : MonoBehaviour
     [SerializeField]
     private VolumeProfile[] postProcessProfiles = null;
 
-    [SerializeField]
-    private int num = 0;
+    public int Num = 0;
 
     private void Start()
     {
@@ -22,7 +21,7 @@ public class PostChange : MonoBehaviour
 
     private void Update()
     {
-        postProcessVolume.profile = postProcessProfiles[num];
+        postProcessVolume.profile = postProcessProfiles[Num];
     }
     //public void ChangePostProcess(int num)
     //{
