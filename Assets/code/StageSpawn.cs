@@ -6,13 +6,36 @@ public class StageSpawn : MonoBehaviour
 {
     [SerializeField]
     private GameObject NormalMaps;
-    // Start is called before the first frame update
+    [SerializeField]
+    private GameObject store;
+    [SerializeField]
+    private GameObject box;
+    [SerializeField]
+    private GameObject boss;
+    [SerializeField]
+    private GameObject tuto;
     void Start()
     {
-        NormalMaps.transform.GetChild(gamemanager.instance.randoMap).gameObject.SetActive(true);
+        
+        switch(gamemanager.instance.xy[gamemanager.instance.myX+10,gamemanager.instance.myY+10,0]){
+            case 2:
+            NormalMaps.transform.GetChild(gamemanager.instance.xy[gamemanager.instance.myX+10,gamemanager.instance.myY+10,2]).gameObject.SetActive(true);
+            break;
+            case 4:
+            box.SetActive(true);
+            break;
+            case 3:
+            store.SetActive(true);
+            break;
+            case 1:
+            boss.SetActive(true);
+            break;
+            case 5:
+            tuto.SetActive(true);
+            break;
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         

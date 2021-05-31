@@ -26,13 +26,13 @@ public class gamemanager : MonoBehaviour
         }
     }
 
-    [SerializeField]
     public int myX=0,myY= 0,randoMap;
     private Animator roomani;
     [SerializeField]
     private int Progress=0;
     public GameObject roompp,ESC;
     public int roomCnt=7;
+    
     public int[,,] xy=new int[40,40,3];
 
     public float hp = 100;
@@ -46,7 +46,7 @@ public class gamemanager : MonoBehaviour
         if(FindObjectOfType<ButtenEscManager>()!=null)
             ESC = FindObjectOfType<ButtenEscManager>().transform.GetChild(0).gameObject;
         randoMap = Random.Range(0,roomCnt);
-        xy[10,10,0]=10;
+        xy[10,10,0]=5;
         DontDestroyOnLoad(this);
     }
     void Update(){
@@ -94,6 +94,7 @@ public class gamemanager : MonoBehaviour
         }
         if(xy[roomX+10,roomY+10,0]==0){
             xy[roomX+10,roomY+10,0]=randomroomgo;
+            xy[roomX+10,roomY+10,2]=Random.Range(0,roomCnt-1);
         }
     }
     public void Continue(){
@@ -113,6 +114,7 @@ public class gamemanager : MonoBehaviour
     public void roguelike(){
         Progress++;
         xy[myX+10,myY+10,1]=Random.Range(1,5);
+        
         if(xy[myX+10,myY+10,0]!=1){
             maploding();maploding();maploding();maploding();
         }
@@ -123,6 +125,7 @@ public class gamemanager : MonoBehaviour
                     room.GetComponent<roomgogo>().myx=i-10;
                     room.GetComponent<roomgogo>().myy=j-10;
                     room.GetComponent<roomgogo>().randomroom=xy[i,j,0];
+                        
                     room.transform.position = new Vector3(room.transform.localScale.x*(i-10),room.transform.localScale.y*(j -10),0);
                 }
             }
