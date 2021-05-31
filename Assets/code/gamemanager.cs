@@ -94,7 +94,7 @@ public class gamemanager : MonoBehaviour
         }
         if(xy[roomX+10,roomY+10,0]==0){
             xy[roomX+10,roomY+10,0]=randomroomgo;
-            xy[roomX+10,roomY+10,2]=Random.Range(0,roomCnt+1);
+            xy[roomX+10,roomY+10,2]=Random.Range(0,roomCnt-1);
         }
     }
     public void Continue(){
