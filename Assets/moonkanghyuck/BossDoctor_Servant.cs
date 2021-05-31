@@ -7,9 +7,9 @@ public class BossDoctor_Servant : Enemy
     Rigidbody2D rigid;
     Animator anim;
     [SerializeField]
-    private int rangestat; // °Å¸® »óÅÂ º¯¼ö
+    private int rangestat; // ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     [SerializeField]
-    private float rangth; // °Å¸®
+    private float rangth; // ï¿½Å¸ï¿½
 
 
     [SerializeField]
@@ -56,17 +56,18 @@ public class BossDoctor_Servant : Enemy
         anim.SetTrigger("start?");
         StartCoroutine(AttackSelect());
         base.Awake();
+        
     }
 
     private void Range()
     {
-        if (player.transform.position.x > transform.position.x) //ÇÃ·¹ÀÌ¾î°¡ ¿À¸¥ÂÊ¿¡ ÀÖÀ» ¶§
+        if (player.transform.position.x > transform.position.x) //ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         {
-            transform.localScale = new Vector3(-Mathf.Abs(transform.lossyScale.x), transform.lossyScale.y, transform.lossyScale.y); //¿À¸¥ÂÊÀ¸·Î ¹Ù¶óº½
+            transform.localScale = new Vector3(-Mathf.Abs(transform.lossyScale.x), transform.lossyScale.y, transform.lossyScale.y); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶ï¿½
         }
-        else if (player.transform.position.x < transform.position.x) //ÇÃ·¹ÀÌ¾î°¡ ¿ÞÂÊ¿¡ ÀÖÀ» ¶§
+        else if (player.transform.position.x < transform.position.x) //ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         {
-            transform.localScale = new Vector3(Mathf.Abs(transform.lossyScale.x), transform.lossyScale.y, transform.lossyScale.y); //¿ÞÂÊÀ¸·Î ¹Ù¶óº½
+            transform.localScale = new Vector3(Mathf.Abs(transform.lossyScale.x), transform.lossyScale.y, transform.lossyScale.y); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶ï¿½
         }
         rangth = Mathf.Abs(transform.position.x - player.transform.position.x);
         if (rangth < 1.4)
@@ -84,7 +85,7 @@ public class BossDoctor_Servant : Enemy
         }
         else 
         {
-            rangestat = 3; // µ¹Áø
+            rangestat = 3; // ï¿½ï¿½ï¿½ï¿½
         }
     }
 
@@ -112,17 +113,17 @@ public class BossDoctor_Servant : Enemy
     }
     private void Attack(int attacknum)
     {
-        //Âî¸£±â
+        //ï¿½î¸£ï¿½ï¿½
         Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos[attacknum].position, boxsize[attacknum], 0);
         foreach (Collider2D collider in collider2Ds)
         {
-            if (collider.tag == "Player") //°ø°ÝÇØ¼­ ÇÃ·¹ÀÌ¾î¸¦ ¸ÂÃã
+            if (collider.tag == "Player") //ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½
             {
                 if (!collider.GetComponent<PrototypeHero>().m_dodging)
                 {
                     collider.GetComponent<PrototypeHero>().damagedani();
 
-                    //µ¥¹ÌÁö Ãâ·Â
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿?
                     GameObject hello = Instantiate(dil);
                     hello.transform.position = (collider.transform.position + new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0));
                     hello.GetComponent<damage>().damagechk = damage;
@@ -151,7 +152,7 @@ public class BossDoctor_Servant : Enemy
         onmove = false;
     }
     public void Destroyobject()
-    { //Á×À¸¸é¼­ ¿ÀºêÁ§Æ® »èÁ¦
+    { //ï¿½ï¿½ï¿½ï¿½ï¿½é¼­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         transform.SetParent(poolManager.transform);
         gameObject.SetActive(false);
     }

@@ -59,7 +59,7 @@ public class gamemanager : MonoBehaviour
         int randomgogo = Random.Range(0,4);
         int randomroomgo = Random.Range(1,101);
         if(randomroomgo<7){
-            if(Progress>7)
+            if(Progress>4)
                 randomroomgo=1;
             else
                 randomroomgo=2;
