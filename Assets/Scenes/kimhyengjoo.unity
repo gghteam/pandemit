@@ -634,6 +634,7 @@ MonoBehaviour:
   store: {fileID: 1848009994}
   box: {fileID: 1351188160}
   boss: {fileID: 541364854}
+  tuto: {fileID: 1901575680}
 --- !u!1 &85187412
 GameObject:
   m_ObjectHideFlags: 0

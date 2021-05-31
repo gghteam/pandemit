@@ -12,6 +12,8 @@ public class StageSpawn : MonoBehaviour
     private GameObject box;
     [SerializeField]
     private GameObject boss;
+    [SerializeField]
+    private GameObject tuto;
     void Start()
     {
         
@@ -27,6 +29,9 @@ public class StageSpawn : MonoBehaviour
             break;
             case 1:
             boss.SetActive(true);
+            break;
+            case 5:
+            tuto.SetActive(true);
             break;
         }
     }

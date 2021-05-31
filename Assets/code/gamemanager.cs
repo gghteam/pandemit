@@ -46,7 +46,7 @@ public class gamemanager : MonoBehaviour
         if(FindObjectOfType<ButtenEscManager>()!=null)
             ESC = FindObjectOfType<ButtenEscManager>().transform.GetChild(0).gameObject;
         randoMap = Random.Range(0,roomCnt);
-        xy[10,10,0]=2;
+        xy[10,10,0]=5;
         DontDestroyOnLoad(this);
     }
     void Update(){
