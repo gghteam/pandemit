@@ -94,6 +94,7 @@ public class gamemanager : MonoBehaviour
         }
         if(xy[roomX+10,roomY+10,0]==0){
             xy[roomX+10,roomY+10,0]=randomroomgo;
+            xy[roomX+10,roomY+10,2]=Random.Range(0,roomCnt+1);
         }
     }
     public void Continue(){
@@ -113,7 +114,7 @@ public class gamemanager : MonoBehaviour
     public void roguelike(){
         Progress++;
         xy[myX+10,myY+10,1]=Random.Range(1,5);
-        xy[myX+10,myY+10,2]=Random.Range(0,roomCnt+1);
+        
         if(xy[myX+10,myY+10,0]!=1){
             maploding();maploding();maploding();maploding();
         }
@@ -124,6 +125,7 @@ public class gamemanager : MonoBehaviour
                     room.GetComponent<roomgogo>().myx=i-10;
                     room.GetComponent<roomgogo>().myy=j-10;
                     room.GetComponent<roomgogo>().randomroom=xy[i,j,0];
+                        
                     room.transform.position = new Vector3(room.transform.localScale.x*(i-10),room.transform.localScale.y*(j -10),0);
                 }
             }
