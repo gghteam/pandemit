@@ -15,11 +15,13 @@ public class playercamera : MonoBehaviour
     public bool bound;
     public bool mousegogo;
     private Vector2 targerPosition;
+    private Camera playercam;
     void Start()
     {
         Application.targetFrameRate = 60;
         //startshake(1f,1f);
-        fstzoom = GetComponent<Camera>().orthographicSize;
+        playercam = GetComponent<Camera>();
+        fstzoom = playercam.orthographicSize;
     }
 
     void FixedUpdate()
@@ -58,9 +60,9 @@ public class playercamera : MonoBehaviour
 
         if (zoom != 0)
         {
-            GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, zoom, speed);
+            playercam.orthographicSize = Mathf.Lerp(playercam.orthographicSize, zoom, speed);
         }
-        else GetComponent<Camera>().orthographicSize = fstzoom;
+        else playercam.orthographicSize = fstzoom;
 
     }
     public void startshake(float length, float power)
@@ -71,6 +73,21 @@ public class playercamera : MonoBehaviour
         shakefadetime = power / length;
 
         shakerotation = power * rotationmultiplier;
+    }
+
+    public void OnChangeCull(int x)
+    {
+        playercam.ResetProjectionMatrix();
+        Debug.Log(playercam.projectionMatrix.lossyScale.x);
+        if (playercam.projectionMatrix.lossyScale.x > 0)
+        {
+            
+            playercam.projectionMatrix = playercam.projectionMatrix * Matrix4x4.Scale(new Vector3(-x, 1, 1));
+        }
+        else if (playercam.projectionMatrix.lossyScale.x < 0)
+        {
+            playercam.projectionMatrix = playercam.projectionMatrix * Matrix4x4.Scale(new Vector3(x, 1, 1));
+        }
     }
 
 }
